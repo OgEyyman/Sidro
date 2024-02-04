@@ -15,9 +15,24 @@ function navigateTo(hash) {
       loadRegisterPage();
       break;
     default:
-      loadLoginPage();
+      loadHomePage();
       break;
     }
+}
+
+function renderHeader() {
+  return `
+  <header>
+    <img src="" alt="menu icon" class="menu-icon" />
+    <img src="" alt="search icon" class="search-icon" />
+    <button>
+      <img src="" alt="toggle search" class="toggle-search" />
+      <p>Search...</p>
+    </button>
+    <img src="" alt="sidro logo" class="sidro-logo" />
+    <img src="" alt="account icon" class="account-icon" />
+  </header>
+  `;
 }
 
 function renderFooter() {
@@ -30,22 +45,55 @@ function renderFooter() {
   `;
 }
 
-function loadPageContent(content) {
+function loadPageContent(content, header) {
   const container = document.getElementById("container");
-  container.innerHTML = content + renderFooter();
+  if (!header) {
+    container.innerHTML = renderLoginIcons() + content + renderFooter();
+    return;
+  }
+  container.innerHTML = renderHeader() + content + renderFooter();
+}
+
+function renderLoginIcons() {
+  return `
+  <div class="symbols">
+    <img src="assets/login/controller.png" alt="controller.png" />
+    <img src="assets/login/ps5.png" alt="ps5.png" />
+    <img src="assets/login/handheld_console.png" alt="handheld_console.png" />
+    <img src="assets/login/handheld.png" alt="handheld.png" />
+    <img src="assets/login/controller.png" alt="controller.png" />
+    <img src="assets/login/ps5.png" alt="ps5.png" />
+    <img src="assets/login/handheld_console.png" alt="handheld_console.png" />
+    <img src="assets/login/handheld.png" alt="handheld.png" />
+    <img src="assets/login/controller.png" alt="controller.png" />
+    <img src="assets/login/ps5.png" alt="ps5.png" />
+    <img src="assets/login/handheld_console.png" alt="handheld_console.png" />
+    <img src="assets/login/handheld.png" alt="handheld.png" />
+    <img src="assets/login/controller.png" alt="controller.png" />
+    <img src="assets/login/ps5.png" alt="ps5.png" />
+    <img src="assets/login/handheld_console.png" alt="handheld_console.png" />
+    <img src="assets/login/handheld.png" alt="handheld.png" />
+    <img src="assets/login/controller.png" alt="controller.png" />
+    <img src="assets/login/ps5.png" alt="ps5.png" />
+    <img src="assets/login/handheld_console.png" alt="handheld_console.png" />
+    <img src="assets/login/handheld.png" alt="handheld.png" />
+    <img src="assets/login/controller.png" alt="controller.png" />
+    <img src="assets/login/ps5.png" alt="ps5.png" />
+    <img src="assets/login/handheld_console.png" alt="handheld_console.png" />
+    <img src="assets/login/handheld.png" alt="handheld.png" />
+  </div>
+  `;
 }
 
 function loadLoginPage() {
   const loginPage = `
   <div class="display-box">
   <h1>Login</h1>
-  <div class="login">
+  <div class="credentials">
     <form>
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" placeholder="Username">
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" placeholder="Password">
-    </form>
+    <input type="text" class="credentials-username" name="username" placeholder="Username">
+    <input type="password" class="credentials-password" name="password" placeholder="Password">
+  </form>
     <button>Login</button>
   </div>
   <div class="signup-link">
@@ -54,34 +102,57 @@ function loadLoginPage() {
   </div>
   </div>
   `;
-  loadPageContent(loginPage);
+  loadPageContent(loginPage, false);
 }
 
 function loadRegisterPage() {
   const registerPage = `
   <div class="display-box">
   <h1>Register</h1>
-  <div class="login">
+  <div class="credentials">
     <form>
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" placeholder="Username">
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" placeholder="Password">
+      <input type="text" class="credentials-username" name="username" placeholder="Username">
+      <input type="password" class="credentials-password" name="password" placeholder="Password">
     </form>
     <button>Register</button>
-  </div>
+  </div>  
   <div class="login-link">
     <p>Already registered?</p>
     <a href="#/login" id="registerLink">Login instead!</a>      
   </div>
   </div>
   `;
-  loadPageContent(registerPage);
+  loadPageContent(registerPage, false);
 }
 
-document
-  .getElementById("registerLink")
-  .addEventListener("click", function (event) {
-    event.preventDefault();
-    loadSignupContent();
-  });
+function loadHomePage() {
+  const homePage = `
+    <body>
+      <div class="feed-toggle">
+        <button class="feed-toggle-home">Home feed</button>
+        <button class="feed-toggle-news">News feed</button>
+      </div>
+      <div class="filter-sort">
+        <img src="" alt="filter icon" class="filter-sort-filter-icon" />
+        <img src="" alt="sort icon" class="filter-sort-sort-icon" />
+      </div>
+      <div class="user-post-icon">
+        <img src="" alt="user post icon" class="user-post-icon" />
+        <p>You</p>
+      </div>
+      <div class="add-a-post-button">
+        <img src="" alt="plus icon" class="plus-icon" />
+        <button><p>Add a post...</p></button>
+      </div>
+    </body>
+  `;
+
+  loadPageContent(homePage, true);
+}
+
+// document
+//   .getElementById("registerLink")
+//   .addEventListener("click", function (event) {
+//     event.preventDefault();
+//     loadSignupContent();
+//   });

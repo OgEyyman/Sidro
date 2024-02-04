@@ -1,0 +1,60 @@
+@font-face {
+  font-family: 'webpixel-bitmap';
+  src: url('../assets/fonts/webpixel-bitmap-family/webpixel-bitmap.regular.otf');
+  src: url('../assets/fonts/webpixel-bitmap-family/webpixel-bitmap.black.otf');
+  src: url('../assets/fonts/webpixel-bitmap-family/webpixel-bitmap.bold.otf');
+  src: url('../assets/fonts/webpixel-bitmap-family/webpixel-bitmap.light.otf');
+  src: url('../assets/fonts/webpixel-bitmap-family/webpixel-bitmap.medium.otf');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'webpixel-bitmap', 'Courier New', monospace;
+}
+
+.display-box {
+  position: relative;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(207, 207, 207, 0.5);
+  border-radius: 7px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  width: 50%;
+}
+
+.display-box h1 {
+  font-size: 63px;
+}
+
+.credentials form {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.credentials input {
+  margin: 20px 0;
+  border: none;
+  border-radius: 7px;
+  width: 300px;
+  height: 55px;
+  font-size: 36px;
+}
+
+.credentials input::placeholder {
+  padding-left: 10px;
+}
+
+.credentials button {
+  font-size: 30px;
+  border: none;
+}
