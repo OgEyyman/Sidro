@@ -38,9 +38,9 @@ function renderHeader() {
 function renderFooter() {
   return `
   <footer>
-    <p>Privacy policy</p>
-    <p>Sidro™</p>
-    <p>© 2024 Sidro. All rights reserved.</p>
+    <p class="footer-privacy-policy">Privacy policy</p>
+    <p class="footer-website-title">Sidro™</p>
+    <p class="footer-reserved-rights">© 2024 Sidro. All rights reserved.</p>
   </footer>
   `;
 }
@@ -48,7 +48,7 @@ function renderFooter() {
 function loadPageContent(content, header) {
   const container = document.getElementById("container");
   if (!header) {
-    container.innerHTML = renderLoginIcons() + content + renderFooter();
+    container.innerHTML = content + renderFooter();
     return;
   }
   container.innerHTML = renderHeader() + content + renderFooter();
@@ -88,18 +88,14 @@ function renderLoginIcons() {
 function loadLoginPage() {
   const loginPage = `
   <div class="display-box">
-  <h1>Login</h1>
-  <div class="credentials">
+    <h1>Login</h1>  
     <form>
-    <input type="text" class="credentials-username" name="username" placeholder="Username">
-    <input type="password" class="credentials-password" name="password" placeholder="Password">
-  </form>
+      <input type="text" class="display-box-username" name="username" placeholder="Username">
+      <input type="password" class="display-box-password" name="password" placeholder="Password">
+    </form>
     <button>Login</button>
-  </div>
-  <div class="signup-link">
     <p>New to Sidro™?</p>
     <a href="#/register" id="registerLink">Register now!</a>      
-  </div>
   </div>
   `;
   loadPageContent(loginPage, false);
@@ -108,18 +104,14 @@ function loadLoginPage() {
 function loadRegisterPage() {
   const registerPage = `
   <div class="display-box">
-  <h1>Register</h1>
-  <div class="credentials">
+    <h1>Register</h1>  
     <form>
-      <input type="text" class="credentials-username" name="username" placeholder="Username">
-      <input type="password" class="credentials-password" name="password" placeholder="Password">
+      <input type="text" class="display-box-username" name="username" placeholder="Username">
+      <input type="password" class="display-box-password" name="password" placeholder="Password">
     </form>
     <button>Register</button>
-  </div>  
-  <div class="login-link">
     <p>Already registered?</p>
-    <a href="#/login" id="registerLink">Login instead!</a>      
-  </div>
+    <a href="#/register" id="registerLink">Login instead!</a>      
   </div>
   `;
   loadPageContent(registerPage, false);

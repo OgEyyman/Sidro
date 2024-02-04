@@ -26,14 +26,14 @@
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  width: 50%;
+  width: 40%;
 }
 
 .display-box h1 {
   font-size: 63px;
 }
 
-.credentials form {
+.display-box form {
   display: flex;
   align-content: center;
   justify-content: center;
@@ -41,7 +41,7 @@
   box-sizing: border-box;
 }
 
-.credentials input {
+.display-box input {
   margin: 20px 0;
   border: none;
   border-radius: 7px;
@@ -50,11 +50,39 @@
   font-size: 36px;
 }
 
-.credentials input::placeholder {
+.display-box input::placeholder {
   padding-left: 10px;
 }
 
-.credentials button {
-  font-size: 30px;
+.display-box button {
+  font-size: 36px;
+  background-color: beige;
+  padding: 5px 10px;
+  border-radius: 7px;
   border: none;
 }
+
+.display-box p {
+  position: relative;
+  margin: 20px 0px 0px 0px;
+  font-size: 32px;
+}
+
+/* .display-box p::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 100px;
+  bottom: -4px; 
+  height: 2px; 
+  width: 50%; 
+  background: #000;
+} */
+
+.display-box a {
+  font-size: 20px;
+  margin: 0px 0px 15px 0px;
+}
+
+
