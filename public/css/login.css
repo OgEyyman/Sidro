@@ -1,0 +1,89 @@
+#content {
+  grid-area: 2 / 1 / span 1 / span 1;
+}
+
+img  {
+  width: 6vw;
+  height: 6vw;
+  opacity: 0.15;
+  animation-name: spin;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.symbols {
+  box-sizing: border-box;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  justify-items: center;
+  align-items: center;
+  gap: 20px;
+  margin: 20px 0 0 0;
+  height: 90%;
+  width: 100%;
+}
+
+.display-box {
+  grid-area: 2 / 1 / 3 / 2;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(207, 207, 207, 0.5);
+  border-radius: 7px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  width: 45%;
+}
+
+.display-box h1 {
+  font-size: 63px;
+}
+
+.display-box form {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.display-box input {
+  margin: 20px 0;
+  border: none;
+  border-radius: 7px;
+  width: 300px;
+  height: 55px;
+  font-size: 36px;
+}
+
+.display-box input::placeholder {
+  padding-left: 10px;
+}
+
+.display-box button {
+  font-size: 36px;
+  padding: 5px 10px;
+  border-radius: 7px;
+  border: none;
+}
+
+.display-box p {
+  position: relative;
+  margin: 20px 0px 0px 0px;
+  font-size: 32px;
+}
+
+.display-box a {
+  font-size: 20px;
+  margin: 0px 0px 15px 0px;
+}

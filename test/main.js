@@ -1,57 +1,47 @@
-document.addEventListener("DOMContentLoaded", () => {
-  navigateTo(window.location.hash);
+// document.addEventListener("DOMContentLoaded", () => {
+//   navigateTo(window.location.hash);
+// });
+
+// window.addEventListener("hashchange", () => {
+//   navigateTo(window.location.hash);
+// });
+
+// function navigateTo(hash) {
+//   switch (hash) {
+//     case "#/login":
+//       loadLoginPage();
+//       break;
+//     case "#/register":
+//       loadRegisterPage();
+//       break;
+//     default:
+//       break;
+//     }
+// }
+
+// Define your routes
+const routes = {
+  '': loadLoginPage,
+  '/login': loadLoginPage,
+  '/register': loadRegisterPage
+};
+
+// Listen for changes to the current URL
+window.addEventListener('popstate', () => {
+  navigate(window.location.pathname);
 });
 
-window.addEventListener("hashchange", () => {
-  navigateTo(window.location.hash);
-});
-
-function navigateTo(hash) {
-  switch (hash) {
-    case "#/login":
-      loadLoginPage();
-      break;
-    case "#/register":
-      loadRegisterPage();
-      break;
-    default:
-      loadHomePage();
-      break;
-    }
+// Function to navigate to a new page
+function navigate(path) {
+  window.history.pushState({}, path, window.location.origin + path);
+  routes[path]();
 }
 
-function renderHeader() {
-  return `
-  <header>
-    <img src="" alt="menu icon" class="menu-icon" />
-    <img src="" alt="search icon" class="search-icon" />
-    <button>
-      <img src="" alt="toggle search" class="toggle-search" />
-      <p>Search...</p>
-    </button>
-    <img src="" alt="sidro logo" class="sidro-logo" />
-    <img src="" alt="account icon" class="account-icon" />
-  </header>
-  `;
-}
+// Initial navigation
+navigate(window.location.pathname);
 
-function renderFooter() {
-  return `
-  <footer>
-    <p class="footer-privacy-policy">Privacy policy</p>
-    <p class="footer-website-title">Sidro™</p>
-    <p class="footer-reserved-rights">© 2024 Sidro. All rights reserved.</p>
-  </footer>
-  `;
-}
-
-function loadPageContent(content, header) {
-  const container = document.getElementById("container");
-  if (!header) {
-    container.innerHTML = content + renderFooter();
-    return;
-  }
-  container.innerHTML = renderHeader() + content + renderFooter();
+export function loadPageContent(content) {
+  document.getElementById("content").innerHTML = renderHeader() + content + renderFooter();
 }
 
 function renderLoginIcons() {
