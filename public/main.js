@@ -22,6 +22,7 @@ function navigateTo(hash) {
       break;
     default:
       loadPageContent(loadLoginPage(), false);
+      animateLoginIcons();
       break;
     }
 }
