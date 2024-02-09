@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>test</title>
+</head>
+<body>
+  <div class="toggle-container">
+    <button class="toggle-button active" data-target="following">Following</button>
+    <button class="toggle-button" data-target="foryou">For You</button>
+  </div>
+  
+  <div class="content-container">
+    <div id="following" class="content-section active">
+      <h2>Following</h2>
+      <ul class="content-list">
+        <li>Content Item from User A</li>
+        <li>Another Item from User X</li>
+      </ul>
+    </div>
+  
+    <div id="foryou" class="content-section">
+      <h2>For You</h2>
+      <div class="content-grid">
+         <div class="content-item">Video Thumbnail 1</div>
+         <div class="content-item">Video Thumbnail 2</div>
+      </div>
+    </div>
+  </div>
+  
+  <script type="module" src="main.js"></script>
+</body>
+</html>

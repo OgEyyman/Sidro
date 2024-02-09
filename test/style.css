@@ -1,0 +1,28 @@
+.toggle-container {
+  display: flex;
+  margin-bottom: 20px; 
+}
+
+.toggle-button {
+  background-color: #eee;
+  border: none;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.toggle-button.active {
+  background-color: #ccc; 
+}
+
+.content-section {
+  display: none;
+  opacity: 0;  /* Start with hidden opacity */
+  transition: opacity 0.5s ease-in-out; /* Add transition */
+}
+
+.content-section.active {
+  display: block;
+  opacity: 1; /* Show with full opacity */
+}

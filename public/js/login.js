@@ -1,8 +1,8 @@
 export function animateLoginIcons() {
-  var images = document.getElementsByTagName('img');
+  var images = document.getElementsByTagName("img");
   for (var i = 0; i < images.length; i++) {
-      var duration = Math.random() * 15 + 1;
-      images[i].style.animationDuration = duration + 's';
+    var duration = Math.random() * 15 + 1;
+    images[i].style.animationDuration = duration + "s";
   }
 }
 
@@ -36,7 +36,9 @@ function renderLoginIcons() {
 }
 
 export function loadLoginPage() {
-  return  ( renderLoginIcons() + `<div class="display-box">
+  return (
+    renderLoginIcons() +
+    `<div class="display-box">
     <h1>Login</h1>  
     <form>
       <input type="text" class="display-box-username" name="username" placeholder="Username">
@@ -46,11 +48,14 @@ export function loadLoginPage() {
     <p>New to Sidro™?</p>
     <a href="#/register" id="registerLink">Register now!</a>      
   </div>
-  `);
+  `
+  );
 }
 
 export function loadRegisterPage() {
-  return ( renderLoginIcons() + `
+  return (
+    renderLoginIcons() +
+    `
   <div class="display-box">
     <h1>Register</h1>  
     <form>
@@ -61,5 +66,6 @@ export function loadRegisterPage() {
     <p>Already registered?</p>
     <a href="#/login" id="registerLink">Login instead!</a>      
   </div>
-  `);
+  `
+  );
 }

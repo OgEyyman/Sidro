@@ -1,5 +1,4 @@
-import renderHeader from "./js/header.js";
-import renderFooter from "./js/footer.js";
+import { renderHeader, renderFooter } from "./js/layout.js";
 import { loadLoginPage, loadRegisterPage, animateLoginIcons } from "./js/login.js";
 
 document.addEventListener("DOMContentLoaded", () => {
