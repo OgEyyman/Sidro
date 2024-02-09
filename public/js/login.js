@@ -44,11 +44,6 @@ export function loadLoginPage() {
     </form>
     <button>Login</button>
     <p>New to Sidro™?</p>
-    <p>New to Sidro™?</p>
-    <p>New to Sidro™?</p>
-    <p>New to Sidro™?</p>
-    <p>New to Sidro™?</p>
-    <p>New to Sidro™?</p>
     <a href="#/register" id="registerLink">Register now!</a>      
   </div>
   `);
