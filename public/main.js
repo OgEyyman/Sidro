@@ -1,5 +1,6 @@
 import { renderHeader, renderFooter } from "./js/layout.js";
 import { loadLoginPage, loadRegisterPage, animateLoginIcons } from "./js/login.js";
+import { loadHomePage } from "./js/home.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   navigateTo(window.location.hash);
@@ -20,7 +21,7 @@ function navigateTo(hash) {
       animateLoginIcons();
       break;
     default:
-      loadPageContent(loadLoginPage(), false);
+      loadHomePage(loadLoginPage(), false);
       animateLoginIcons();
       break;
     }
@@ -60,10 +61,3 @@ function loadHomePage() {
 
   loadPageContent(homePage, true);
 }
-
-// document
-//   .getElementById("registerLink")
-//   .addEventListener("click", function (event) {
-//     event.preventDefault();
-//     loadSignupContent();
-//   });
