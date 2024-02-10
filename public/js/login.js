@@ -1,38 +1,38 @@
+function renderLoginIcons() {
+  return `<div class="symbols">
+  <img src="../assets/login/controller.png" alt="controller.png" />
+  <img src="../assets/login/ps5.png" alt="ps5.png" />
+  <img src="../assets/login/handheld_console.png" alt="handheld_console.png" />
+  <img src="../assets/login/handheld.png" alt="handheld.png" />
+  <img src="../assets/login/controller.png" alt="controller.png" />
+  <img src="../assets/login/ps5.png" alt="ps5.png" />
+  <img src="../assets/login/handheld_console.png" alt="handheld_console.png" />
+  <img src="../assets/login/handheld.png" alt="handheld.png" />
+  <img src="../assets/login/controller.png" alt="controller.png" />
+  <img src="../assets/login/ps5.png" alt="ps5.png" />
+  <img src="../assets/login/handheld_console.png" alt="handheld_console.png" />
+  <img src="../assets/login/handheld.png" alt="handheld.png" />
+  <img src="../assets/login/controller.png" alt="controller.png" />
+  <img src="../assets/login/ps5.png" alt="ps5.png" />
+  <img src="../assets/login/handheld_console.png" alt="handheld_console.png" />
+  <img src="../assets/login/handheld.png" alt="handheld.png" />
+  <img src="../assets/login/controller.png" alt="controller.png" />
+  <img src="../assets/login/ps5.png" alt="ps5.png" />
+  <img src="../assets/login/handheld_console.png" alt="handheld_console.png" />
+  <img src="../assets/login/handheld.png" alt="handheld.png" />
+  <img src="../assets/login/controller.png" alt="controller.png" />
+  <img src="../assets/login/ps5.png" alt="ps5.png" />
+  <img src="../assets/login/handheld_console.png" alt="handheld_console.png" /> 
+  <img src="../assets/login/handheld.png" alt="handheld.png" />
+  </div>`;
+}
+
 export function animateLoginIcons() {
   var images = document.getElementsByTagName("img");
   for (var i = 0; i < images.length; i++) {
     var duration = Math.random() * 15 + 1;
     images[i].style.animationDuration = duration + "s";
   }
-}
-
-function renderLoginIcons() {
-  return `<div class="symbols">
-    <img src="../assets/login/controller.png" alt="controller.png" />
-    <img src="../assets/login/ps5.png" alt="ps5.png" />
-    <img src="../assets/login/handheld_console.png" alt="handheld_console.png" />
-    <img src="../assets/login/handheld.png" alt="handheld.png" />
-    <img src="../assets/login/controller.png" alt="controller.png" />
-    <img src="../assets/login/ps5.png" alt="ps5.png" />
-    <img src="../assets/login/handheld_console.png" alt="handheld_console.png" />
-    <img src="../assets/login/handheld.png" alt="handheld.png" />
-    <img src="../assets/login/controller.png" alt="controller.png" />
-    <img src="../assets/login/ps5.png" alt="ps5.png" />
-    <img src="../assets/login/handheld_console.png" alt="handheld_console.png" />
-    <img src="../assets/login/handheld.png" alt="handheld.png" />
-    <img src="../assets/login/controller.png" alt="controller.png" />
-    <img src="../assets/login/ps5.png" alt="ps5.png" />
-    <img src="../assets/login/handheld_console.png" alt="handheld_console.png" />
-    <img src="../assets/login/handheld.png" alt="handheld.png" />
-    <img src="../assets/login/controller.png" alt="controller.png" />
-    <img src="../assets/login/ps5.png" alt="ps5.png" />
-    <img src="../assets/login/handheld_console.png" alt="handheld_console.png" />
-    <img src="../assets/login/handheld.png" alt="handheld.png" />
-    <img src="../assets/login/controller.png" alt="controller.png" />
-    <img src="../assets/login/ps5.png" alt="ps5.png" />
-    <img src="../assets/login/handheld_console.png" alt="handheld_console.png" /> 
-    <img src="../assets/login/handheld.png" alt="handheld.png" />
-  </div>`;
 }
 
 export function loadLoginPage() {

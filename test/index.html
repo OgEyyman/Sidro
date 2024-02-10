@@ -1,35 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>test</title>
-</head>
-<body>
-  <div class="toggle-container">
-    <button class="toggle-button active" data-target="following">Following</button>
-    <button class="toggle-button" data-target="foryou">For You</button>
-  </div>
-  
-  <div class="content-container">
-    <div id="following" class="content-section active">
-      <h2>Following</h2>
-      <ul class="content-list">
-        <li>Content Item from User A</li>
-        <li>Another Item from User X</li>
-      </ul>
-    </div>
-  
-    <div id="foryou" class="content-section">
-      <h2>For You</h2>
-      <div class="content-grid">
-         <div class="content-item">Video Thumbnail 1</div>
-         <div class="content-item">Video Thumbnail 2</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>test</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <a href="">
+            <li>
+              <img
+                src="iconmonstr-menu-left-lined.svg"
+                alt="menu bar"
+                class="nav-menu"
+              />
+            </li>
+          </a>
+          <a href="">
+            <li>
+              <img
+                src="Slothlogo3.png"
+                alt="sidro logo"
+                class="nav-sidrologo"
+              />
+            </li>
+          </a>
+          <a href="">
+            <li>
+              <img
+              src="iconmonstr-user-20.svg"
+              alt="user icon"
+              class="nav-userlogo"
+              />
+            </li>
+          </a>
+        </ul>
+      </nav>
+    </header>
+    <main id="content">
+      <div class="page-utilities">
+        <div class="toggle-container">
+          <button class="toggle-button active" data-target="following">
+            Following
+          </button>
+          <button class="toggle-button" data-target="foryou">For You</button>
+        </div>
+        <div class="filter-sort-button">
+          <a href="" class="filter-sort-button-filter"
+            ><img
+              src="iconmonstr-filter-down-lined.svg"
+              alt="filter icon"
+              class="filter-sort-button-filter-icon"
+          /></a>
+          <a href="" class="filter-sort-button-sort"
+            ><img
+              src="iconmonstr-control-panel-5.svg"
+              alt="sort icon"
+              class="filter-sort-button-sort-icon"
+          /></a>
+        </div>
       </div>
-    </div>
-  </div>
-  
-  <script type="module" src="main.js"></script>
-</body>
+      <div class="user-post-icon">
+        <img src="" alt="user post icon" class="user-post-icon" />
+        <p>You</p>
+      </div>
+      <div class="add-a-post-button">
+        <img src="" alt="plus icon" class="plus-icon" />
+        <button><p>Add a post...</p></button>
+      </div>
+      <div class="content-container">
+        <div id="following" class="content-section active">
+          <h2>Following</h2>
+          <ul class="content-list">
+            <li>Content Item from User A</li>
+            <li>Another Item from User X</li>
+          </ul>
+        </div>
+
+        <div id="foryou" class="content-section">
+          <h2>For You</h2>
+          <div class="content-grid">
+            <div class="content-item">Video Thumbnail 1</div>
+            <div class="content-item">Video Thumbnail 2</div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="main.js"></script>
+  </body>
 </html>

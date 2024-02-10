@@ -1,15 +1,31 @@
 @font-face {
-  font-family: 'webpixel-bitmap';
+  font-family: 'webpixel-bitmap.regular';
   src: url('../../assets/fonts/webpixel-bitmap-family/webpixel-bitmap.regular.otf');
+}
+
+@font-face {
+  font-family: 'webpixel-bitmap.black';
   src: url('../../assets/fonts/webpixel-bitmap-family/webpixel-bitmap.black.otf');
+}
+
+@font-face {
+  font-family: 'webpixel-bitmap.bold';
   src: url('../../assets/fonts/webpixel-bitmap-family/webpixel-bitmap.bold.otf');
+}
+
+@font-face {
+  font-family: 'webpixel-bitmap.light';
   src: url('../../assets/fonts/webpixel-bitmap-family/webpixel-bitmap.light.otf');
+}
+
+@font-face {
+  font-family: 'webpixel-bitmap.medium';
   src: url('../../assets/fonts/webpixel-bitmap-family/webpixel-bitmap.medium.otf');
 }
 
 * {
   box-sizing: border-box;
-  font-family: 'webpixel-bitmap', 'Courier New', monospace;
+  font-family: 'webpixel-bitmap.regular', 'Courier New', monospace;
   margin: 0;
   padding: 0;
 }

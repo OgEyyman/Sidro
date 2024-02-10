@@ -5,6 +5,7 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
+    "test": "nodemon test.js & browser-sync start --config ts-config.cjs",
     "dev": "nodemon server.js & browser-sync start --config bs-config.cjs",
     "start": "node server.js"
   },

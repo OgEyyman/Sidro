@@ -21,43 +21,17 @@ function navigateTo(hash) {
       animateLoginIcons();
       break;
     default:
-      loadHomePage(loadLoginPage(), false);
-      animateLoginIcons();
+      loadPageContent(loadHomePage(), true);
       break;
     }
 }
 
 function loadPageContent(content, hasHeader = true) {
   if (hasHeader) {
-    document.body.innerHTML = renderHeader();
+    document.body.innerHTML += renderHeader();
   }
 
   document.getElementById("content").innerHTML = content;
 
   document.body.innerHTML += renderFooter();
-}
-
-function loadHomePage() {
-  const homePage = `
-    <body>
-      <div class="feed-toggle">
-        <button class="feed-toggle-home">Home feed</button>
-        <button class="feed-toggle-news">News feed</button>
-      </div>
-      <div class="filter-sort">
-        <img src="" alt="filter icon" class="filter-sort-filter-icon" />
-        <img src="" alt="sort icon" class="filter-sort-sort-icon" />
-      </div>
-      <div class="user-post-icon">
-        <img src="" alt="user post icon" class="user-post-icon" />
-        <p>You</p>
-      </div>
-      <div class="add-a-post-button">
-        <img src="" alt="plus icon" class="plus-icon" />
-        <button><p>Add a post...</p></button>
-      </div>
-    </body>
-  `;
-
-  loadPageContent(homePage, true);
 }

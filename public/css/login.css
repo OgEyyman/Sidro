@@ -4,7 +4,7 @@
 
 img {
   width: 6vw;
-  height: 6vw;
+  height: 13vh;
   opacity: 0.15;
   animation-name: spin;
   animation-timing-function: ease-in-out;
@@ -87,5 +87,5 @@ img {
 
 .display-box a {
   font-size: 20px;
-  margin: 0px 0px 15px 0px;
+  margin: -8px 0px 15px 0px;
 }
