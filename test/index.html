@@ -9,78 +9,67 @@
   <body>
     <header>
       <nav>
-        <ul>
-          <a href="">
-            <li>
-              <img
-                src="iconmonstr-menu-left-lined.svg"
-                alt="menu bar"
-                class="nav-menu"
-              />
-            </li>
-          </a>
-          <a href="">
-            <li>
-              <img
-                src="Slothlogo3.png"
-                alt="sidro logo"
-                class="nav-sidrologo"
-              />
-            </li>
-          </a>
-          <a href="">
-            <li>
-              <img
-              src="iconmonstr-user-20.svg"
-              alt="user icon"
-              class="nav-userlogo"
-              />
-            </li>
-          </a>
-        </ul>
+        <div id="nav-menu">
+          <button id="friend-request-icon">
+            <img src="friend_request.svg" alt="friend-request" />
+            <span>friend requests</span>
+          </button>
+          <button id="add-post-icon">
+            <img src="add_post.svg" alt="add-post" />
+            <span>Add a post...</span>
+          </button>
+          <button id="search-icon">
+            <img src="search.svg" alt="search" />
+            <span>search...</span>
+          </button>
+        </div>
+        <div id="nav-logo">
+          <img src="Slothlogo3.png" alt="sidro logo" id="sidrologo" />
+        </div>
+        <div id="nav-profile">
+          <button id="user-account">
+            <img src="user_icon.svg" alt="user icon" />
+          </button>
+        </div>
       </nav>
     </header>
     <main id="content">
       <div class="page-utilities">
         <div class="toggle-container">
-          <button class="toggle-button active" data-target="following">
-            Following
+          <button id="switch"></button>
+          <button
+            class="toggle-button active"
+            data-target="homefeed"
+            onclick="showHomeFeed()"
+          >
+            Home feed
           </button>
-          <button class="toggle-button" data-target="foryou">For You</button>
+          <button
+            class="toggle-button"
+            data-target="newsfeed"
+            onclick="showNewsFeed()"
+          >
+            News feed
+          </button>
         </div>
         <div class="filter-sort-button">
-          <a href="" class="filter-sort-button-filter"
-            ><img
-              src="iconmonstr-filter-down-lined.svg"
-              alt="filter icon"
-              class="filter-sort-button-filter-icon"
-          /></a>
-          <a href="" class="filter-sort-button-sort"
-            ><img
-              src="iconmonstr-control-panel-5.svg"
-              alt="sort icon"
-              class="filter-sort-button-sort-icon"
-          /></a>
+          <button id="filter-button">
+            <img src="filter.svg" alt="filter icon" />
+          </button>
+          <button id="sort-button">
+            <img src="sort.svg" alt="sort icon" />
+          </button>
         </div>
       </div>
-      <div class="user-post-icon">
-        <img src="" alt="user post icon" class="user-post-icon" />
-        <p>You</p>
-      </div>
-      <div class="add-a-post-button">
-        <img src="" alt="plus icon" class="plus-icon" />
-        <button><p>Add a post...</p></button>
-      </div>
       <div class="content-container">
-        <div id="following" class="content-section active">
+        <div id="homefeed" class="content-section active">
           <h2>Following</h2>
           <ul class="content-list">
             <li>Content Item from User A</li>
             <li>Another Item from User X</li>
           </ul>
         </div>
-
-        <div id="foryou" class="content-section">
+        <div id="newsfeed" class="content-section">
           <h2>For You</h2>
           <div class="content-grid">
             <div class="content-item">Video Thumbnail 1</div>

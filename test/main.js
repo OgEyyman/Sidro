@@ -1,3 +1,30 @@
+let toggleSwitch = document.getElementById("switch");
+let toggleContainer = document.getElementsByClassName("toggle-container")[0];
+
+function showHomeFeed() {
+  toggleSwitch.style.left = "0px";
+  toggleContainer.style.boxShadow = "0 2px 3px 3px #569cd1";
+  toggleContainer.style.transitionDuration = "0.3s";
+  document.getElementsByClassName("toggle-button")[0].style.color = "white";
+  document.getElementsByClassName("toggle-button")[1].style.color = "black";
+
+  setTimeout(function() {
+    toggleContainer.style.boxShadow = "0 2px 1px 1px #569cd1bb";
+  }, 300); 
+}
+
+function showNewsFeed() {
+  toggleSwitch.style.left = "130px";
+  toggleContainer.style.boxShadow = "0 2px 3px 3px #569cd1";
+  toggleContainer.style.transitionDuration = "0.3s";
+  document.getElementsByClassName("toggle-button")[0].style.color = "black";
+  document.getElementsByClassName("toggle-button")[1].style.color = "white";
+
+  setTimeout(function() {
+    toggleContainer.style.boxShadow = "0 2px 1px 1px #569cd1bb";
+  }, 300);
+}
+
 const toggleButtons = document.querySelectorAll(".toggle-button");
 const contentSections = document.querySelectorAll(".content-section");
 
@@ -14,17 +41,13 @@ toggleButtons.forEach((button) => {
       if (section.id === targetId) {
         section.classList.add("active");
       }
+
+        // Optional: Very slight delay before adding 'active'
+        setTimeout(() => {
+          if (section.id === targetId) {
+            section.classList.add("active");
+          }
+        }, 100); // Adjust the delay (in milliseconds) if needed
     });
   });
-});
-
-contentSections.forEach((section) => {
-  section.classList.remove("active");
-
-  // Optional: Very slight delay before adding 'active'
-  setTimeout(() => {
-    if (section.id === targetId) {
-      section.classList.add("active");
-    }
-  }, 100000); // Adjust the delay (in milliseconds) if needed
 });
