@@ -126,13 +126,16 @@ nav {
   border: none;
   outline: none;
   position: relative;
-  color: white;
   width: 130px;
   text-align: center;
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 110px;
   transition: 0.5s;
+}
+
+.toggle-button.active {
+  color:white;
 }
 
 .filter-sort-button {
