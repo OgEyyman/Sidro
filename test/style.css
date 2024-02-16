@@ -1,4 +1,15 @@
+@font-face {
+  font-family: "webpixel-bitmap.regular";
+  src: url(../../assets/fonts/webpixel-bitmap-family/webpixel-bitmap.regular.otf);
+}
+
+  @font-face {
+  font-family: "webpixel-bitmap.black";
+  src: url(../../assets/fonts/webpixel-bitmap-family/webpixel-bitmap.black.otf);
+}
+
 * {
+  font-family: "webpixel-bitmap.regular", "Courier New", monospace;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -9,95 +20,137 @@ nav {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  padding: 0.5rem 0;
-  border-bottom: 2px solid rebeccapurple;
+  padding: 0.5rem 0.5rem;
+  border-bottom: 2px solid #663399;
+  box-sizing: border-box;
 }
 
-#nav-menu {
+.nav-menu {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: start;
-  height: 3rem;
 }
 
-#nav-menu button {
+.nav-menu__item {
+  position: relative;
+  width: 5rem;
+  height: 5rem;
+  transition-delay: 0.05s;
+}
+
+.nav-menu__item:hover {
+  background-color: grey;
+  border-radius: 50%;
+}
+
+.nav-menu__button {
   margin: 0 1rem;
-  width: 3rem;
-  height: 3rem;
-  background: none;
+  width: 100%;
+  height: 100%;
+  background: 0 0;
   border: none;
-  overflow-y: hidden;
   display: flex;
   align-items: center;
   cursor: pointer;
-  transition: width 0.5s, height 0.5s;
 }
 
-#nav-menu button:hover {
-  width: 16rem;
-  height: 4rem;
-  background: linear-gradient(to right, #b95bc7, #e74c3c);
-  border: 0.2rem solid #569cd1;
-  border-radius: 11rem;
-}
-
-#nav-menu #add-post-icon:hover {
-  width: 15rem;
-}
-
-#nav-menu #search-icon:hover {
-  width: 12rem;
-}
-
-#nav-menu button span {
-  font-size: 1.5rem;
-  margin-left: 0.8rem;
-  opacity: 0.4;
+.nav-menu__text {
+  opacity: 1;
+  border: 1px solid rgb(170, 170, 170);
+  background-color: rgb(144, 144, 144);
+  border-radius: 7px;
+  position: absolute;
+  color: white;
   visibility: hidden;
-  transition: visibility 0.5s, opacity 0.5s;
+  padding: 0.3rem;
+  font-weight: 600;
+  transition-delay: 0.05s;
 }
 
-#nav-menu button:hover img {
-  margin-left: 1rem;
-}
-
-#nav-menu button:hover span {
+.nav-menu__item:hover .nav-menu__text {
   visibility: visible;
-  color: white
 }
 
-#nav-logo {
+.text--friend-request {
+  top: 120%;
+  left: -4%;
+  text-align: center;
+}
+
+.text--add-post {
+  top: 120%;
+  left: 2%;
+  text-align: center;
+}
+
+.text--search {
+  top: 120%;
+  left: 5%;
+  text-align: center;
+}
+
+.nav-logo {
   justify-self: center;
 }
 
-#sidrologo {
+.nav-logo__img {
   width: 40px;
   height: auto;
 }
 
-#nav-profile {
-  height: 3rem;
+.nav-profile {
+  position: relative;
+  width: 5rem;
+  height: 5rem;
   justify-self: end;
-  align-self: center;
-  margin-right: 1rem;
+  align-content: center;
+  margin-right: 0rem;
+  transition-delay: 0.05s;
 }
 
-#user-account {
-  height: 3rem;
-  background: none;
+.nav-profile:hover {
+  background-color: grey;
+  border-radius: 50%;
+}
+
+.nav-profile__button {
+  margin: 0 0;
+  width: 100%;
+  height: 100%;
+  background: 0 0;
   border: none;
   cursor: pointer;
 }
 
-.page-utilities {
+.text--profile {
+  opacity: 1;
+  border: 1px solid rgb(170, 170, 170);
+  background-color: rgb(144, 144, 144);
+  border-radius: 7px;
+  position: absolute;
+  color: white;
+  visibility: hidden;
+  padding: 0.3rem;
+  font-weight: 600;
+  transition-delay: 0.1s;
+  top: 120%;
+  left: -10%;
+  text-align: center;
+}
+
+.nav-profile:hover .text--profile {
+  visibility: visible;
+}
+
+.content-utilities {
   display: grid;
-  margin: 20px 0;
+  margin: 2.5% 0;
   grid-template-columns: 25vw 50vw 25vw;
 }
 
-.toggle-container {
-  grid-column: 2; 
+.content-utilities__toggle-feed {
+  grid-column: 2;
   justify-content: center;
   display: flex;
   position: relative;
@@ -116,15 +169,15 @@ nav {
   position: absolute;
   left: 0;
   top: 0;
-  box-shadow: 0 0 5px 3px #9c56d1bb;
   background: linear-gradient(to right, #b95bc7, #e74c3c);
-  transition: .4s;
+  transition: 0.4s;
 }
 
-.toggle-button {
-  background: transparent;
+.content-utilities__feed-button {
+  font-family: "webpixel-bitmap.black", "Courier New", monospace;
+  background: 0 0;
   border: none;
-  outline: none;
+  outline: 0;
   position: relative;
   width: 130px;
   text-align: center;
@@ -134,55 +187,121 @@ nav {
   transition: 0.5s;
 }
 
-.toggle-button.active {
-  color:white;
+.button--active {
+  color: #fff;
 }
 
-.filter-sort-button {
+.content-utilities__filter-sort {
   justify-self: end;
   align-self: center;
   margin-right: 0.8rem;
 }
 
-.filter-sort-button button {
-  background: none;
+.content-utilities__filter-sort-button {
+  background: 0 0;
   border: none;
   cursor: pointer;
   margin: 0 0.3rem;
 }
 
-.filter-sort-button img {
+.content-utilities__filter-sort-image {
   width: 3rem;
-  height: 2.5rem; 
+  height: 2.5rem;
 }
 
-.user-post {
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-  justify-content: center;
+.feed--active {
+  display: block;
 }
 
-.user-post-user-icon {
-  margin: 0 10px;
-}
-
-.user-post p {
-  margin-right: 10px;
-}
-
-.user-post-button {
-  background: transparent;
-  margin-left: 10px;
-  border: none;
-  outline: none;
-  cursor: pointer;
-}
-
-.content-section {
+.feed--inactive {
   display: none;
 }
 
-.content-section.active {
-  display: block;
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #f8f8f8; /* Light neutral background */
 }
+
+.post {
+  background-color: #fff; /* White post container */
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 13px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  max-width: 600px; 
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.post-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.post-username {
+  font-weight: bold;
+}
+
+.post-time {
+  color: #888; /* Gray timestamp */
+  font-size: 12px; 
+}
+
+.post-content p {
+  margin-bottom: 15px;
+}
+
+.post-image {
+  width: 100%;  
+  max-height: 400px;
+  object-fit: cover; /* Maintain image aspect ratio */
+  border-radius: 5px;
+}
+
+.post-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-actions {
+  display: flex;
+}
+
+.post-action-button {
+  border: none;
+  background-color: transparent;
+  padding: 0; 
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.post-action-count {
+  margin-left: 5px;
+}
+
+.post-comment-input {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.post-comment-button {
+  padding: 8px 15px;
+  border: none;
+  background-color: #4080ff; /* Example blue button */
+  color: white;
+  cursor: pointer;
+  border-radius:  20px;
+}
+
+
