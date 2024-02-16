@@ -9,72 +9,120 @@
   <body>
     <header>
       <nav>
-        <div id="nav-menu">
-          <button id="friend-request-icon">
-            <img src="friend_request.svg" alt="friend-request" />
-            <span>friend requests</span>
-          </button>
-          <button id="add-post-icon">
-            <img src="add_post.svg" alt="add-post" />
-            <span>Add a post...</span>
-          </button>
-          <button id="search-icon">
-            <img src="search.svg" alt="search" />
-            <span>search...</span>
-          </button>
+        <div class="nav-menu">
+          <div class="nav-menu__item item--menu">
+            <button class="nav-menu__button button--add-post">
+              <img
+                class="nav-menu__icon--friend-request"
+                src="friend_request.svg"
+                alt="friend-request"
+              />
+            </button>
+            <span class="nav-menu__text text--friend-request"
+              >Friend requests</span
+            >
+          </div>
+          <div class="nav-menu__item item--logo">
+            <button class="nav-menu__button button--add-post">
+              <img
+                class="nav-menu__icon--add-post"
+                src="add_post.svg"
+                alt="add-post"
+              />
+            </button>
+            <span class="nav-menu__text text--add-post">Add a post</span>
+          </div>
+          <div class="nav-menu__item item--profile">
+            <button class="nav-menu__button button--search">
+              <img class="nav-menu__icon" src="search.svg" alt="search" />
+            </button>
+            <span class="nav-menu__text text--search">Search</span>
+          </div>
         </div>
-        <div id="nav-logo">
-          <img src="Slothlogo3.png" alt="sidro logo" id="sidrologo" />
+        <div class="nav-logo">
+          <img class="nav-logo__img" src="Slothlogo3.png" alt="sidro logo" />
         </div>
-        <div id="nav-profile">
-          <button id="user-account">
-            <img src="user_icon.svg" alt="user icon" />
+        <div class="nav-profile">
+          <button class="nav-profile__button">
+            <img
+              class="nav-profile__icon"
+              src="user_icon.svg"
+              alt="user icon"
+            />
           </button>
+          <span class="nav-profile__text text--profile">Accounts</span>
         </div>
       </nav>
     </header>
-    <main id="content">
-      <div class="page-utilities">
-        <div class="toggle-container">
+    <main class="content">
+      <div class="content-utilities">
+        <div class="content-utilities__toggle-feed">
           <button id="switch"></button>
           <button
-            class="toggle-button active"
+            class="content-utilities__feed-button button--active"
             data-target="homefeed"
-            onclick="showHomeFeed()"
           >
             Home feed
           </button>
           <button
-            class="toggle-button"
+            class="content-utilities__feed-button button--inactive"
             data-target="newsfeed"
-            onclick="showNewsFeed()"
           >
             News feed
           </button>
         </div>
-        <div class="filter-sort-button">
-          <button id="filter-button">
-            <img src="filter.svg" alt="filter icon" />
+        <div class="content-utilities__filter-sort">
+          <button class="content-utilities__filter-sort-button">
+            <img
+              class="content-utilities__filter-sort-image"
+              src="filter.svg"  
+              alt="filter icon"
+            />
           </button>
-          <button id="sort-button">
-            <img src="sort.svg" alt="sort icon" />
+          <button class="content-utilities__filter-sort-button">
+            <img
+              class="content-utilities__filter-sort-image"
+              src="sort.svg"
+              alt="sort icon"
+            />
           </button>
         </div>
       </div>
       <div class="content-container">
-        <div id="homefeed" class="content-section active">
-          <h2>Following</h2>
-          <ul class="content-list">
-            <li>Content Item from User A</li>
-            <li>Another Item from User X</li>
-          </ul>
+        <div id="homefeed" class="feed feed--active">
+          <article class="post">
+            <header class="post-header">
+              <div class="post-user">
+                <img src="https://www.flaticon.com/free-icons/avatar" alt="avatar" class="post-avatar">
+                <span class="post-username">gamerhafsah26</span>
+              </div>
+              <time class="post-time" datetime="2023-10-01">10/01/2023</time>
+            </header>
+            <div class="post-content">
+              <p>porttitor viverra et, dapibus sit amet hulla.</p>
+            </div>
+            <img src="https://placehold.co/" alt="post image" class="post-image">
+            <footer class="post-footer">
+              <div class="post-actions">
+                <button class="post-action-button">
+                  <i class="far fa-heart"></i>
+                  <span class="post-action-count">15</span>
+                </button>
+                <button class="post-action-button">
+                  <i class="far fa-comment"></i>
+                  <span class="post-action-count">1</span>
+                </button>
+              </div>
+              <form class="post-comment-form">
+                <textarea class="post-comment-input" placeholder="Add a comment..."></textarea>
+                <button class="post-comment-button">Comment</button>
+              </form>
+            </footer>
+          </article>
+          
         </div>
-        <div id="newsfeed" class="content-section">
-          <h2>For You</h2>
-          <div class="content-grid">
-            <div class="content-item">Video Thumbnail 1</div>
-            <div class="content-item">Video Thumbnail 2</div>
-          </div>
+        <div id="newsfeed" class="feed feed--inactive">
+          <p>peter</p>
         </div>
       </div>
     </main>
