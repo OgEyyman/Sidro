@@ -21,17 +21,28 @@ function navigateTo(hash) {
       animateLoginIcons();
       break;
     default:
-      loadPageContent(loadHomePage(), true);
+      loadPageContent(loadHomePage());
       break;
     }
 }
 
-function loadPageContent(content, hasHeader = true) {
-  if (hasHeader) {
-    document.body.innerHTML += renderHeader();
+function loadPageContent(content, displayHeader = true) {  
+  let header = document.getElementsByTagName("header")[0];
+  let footer = document.getElementsByTagName("footer")[0];
+  
+  if (header) {
+    header.remove();
   }
 
-  document.getElementById("content").innerHTML = content;
+  if (footer) {
+    footer.remove();
+  }
 
-  document.body.innerHTML += renderFooter();
+  if (displayHeader) {
+    document.body.insertAdjacentHTML('afterbegin', renderHeader());
+     }
+
+  document.getElementsByClassName("content")[0].innerHTML = content;
+
+  document.body.insertAdjacentHTML('beforeend', renderFooter());
 }
