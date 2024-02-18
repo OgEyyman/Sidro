@@ -1,4 +1,4 @@
-#content {
+.content {
   grid-area: 2 / 1 / span 1 / span 1;
 }
 
@@ -44,18 +44,18 @@ img {
   width: 45%;
 }
 
-.display-box h1 {
+.display-box__header {
   font-size: 63px;
 }
 
-.display-box form {
+.display-box__form {
   display: flex;
   justify-content: center;
   flex-direction: column;
   box-sizing: border-box;
 }
 
-.display-box input {
+.display-box__input {
   margin: 20px 0;
   border: none;
   padding-left: 10px;
@@ -65,25 +65,30 @@ img {
   font-size: 36px;
 }
 
-.display-box input::placeholder { 
-  opacity: 0.2;
+.display-box__input::placeholder { 
+  opacity: 0.4;
 }
 
-.display-box button {
+.display-box__button {
   font-size: 36px;
   padding: 5px 10px;
   border-radius: 7px;
   background-color: antiquewhite;
   border: none;
+  cursor: pointer;
 }
 
-.display-box p {
+.display-box__redirect-text {
   position: relative;
   margin: 20px 0px 0px 0px;
   font-size: 32px;
 }
 
-.display-box a {
+.display-box__redirect-link {
   font-size: 20px;
-  margin: -8px 0px 15px 0px;
+  margin: -3px 0px 15px 0px;
+}
+
+.display-box__redirect-link:visited {
+  color: inherit; 
 }
