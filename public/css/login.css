@@ -10,7 +10,7 @@ body {
 
 .symbols img {
   width: 6vw;
-  height: 13vh;
+  height: 6vw;
   opacity: 0.15;
   animation-name: spin;
   animation-timing-function: ease-in-out;
