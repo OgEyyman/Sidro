@@ -71,7 +71,7 @@ nav {
 }
 
 .nav-menu__text {
-  opacity: 1;
+  font-size: 1.5rem;
   border: 1px solid rgb(170, 170, 170);
   background-color: rgb(144, 144, 144);
   border-radius: 7px;
@@ -79,7 +79,6 @@ nav {
   color: white;
   visibility: hidden;
   padding: 0.3rem;
-  font-weight: 600;
   transition-delay: 0.05s;
 }
 
@@ -141,7 +140,7 @@ nav {
 }
 
 .text--profile {
-  opacity: 1;
+  font-size: 1.5rem;
   border: 1px solid rgb(170, 170, 170);
   background-color: rgb(144, 144, 144);
   border-radius: 7px;
@@ -149,7 +148,6 @@ nav {
   color: white;
   visibility: hidden;
   padding: 0.3rem;
-  font-weight: 600;
   transition-delay: 0.1s;
   top: 120%;
   left: -10%;
