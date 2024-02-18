@@ -68,8 +68,10 @@ nav {
   transition-delay: 0.05s;
 }
 
-.nav-menu__item:hover .nav-menu__text {
-  visibility: visible;
+.nav-menu__item:hover {
+  .nav-menu__text {
+    visibility: visible;
+  }
 }
 
 .text--friend-request {
@@ -139,8 +141,10 @@ nav {
   text-align: center;
 }
 
-.nav-profile:hover .text--profile {
-  visibility: visible;
+.nav-profile:hover {
+  .text--profile {
+    visibility: visible;
+  }
 }
 
 .content-utilities {
