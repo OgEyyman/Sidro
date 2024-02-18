@@ -1,5 +1,7 @@
-.body {
-  
+body {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 25vh 50vh 25vh;
 }
 
 .content {
