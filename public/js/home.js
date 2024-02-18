@@ -172,15 +172,46 @@ export function loadHomeFeedPage() {
     </div>
   </div>
   <div id="newsfeed" class="feed feed--inactive">
-    <p>peter</p>
   </div>
 </div>
   `;
 }
 
+// Function to generate dynamic HTML
+function generateNewsFeedHTML() {
+  let html = '';
+
+  // Assume we have an array of news items
+  let newsItems = [
+    { title: 'News 1', content: 'Content for news 1' },
+    { title: 'News 2', content: 'Content for news 2' },
+    // More news items...
+  ];
+
+  // Loop through each news item and generate HTML
+  for (let item of newsItems) {
+    html += `
+      <div class="news-item">
+        <h2>${item.title}</h2>
+        <p>${item.content}</p>
+      </div>
+    `;
+  }
+
+  return html;
+}
+
+// Function to add the generated HTML to the newsfeed div
+export function addContentToNewsFeed() {
+  const newsFeed = document.getElementById('newsfeed');
+  newsFeed.innerHTML = generateNewsFeedHTML();
+}
+
 export function initHome() {
   let toggleSwitch = document.getElementById("switch");
-  let toggleContainer = document.querySelector(".content-utilities__toggle-feed");
+  let toggleContainer = document.querySelector(
+    ".content-utilities__toggle-feed"
+  );
 
   let toggleButtons = document.querySelectorAll(
     ".content-utilities__feed-button"
@@ -189,24 +220,32 @@ export function initHome() {
 
   let isClicked = false;
 
-  document.getElementById("svgButton").addEventListener("mouseover", function () {
-    if (!isClicked) {
-      document.getElementById("svgImage").src = "../assets/home/hover-thumb.svg";
-    }
-  });
+  document
+    .getElementById("svgButton")
+    .addEventListener("mouseover", function () {
+      if (!isClicked) {
+        document.getElementById("svgImage").src =
+          "../assets/home/hover-thumb.svg";
+      }
+    });
 
-  document.getElementById("svgButton").addEventListener("mouseout", function () {
-    if (!isClicked) {
-      document.getElementById("svgImage").src = "../assets/home/normal-thumb.svg";
-    }
-  });
+  document
+    .getElementById("svgButton")
+    .addEventListener("mouseout", function () {
+      if (!isClicked) {
+        document.getElementById("svgImage").src =
+          "../assets/home/normal-thumb.svg";
+      }
+    });
 
   document.getElementById("svgButton").addEventListener("click", function () {
     if (isClicked) {
-      document.getElementById("svgImage").src = "../assets/home/normal-thumb.svg";
+      document.getElementById("svgImage").src =
+        "../assets/home/normal-thumb.svg";
       isClicked = false;
     } else {
-      document.getElementById("svgImage").src = "../assets/home/liked-thumb.svg";
+      document.getElementById("svgImage").src =
+        "../assets/home/liked-thumb.svg";
       isClicked = true;
     }
   });
