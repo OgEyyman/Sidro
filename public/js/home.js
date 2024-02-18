@@ -1,4 +1,4 @@
-export function loadHomePage() {
+export function loadHomeFeedPage() {
   return `
   <div class="content-utilities">
   <div class="content-utilities__toggle-feed">
