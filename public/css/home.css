@@ -1,3 +1,7 @@
+body {
+  display: block;
+}
+
 .content-utilities {
   display: grid;
   margin: 2.3rem 0;
@@ -228,4 +232,8 @@
   border-radius: 110px;
   background-color: rgb(227, 227, 227);
   padding: 0.3rem;
+}
+
+.elements {
+  grid-auto-rows: auto;
 }
