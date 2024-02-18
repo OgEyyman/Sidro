@@ -22,14 +22,20 @@ function unloadCSS(filename) {
 function navigateTo(hash) {
   switch (hash) {
     case "#/login":
+      unloadCSS("./css/home.css");
+      loadCSS("./css/login.css");
       loadPageContent(loadLoginPage(), false);
       initLogin();
       break;
     case "#/register":
+      unloadCSS("./css/home.css");
+      loadCSS("./css/login.css");
       loadPageContent(loadRegisterPage(), false);
       initLogin();
       break;
     case "#/home":
+      unloadCSS("./css/login.css");
+      loadCSS("./css/home.css");
       loadPageContent(loadHomePage());
       initHome();
       break;
@@ -72,15 +78,15 @@ window.addEventListener("hashchange", () => {
   navigateTo(window.location.hash);
 });
 
-window.addEventListener("hashchange", function () {
-  switch (location.hash) {
-    case "#/login" || "#/register":
-      unloadCSS("./css/home.css");
-      loadCSS("./css/login.css");
-      break;
-    case "#/home":
-      unloadCSS("./css/login.css");
-      loadCSS("./css/home.css");
-      break;
-  }
-});
+// window.addEventListener("hashchange", function () {
+//   switch (location.hash) {
+//     case "#/login" || "#/register":
+//       unloadCSS("./css/home.css");
+//       loadCSS("./css/login.css");
+//       break;
+//     case "#/home":
+//       unloadCSS("./css/login.css");
+//       loadCSS("./css/home.css");
+//       break;
+//   }
+// });
