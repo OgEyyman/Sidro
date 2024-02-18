@@ -1,6 +1,6 @@
 import { renderHeader, renderFooter } from "./js/layout.js";
 import { loadLoginPage, loadRegisterPage, initLogin } from "./js/login.js";
-import { loadHomePage, initHome } from "./js/home.js";
+import { loadHomeFeedPage, initHome } from "./js/home.js";
 
 function loadCSS(filename) {
   let file = document.createElement("link");
@@ -16,34 +16,6 @@ function unloadCSS(filename) {
     if (links[i].getAttribute("href") == filename) {
       document.head.removeChild(links[i]);
     }
-  }
-}
-
-function navigateTo(hash) {
-  unloadCSS("./css/home.css");
-  unloadCSS("./css/login.css");
-
-  switch (hash) {
-    case "#/login":
-      loadCSS("./css/login.css");
-      loadPageContent(loadLoginPage(), false);
-      initLogin();
-      break;
-    case "#/register":
-      loadCSS("./css/login.css");
-      loadPageContent(loadRegisterPage(), false);
-      initLogin();
-      break;
-    case "#/home":
-      loadCSS("./css/home.css");
-      loadPageContent(loadHomePage());
-      initHome();
-      break;
-    default:
-      loadCSS("./css/login.css");
-      loadPageContent(loadLoginPage(), false);
-      initLogin();
-      break;
   }
 }
 
@@ -66,6 +38,35 @@ function loadPageContent(content, displayHeader = true) {
   document.getElementsByClassName("content")[0].innerHTML = content;
 
   document.body.insertAdjacentHTML("beforeend", renderFooter());
+}
+
+function navigateTo(hash) {
+  unloadCSS("./css/home.css");
+  unloadCSS("./css/login.css");
+
+  switch (hash) {
+    case "#/login":
+
+      loadCSS("./css/login.css");
+      loadPageContent(loadLoginPage(), false);
+      initLogin();
+      break;
+    case "#/register":
+      loadCSS("./css/login.css");
+      loadPageContent(loadRegisterPage(), false);
+      initLogin();
+      break;
+    case "#/home":
+      loadCSS("./css/home.css");
+      loadPageContent(loadHomeFeedPage());
+      initHome();
+      break;
+    default:
+      loadCSS("./css/login.css");
+      loadPageContent(loadLoginPage(), false);
+      initLogin();
+      break;
+  }
 }
 
 loadCSS("./css/base.css");
