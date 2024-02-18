@@ -1,6 +1,6 @@
 import { renderHeader, renderFooter } from "./js/layout.js";
-import { loadLoginPage, loadRegisterPage, animateLoginIcons } from "./js/login.js";
-import { loadHomePage } from "./js/home.js";
+import { loadLoginPage, loadRegisterPage, initLogin } from "./js/login.js";
+import { loadHomePage, initHome } from "./js/home.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   navigateTo(window.location.hash);
@@ -14,14 +14,19 @@ function navigateTo(hash) {
   switch (hash) {
     case "#/login":
       loadPageContent(loadLoginPage(), false);
-      animateLoginIcons();
+      initLogin();
       break;
     case "#/register":
       loadPageContent(loadRegisterPage(), false);
-      animateLoginIcons();
+      initLogin();
+      break;
+      case "#/home":
+      loadPageContent(loadHomePage());
+      initHome();
       break;
     default:
-      loadPageContent(loadHomePage());
+      loadPageContent(loadLoginPage(), false);
+      initLogin();
       break;
     }
 }
