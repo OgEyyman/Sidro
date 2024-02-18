@@ -20,26 +20,27 @@ function unloadCSS(filename) {
 }
 
 function navigateTo(hash) {
+  unloadCSS("./css/home.css");
+  unloadCSS("./css/login.css");
+
   switch (hash) {
     case "#/login":
-      unloadCSS("./css/home.css");
       loadCSS("./css/login.css");
       loadPageContent(loadLoginPage(), false);
       initLogin();
       break;
     case "#/register":
-      unloadCSS("./css/home.css");
       loadCSS("./css/login.css");
       loadPageContent(loadRegisterPage(), false);
       initLogin();
       break;
     case "#/home":
-      unloadCSS("./css/login.css");
       loadCSS("./css/home.css");
       loadPageContent(loadHomePage());
       initHome();
       break;
     default:
+      loadCSS("./css/login.css");
       loadPageContent(loadLoginPage(), false);
       initLogin();
       break;
@@ -77,16 +78,3 @@ document.addEventListener("DOMContentLoaded", () => {
 window.addEventListener("hashchange", () => {
   navigateTo(window.location.hash);
 });
-
-// window.addEventListener("hashchange", function () {
-//   switch (location.hash) {
-//     case "#/login" || "#/register":
-//       unloadCSS("./css/home.css");
-//       loadCSS("./css/login.css");
-//       break;
-//     case "#/home":
-//       unloadCSS("./css/login.css");
-//       loadCSS("./css/home.css");
-//       break;
-//   }
-// });
