@@ -177,35 +177,35 @@ export function loadHomeFeedPage() {
   `;
 }
 
-// Function to generate dynamic HTML
-function generateNewsFeedHTML() {
-  let html = '';
+// // Function to generate dynamic HTML
+// function generateNewsFeedHTML() {
+//   let html = '';
 
-  // Assume we have an array of news items
-  let newsItems = [
-    { title: 'News 1', content: 'Content for news 1' },
-    { title: 'News 2', content: 'Content for news 2' },
-    // More news items...
-  ];
+//   // Assume we have an array of news items
+//   let newsItems = [
+//     { title: 'News 1', content: 'Content for news 1' },
+//     { title: 'News 2', content: 'Content for news 2' },
+//     // More news items...
+//   ];
 
-  // Loop through each news item and generate HTML
-  for (let item of newsItems) {
-    html += `
-      <div class="news-item">
-        <h2>${item.title}</h2>
-        <p>${item.content}</p>
-      </div>
-    `;
-  }
+//   // Loop through each news item and generate HTML
+//   for (let item of newsItems) {
+//     html += `
+//       <div class="news-item">
+//         <h2>${item.title}</h2>
+//         <p>${item.content}</p>
+//       </div>
+//     `;
+//   }
 
-  return html;
-}
+//   return html;
+// }
 
-// Function to add the generated HTML to the newsfeed div
-export function addContentToNewsFeed() {
-  const newsFeed = document.getElementById('newsfeed');
-  newsFeed.innerHTML = generateNewsFeedHTML();
-}
+// // Function to add the generated HTML to the newsfeed div
+// export function addContentToNewsFeed() {
+//   const newsFeed = document.getElementById('newsfeed');
+//   newsFeed.innerHTML = generateNewsFeedHTML();
+// }
 
 export function initHome() {
   let toggleSwitch = document.getElementById("switch");
