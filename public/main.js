@@ -1,6 +1,7 @@
 import { renderHeader, renderFooter } from "./js/layout.js";
 import { loadLoginPage, loadRegisterPage, initLogin } from "./js/login.js";
-import { loadHomeFeedPage, addContentToNewsFeed, initHome } from "./js/home.js";
+import { loadHomeFeedPage, initHome } from "./js/home.js";
+import { insertNewsFeedPage } from "./js/news.js";
 
 function loadCSS(filename) {
   let file = document.createElement("link");
@@ -58,7 +59,7 @@ function navigateTo(hash) {
     case "#/home":
       loadCSS("./css/home.css");
       loadPageContent(loadHomeFeedPage());
-      addContentToNewsFeed();
+      insertNewsFeedPage();
       initHome();
       break;
     default:
