@@ -110,6 +110,12 @@ nav {
   justify-self: center;
 }
 
+.nav-logo__button {
+  background: 0 0;
+  border: none;
+  cursor: pointer;
+}
+
 .nav-logo__img {
   width: 40px;
   height: auto;
