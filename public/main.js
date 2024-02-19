@@ -1,6 +1,6 @@
 import { renderHeader, renderFooter } from "./js/layout.js";
 import { loadLoginPage, loadRegisterPage, initLogin } from "./js/login.js";
-import { loadHomeFeedPage, initHome } from "./js/home.js";
+import { loadHomeFeedPage, initHome } from "./js/homefeed.js";
 import { insertNewsFeedPage } from "./js/news.js";
 
 function loadCSS(filename) {
@@ -42,7 +42,7 @@ function loadPageContent(content, displayHeader = true) {
 }
 
 function navigateTo(hash) {
-  unloadCSS("./css/home.css");
+  unloadCSS("./css/feed.css");
   unloadCSS("./css/login.css");
 
   switch (hash) {
@@ -57,7 +57,7 @@ function navigateTo(hash) {
       initLogin();
       break;
     case "#/home":
-      loadCSS("./css/home.css");
+      loadCSS("./css/feed.css");
       loadPageContent(loadHomeFeedPage());
       insertNewsFeedPage();
       initHome();
