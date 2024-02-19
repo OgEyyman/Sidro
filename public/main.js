@@ -1,7 +1,8 @@
-import { renderHeader, renderFooter } from "./js/layout.js";
+import { renderHeader, initHeader, renderFooter } from "./js/layout.js";
 import { loadLoginPage, loadRegisterPage, initLogin } from "./js/login.js";
 import { loadHomeFeedPage, initHome } from "./js/homefeed.js";
 import { insertNewsFeedPage } from "./js/news.js";
+import { loadProfilePage } from "./js/profile.js";
 
 function loadCSS(filename) {
   let file = document.createElement("link");
@@ -34,6 +35,7 @@ function loadPageContent(content, displayHeader = true) {
 
   if (displayHeader) {
     document.body.insertAdjacentHTML("afterbegin", renderHeader());
+    initHeader();
   }
 
   document.getElementsByClassName("content")[0].innerHTML = content;
@@ -42,8 +44,9 @@ function loadPageContent(content, displayHeader = true) {
 }
 
 function navigateTo(hash) {
-  unloadCSS("./css/feed.css");
   unloadCSS("./css/login.css");
+  unloadCSS("./css/feed.css");
+  unloadCSS("./css/profile.css");
 
   switch (hash) {
     case "#/login":
@@ -61,6 +64,10 @@ function navigateTo(hash) {
       loadPageContent(loadHomeFeedPage());
       insertNewsFeedPage();
       initHome();
+      break;
+    case "#/profile":
+      // loadCSS("./css/profile.css");
+      loadPageContent(loadProfilePage());
       break;
     default:
       loadCSS("./css/login.css");
