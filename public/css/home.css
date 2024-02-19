@@ -41,7 +41,7 @@ body {
   outline: 0;
   position: relative;
   width: 130px;
-  padding: 0.4rem 0;
+  padding: 0.6rem 0;
   cursor: pointer;
   border-radius: 110px;
   transition: 0.5s;
@@ -224,10 +224,11 @@ body {
 .post__add-comment-input {
   font-size: 2rem;
   width: 68%;
+  opacity: 1;
   border: 1px solid white;
   border-radius: 110px;
   background-color: rgb(227, 227, 227);
-  padding: 0.3rem;
+  padding: 0.5rem 1rem;
 }
 
 .post__add-comment-submit {
@@ -238,6 +239,7 @@ body {
   border-radius: 110px;
   background-color: rgb(227, 227, 227);
   padding: 0.3rem;
+  cursor: pointer;
 }
 
 .elements {
