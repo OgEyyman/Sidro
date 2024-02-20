@@ -12,8 +12,8 @@ import {
 } from "./js/index.js";
 
 function loadPageContent(content, displayHeader = true) {
-  let header = document.getElementsByTagName("header")[0];
-  let footer = document.getElementsByTagName("footer")[0];
+  const header = document.getElementsByTagName("header")[0];
+  const footer = document.getElementsByTagName("footer")[0];
 
   if (header) {
     header.remove();
