@@ -167,7 +167,6 @@ nav {
 }
 
 footer {
-  max-height: 50%;
   grid-area: 3 / 1 / span 1 / span 1;
 }
 
@@ -181,7 +180,7 @@ footer {
 .elements-website-title {
   grid-column: 2;
   font-size: 78px; 
-  margin-bottom: 15px;
+  margin-bottom: 0.5rem;
 }
 
 .elements-website-title sup {
