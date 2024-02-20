@@ -1,5 +1,4 @@
-function renderLoginIcons() {
-  return `
+export const renderLoginIcons = /*HTML*/`
   <div class="symbols">
   <img src="../assets/login/controller.png" alt="controller.png" />
   <img src="../assets/login/ps5.png" alt="ps5.png" />
@@ -15,7 +14,7 @@ function renderLoginIcons() {
   <img src="../assets/login/handheld.png" alt="handheld.png" />
   <img src="../assets/login/controller.png" alt="controller.png" />
   <img src="../assets/login/ps5.png" alt="ps5.png" />
-  <img src="../assets/login/handheld_console.png" alt="handheld_console.png" />
+  <img src="../assets/login/handhel   QWERTYL;' d_console.png" alt="handheld_console.png" />
   <img src="../assets/login/handheld.png" alt="handheld.png" />
   <img src="../assets/login/controller.png" alt="controller.png" />
   <img src="../assets/login/ps5.png" alt="ps5.png" />
@@ -27,11 +26,8 @@ function renderLoginIcons() {
   <img src="../assets/login/handheld.png" alt="handheld.png" />
   </div>
   `;
-}
 
-export function loadLoginPage() {
-  return (
-    renderLoginIcons() +
+export const loadLoginPage = renderLoginIcons + /*HTML*/
     `<div class="display-box">
     <h1 class="display-box__header">Login</h1>  
     <form class="display-box__form">
@@ -42,13 +38,9 @@ export function loadLoginPage() {
     <p class="display-box__redirect-text">New to Sidro™?</p>
     <a class="display-box__redirect-link" href="#/register">Register now!</a>
     </div>
-    `
-  );
-}
+    `;
 
-export function loadRegisterPage() {
-  return (
-    renderLoginIcons() +
+export const loadRegisterPage = renderLoginIcons + /*HTML*/
     `<div class="display-box">
     <h1 class="display-box__header">Register</h1>  
     <form class="display-box__form">
@@ -59,9 +51,8 @@ export function loadRegisterPage() {
     <p class="display-box__redirect-text">Already registered?</p>
     <a class="display-box__redirect-link" href="#/login">Login instead!</a>
     </div>
-    `
-  );
-}
+    `;
+
 
 export function initLogin() {
   document
