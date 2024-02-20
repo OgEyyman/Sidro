@@ -1,5 +1,4 @@
-function loadNewsFeedPage() {
-  return (`
+export const loadNewsFeedPage = /* HTML */`
   <div class="news">
     <div class="news__header">
       <p class="news__header-text">Game update - Valorant</p>
@@ -76,9 +75,8 @@ function loadNewsFeedPage() {
       <p class="news__time-text">16hrs ago</p>
     </div>
   </div>
-  `);
-}
+  `;
 
 export function insertNewsFeedPage() {
-  document.getElementById("newsfeed").innerHTML = loadNewsFeedPage();
+  document.getElementById("newsfeed").innerHTML = loadNewsFeedPage;
 }
