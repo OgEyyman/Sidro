@@ -1,7 +1,7 @@
-export const loadProfilePage = /* HTML */ `
+export const loadProfilePage = /*HTML*/ `
   <div class="profile__info">
     <div class="post-header">
-      <div class="post-user--*-*">
+      <div class="post-user">
         <img
           src="https://www.flaticon.com/free-icons/avatar"
           alt="avatar"
