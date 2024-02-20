@@ -1,4 +1,4 @@
-body {
+body.login, body.register {
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 25vh 50vh 25vh;
@@ -97,4 +97,8 @@ body {
 
 .display-box__redirect-link:visited {
   color: inherit; 
+}
+
+footer {
+  align-self: end;
 }
