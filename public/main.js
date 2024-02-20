@@ -1,8 +1,15 @@
-import { renderHeader, initHeader, renderFooter } from "./js/layout.js";
-import { loadLoginPage, loadRegisterPage, initLogin } from "./js/login.js";
-import { loadHomeFeedPage, initHome } from "./js/homefeed.js";
-import { insertNewsFeedPage } from "./js/news.js";
-import { loadProfilePage } from "./js/profile.js";
+import {
+  renderHeader,
+  initHeader,
+  renderFooter,
+  loadLoginPage,
+  loadRegisterPage,
+  initLogin,
+  loadHomeFeedPage,
+  initHome,
+  insertNewsFeedPage,
+  loadProfilePage,
+} from "./js/index.js";
 
 function loadCSS(filename) {
   let file = document.createElement("link");
@@ -34,13 +41,13 @@ function loadPageContent(content, displayHeader = true) {
   }
 
   if (displayHeader) {
-    document.body.insertAdjacentHTML("afterbegin", renderHeader());
+    document.body.insertAdjacentHTML("afterbegin", renderHeader);
     initHeader();
   }
 
   document.getElementsByClassName("content")[0].innerHTML = content;
 
-  document.body.insertAdjacentHTML("beforeend", renderFooter());
+  document.body.insertAdjacentHTML("beforeend", renderFooter);
 }
 
 function navigateTo(hash) {
@@ -51,27 +58,27 @@ function navigateTo(hash) {
   switch (hash) {
     case "#/login":
       loadCSS("./css/login.css");
-      loadPageContent(loadLoginPage(), false);
+      loadPageContent(loadLoginPage, false);
       initLogin();
       break;
     case "#/register":
       loadCSS("./css/login.css");
-      loadPageContent(loadRegisterPage(), false);
+      loadPageContent(loadRegisterPage, false);
       initLogin();
       break;
     case "#/home":
       loadCSS("./css/feed.css");
-      loadPageContent(loadHomeFeedPage());
+      loadPageContent(loadHomeFeedPage);
       insertNewsFeedPage();
       initHome();
       break;
     case "#/profile":
       // loadCSS("./css/profile.css");
-      loadPageContent(loadProfilePage());
+      loadPageContent(loadProfilePage);
       break;
     default:
       loadCSS("./css/login.css");
-      loadPageContent(loadLoginPage(), false);
+      loadPageContent(loadLoginPage, false);
       initLogin();
       break;
   }
