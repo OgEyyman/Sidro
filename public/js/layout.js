@@ -1,5 +1,4 @@
-export function renderHeader() {
-  return (`
+export const renderHeader = /*HTML*/`
   <header>
     <nav>
       <div class="nav-menu">
@@ -51,11 +50,9 @@ export function renderHeader() {
       </div>
     </nav>
   </header>
-  `);
-}
+  `;
 
-export function renderFooter() {
-  return (`
+export const renderFooter = /*HTML*/`
   <footer>
     <div class="elements">
       <p class="elements-privacy-policy">Privacy policy</p>
@@ -63,8 +60,7 @@ export function renderFooter() {
       <p class="elements-reserved-rights">© 2024 Sidro. All rights reserved.</p>
     </div>
   </footer>
-  `);
-}
+  `;
 
 export function initHeader() {
   document.querySelector('.nav-logo__button').addEventListener('click', function() {
