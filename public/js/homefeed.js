@@ -1,5 +1,4 @@
-export function loadHomeFeedPage() {
-  return (`
+export const loadHomeFeedPage = /*HTML*/`
   <div class="content-utilities">
   <div class="content-utilities__toggle-feed">
     <button id="switch"></button>
@@ -173,9 +172,8 @@ export function loadHomeFeedPage() {
   </div>
   <div id="newsfeed" class="feed feed--inactive">
   </div>
-</div>
-  `);
-}
+  </div>
+  `;
 
 export function initHome() {
   let toggleSwitch = document.getElementById("switch");
