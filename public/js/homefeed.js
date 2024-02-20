@@ -176,15 +176,15 @@ export const loadHomeFeedPage = /*HTML*/`
   `;
 
 export function initHome() {
-  let toggleSwitch = document.getElementById("switch");
-  let toggleContainer = document.querySelector(
+  const toggleSwitch = document.getElementById("switch");
+  const toggleContainer = document.querySelector(
     ".content-utilities__toggle-feed"
   );
 
-  let toggleButtons = document.querySelectorAll(
+  const toggleButtons = document.querySelectorAll(
     ".content-utilities__feed-button"
   );
-  let contentSections = document.querySelectorAll(".feed");
+  const contentSections = document.querySelectorAll(".feed");
 
   let isClicked = false;
 
