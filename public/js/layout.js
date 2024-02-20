@@ -1,4 +1,4 @@
-export const renderHeader = /*HTML*/`
+export const renderHeader = /*HTML*/ `
   <header>
     <nav>
       <div class="nav-menu">
@@ -52,7 +52,7 @@ export const renderHeader = /*HTML*/`
   </header>
   `;
 
-export const renderFooter = /*HTML*/`
+export const renderFooter = /*HTML*/ `
   <footer>
     <div class="elements">
       <p class="elements-privacy-policy">Privacy policy</p>
@@ -63,11 +63,11 @@ export const renderFooter = /*HTML*/`
   `;
 
 export function initHeader() {
-  document.querySelector('.nav-logo__button').addEventListener('click', function() {
-    window.location.hash = '#/home';
+  document.querySelector(".nav-logo__button").addEventListener("click", function () {
+    window.location.hash = "#/home";
   });
-  
-  document.querySelector('.nav-profile__button').addEventListener('click', function() {
-    window.location.hash = '#/profile';
+
+  document.querySelector(".nav-profile__button").addEventListener("click", function () {
+    window.location.hash = "#/profile";
   });
 }
