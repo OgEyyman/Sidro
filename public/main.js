@@ -11,23 +11,6 @@ import {
   loadProfilePage,
 } from "./js/index.js";
 
-function loadCSS(filename) {
-  let file = document.createElement("link");
-  file.setAttribute("rel", "stylesheet");
-  file.setAttribute("type", "text/css");
-  file.setAttribute("href", filename);
-  document.head.appendChild(file);
-}
-
-function unloadCSS(filename) {
-  let links = document.getElementsByTagName("link");
-  for (let i = 0; i < links.length; i++) {
-    if (links[i].getAttribute("href") == filename) {
-      document.head.removeChild(links[i]);
-    }
-  }
-}
-
 function loadPageContent(content, displayHeader = true) {
   let header = document.getElementsByTagName("header")[0];
   let footer = document.getElementsByTagName("footer")[0];
@@ -51,41 +34,36 @@ function loadPageContent(content, displayHeader = true) {
 }
 
 function navigateTo(hash) {
-  unloadCSS("./css/login.css");
-  unloadCSS("./css/feed.css");
-  unloadCSS("./css/profile.css");
+  document.body.className = "";
 
   switch (hash) {
     case "#/login":
-      loadCSS("./css/login.css");
+      document.body.classList.add("login");
       loadPageContent(loadLoginPage, false);
       initLogin();
       break;
     case "#/register":
-      loadCSS("./css/login.css");
+      document.body.classList.add("register");
       loadPageContent(loadRegisterPage, false);
       initLogin();
       break;
     case "#/home":
-      loadCSS("./css/feed.css");
+      document.body.classList.add("home");
       loadPageContent(loadHomeFeedPage);
       insertNewsFeedPage();
       initHome();
       break;
     case "#/profile":
-      // loadCSS("./css/profile.css");
+      document.body.classList.add("profile");
       loadPageContent(loadProfilePage);
       break;
     default:
-      loadCSS("./css/login.css");
+      document.body.classList.add("login");
       loadPageContent(loadLoginPage, false);
       initLogin();
       break;
   }
 }
-
-loadCSS("./css/base.css");
-loadCSS("./css/login.css");
 
 document.addEventListener("DOMContentLoaded", () => {
   navigateTo(window.location.hash);
