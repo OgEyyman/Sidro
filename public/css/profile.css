@@ -1,0 +1,109 @@
+.log-out {
+  border: 1px solid darksalmon;
+  background-color: darksalmon;
+  box-shadow: 0 0 3px 1px #faa8ce;
+  position: absolute;
+  border-radius: 7px;
+  font-size: 2rem;
+  padding: 0.2rem 1rem;
+  top: 2.2%;
+  left: 90%;
+  cursor: pointer;
+}
+
+.log-out:hover {
+  color: white;
+}
+
+.profile__banner {
+  background-color: rgb(175, 175, 175);
+  width: 40%;
+  border-radius: 7px;
+  margin: 3% auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.profile__avatar {
+  position: relative;
+  align-self: center;
+}
+
+.profile__picture {
+  background-color: #d9d9d9;
+  margin: 2rem 0;
+  margin-right: 2rem;
+  padding: 1.5rem;
+}
+
+.profile__avatar__edit {
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: absolute;
+  top: 89px;
+  left: 66px;
+}
+
+.profile__avatar__edit-image {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.profile__info {
+  margin: 1rem;
+}
+
+.profile__name {
+  font-size: 3rem;
+  text-decoration: underline;
+}
+
+.profile__info__bio {
+  font-size: 2rem;
+}
+
+.profile__description {
+  position: relative;
+}
+
+.profile__description__text {
+  width: 100%;
+  height: 7rem;
+  margin: 1rem 0;
+  font-size: 24px;
+  padding: 0 1rem;
+  text-align: start;
+  border-radius: 7px;
+  border: none;
+  background-color: antiquewhite;
+}
+
+.profile__description__edit {
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: absolute;
+  top: 50px;
+  left: 425px;
+}
+
+.profile__description__edit-image {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.profile__add-friend {
+  border: none;
+  background: none;
+  position: absolute;
+  top: -60px;
+  left: 450px;
+  cursor: pointer;
+}
+
+.profile__add-friend__image {
+  width: 2rem;
+  height: 2rem;
+}
