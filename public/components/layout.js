@@ -2,11 +2,25 @@ const renderHeader = /*HTML*/ `
   <header>
     <nav>
       <div class="nav-menu">
-        <dialog id="d">
-          bimbimbambam
+        <dialog class="popup__friend-request">
+          <button class="popup__close"><img class="popup__close__icon"
+            src="../assets/common/cross.svg" alt="close button">
+          </button>
+          <div class="popup__request-container">
+            <img src="../assets/common/account_icon.svg" alt="user icon" class="popup__user-icon">
+            <p class="popup__request-author">aymangamer45</p>
+            <div class="popup__request__approval">
+              <button class="popup__request__button"><img src="../assets/common/tick.svg" 
+                alt="tick button" class="popup__request__icon">
+              </button>
+              <button class="popup__request__button"><img src="../assets/common/cross.svg" 
+                alt="cross button" class="popup__request__icon">
+              </button>
+            </div>
+          </div>
         </dialog>
         <div class="nav-menu__item item--menu">
-          <button class="nav-menu__button button--add-post" onclick="d.showModal()">
+          <button class="nav-menu__button button--add-post">
             <img
               class="nav-menu__icon--friend-request"
               src="../assets/common/friend_request.svg"
@@ -73,10 +87,13 @@ function initHeader() {
   document.querySelector(".nav-profile__button").addEventListener("click", function () {
     window.location.hash = "#/profile";
   });
+
+  const openButton = document.getElementsByClassName("button--add-post")[0];
+  const closeButton = document.getElementsByClassName("popup__friend-request")[0];
+  const friendRequestPopup = document.getElementsByClassName("popup__friend-request")[0];
+
+  openButton.addEventListener("click", () => friendRequestPopup.showModal());
+  closeButton.addEventListener("click", () => friendRequestPopup.close());
 }
 
-export {
-  renderHeader,
-  renderFooter,
-  initHeader
-};
+export { renderHeader, renderFooter, initHeader };
