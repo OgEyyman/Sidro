@@ -1,4 +1,4 @@
-export const renderLoginIcons = /*HTML*/ `
+const renderLoginIcons = /*HTML*/ `
   <div class="symbols">
   <img src="../assets/login/controller.png" alt="controller.png" />
   <img src="../assets/login/ps5.png" alt="ps5.png" />
@@ -27,8 +27,8 @@ export const renderLoginIcons = /*HTML*/ `
   </div>
   `;
 
-export const loadLoginPage =
-  renderLoginIcons + /*HTML*/
+const loadLoginPage =
+  renderLoginIcons /*HTML*/ +
   `<div class="display-box">
     <h1 class="display-box__header">Login</h1>  
     <form class="display-box__form">
@@ -47,8 +47,8 @@ export const loadLoginPage =
     </div>
     `;
 
-export const loadRegisterPage =
-  renderLoginIcons + /*HTML*/
+const loadRegisterPage =
+  renderLoginIcons /*HTML*/ +
   `<div class="display-box">
     <h1 class="display-box__header">Register</h1>  
     <form class="display-box__form">
@@ -67,7 +67,7 @@ export const loadRegisterPage =
     </div>
     `;
 
-export function initLogin() {
+function initLogin() {
   const images = document.getElementsByTagName("img");
   for (let i = 0; i < images.length; i++) {
     const duration = Math.random() * 15 + 1;
@@ -81,7 +81,6 @@ export function initLogin() {
     event.preventDefault();
     if (passwordInput.type === "password") {
       passwordInput.type = "text";
-
     } else {
       passwordInput.type = "password";
     }
@@ -91,3 +90,9 @@ export function initLogin() {
     window.location.hash = "#/home";
   });
 }
+
+export {
+  loadLoginPage,
+  loadRegisterPage,
+  initLogin
+};

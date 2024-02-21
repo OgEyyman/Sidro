@@ -1,9 +1,12 @@
-export const renderHeader = /*HTML*/ `
+const renderHeader = /*HTML*/ `
   <header>
     <nav>
       <div class="nav-menu">
+        <dialog id="d">
+          bimbimbambam
+        </dialog>
         <div class="nav-menu__item item--menu">
-          <button class="nav-menu__button button--add-post">
+          <button class="nav-menu__button button--add-post" onclick="d.showModal()">
             <img
               class="nav-menu__icon--friend-request"
               src="../assets/common/friend_request.svg"
@@ -52,7 +55,7 @@ export const renderHeader = /*HTML*/ `
   </header>
   `;
 
-export const renderFooter = /*HTML*/ `
+const renderFooter = /*HTML*/ `
   <footer>
     <div class="elements">
       <p class="elements-privacy-policy">Privacy policy</p>
@@ -62,7 +65,7 @@ export const renderFooter = /*HTML*/ `
   </footer>
   `;
 
-export function initHeader() {
+function initHeader() {
   document.querySelector(".nav-logo__button").addEventListener("click", function () {
     window.location.hash = "#/home";
   });
@@ -71,3 +74,9 @@ export function initHeader() {
     window.location.hash = "#/profile";
   });
 }
+
+export {
+  renderHeader,
+  renderFooter,
+  initHeader
+};

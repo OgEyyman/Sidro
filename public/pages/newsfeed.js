@@ -1,4 +1,4 @@
-export const loadNewsFeedPage = /* HTML */`
+const loadNewsFeedPage = /* HTML */ `
   <div class="news">
     <div class="news__header">
       <p class="news__header-text">Game update - Valorant</p>
@@ -77,6 +77,10 @@ export const loadNewsFeedPage = /* HTML */`
   </div>
   `;
 
-export function insertNewsFeedPage() {
+function insertNewsFeedPage() {
   document.getElementById("newsfeed").innerHTML = loadNewsFeedPage;
 }
+
+export { 
+  insertNewsFeedPage
+};

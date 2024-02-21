@@ -1,4 +1,4 @@
-export const loadAccountPage = /*HTML*/ `
+const loadAccountPage = /*HTML*/ `
   <button class="log-out">Log out</button>
   <div class="profile__banner">
     <div class="profile__avatar">
@@ -116,7 +116,7 @@ export const loadAccountPage = /*HTML*/ `
   </div>
   `;
 
-export const loadOtherAccountPage1 = /*HTML*/ `
+const loadOtherAccountPage1 = /*HTML*/ `
   <div class="profile__banner">
     <div class="profile__avatar">
       <div class="profile__picture">
@@ -196,9 +196,9 @@ export const loadOtherAccountPage1 = /*HTML*/ `
       </div>
     </div>
   </div>
-`
+`;
 
-export const loadOtherAccountPage2 = /*HTML*/ `
+const loadOtherAccountPage2 = /*HTML*/ `
   <div class="profile__banner">
     <div class="profile__avatar">
       <div class="profile__picture">
@@ -278,10 +278,12 @@ export const loadOtherAccountPage2 = /*HTML*/ `
       </div>
     </div>
   </div>
-`
+`;
 
-export function initProfile() {
-  document.querySelector('.log-out').addEventListener('click', () => {
-    window.location.hash = '#/login';
+function initProfile() {
+  document.querySelector(".log-out").addEventListener("click", () => {
+    window.location.hash = "#/login";
   });
 }
+
+export { loadAccountPage, loadOtherAccountPage1, loadOtherAccountPage2, initProfile };

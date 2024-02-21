@@ -1,4 +1,4 @@
-export const loadHomeFeedPage = /*HTML*/ `
+const loadHomeFeedPage = /*HTML*/ `
   <div class="content-utilities">
     <div class="content-utilities__toggle-feed">
       <button id="switch"></button>
@@ -191,7 +191,7 @@ export const loadHomeFeedPage = /*HTML*/ `
   </div>
   `;
 
-export function initHome() {
+function initHome() {
   const toggleSwitch = document.getElementById("switch");
   const toggleContainer = document.querySelector(".content-utilities__toggle-feed");
 
@@ -263,3 +263,8 @@ export function initHome() {
     });
   });
 }
+
+export { 
+  loadHomeFeedPage,
+  initHome
+};
