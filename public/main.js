@@ -9,6 +9,9 @@ import {
   initHome,
   insertNewsFeedPage,
   loadAccountPage,
+  loadOtherAccountPage1,
+  loadOtherAccountPage2,
+  initProfile,
 } from "./components/index.js";
 
 function loadPageContent(content, displayHeader = true) {
@@ -56,6 +59,22 @@ function navigateTo(hash) {
     case "#/profile":
       document.body.classList.add("profile");
       loadPageContent(loadAccountPage);
+      initProfile();
+      break;
+    case "#/gamerhafsah26":
+      document.body.classList.add("profile");
+      loadPageContent(loadOtherAccountPage1);
+      initProfile();
+      break;
+    case "#/John-Doe":
+      document.body.classList.add("profile");
+      loadPageContent(loadOtherAccountPage2);
+      initProfile();
+      break;
+    case "#/bimbimbambam":
+      document.body.classList.add("profile");
+      loadPageContent(loadAccountPage);
+      initProfile();
       break;
     default:
       document.body.classList.add("login");
