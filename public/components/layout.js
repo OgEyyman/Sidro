@@ -9,7 +9,7 @@ export const renderHeader = /*HTML*/ `
               src="../assets/common/friend_request.svg"
               alt="friend-request"
             />
-          </button>
+          </button> 
           <span class="nav-menu__text text--friend-request"
             >Friend requests</span
           >
@@ -22,7 +22,7 @@ export const renderHeader = /*HTML*/ `
               alt="add-post"
             />
           </button>
-          <span class="nav-menu__text text--add-post">Add a post</span>
+          <span class="nav-menu__text text--add-post">Create a post</span>
         </div>
         <div class="nav-menu__item item--profile">
           <button class="nav-menu__button button--search">
