@@ -8,8 +8,8 @@ import {
   loadHomeFeedPage,
   initHome,
   insertNewsFeedPage,
-  loadProfilePage,
-} from "./js/index.js";
+  loadAccountPage,
+} from "./components/index.js";
 
 function loadPageContent(content, displayHeader = true) {
   const header = document.getElementsByTagName("header")[0];
@@ -55,7 +55,7 @@ function navigateTo(hash) {
       break;
     case "#/profile":
       document.body.classList.add("profile");
-      loadPageContent(loadProfilePage);
+      loadPageContent(loadAccountPage);
       break;
     default:
       document.body.classList.add("login");
