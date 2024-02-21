@@ -83,7 +83,7 @@ body {
   border-radius: 7px;
   background-color: rgb(180, 180, 180);
   width: 50%;
-  margin: 2rem auto; 
+  margin: 2rem auto;
 }
 
 .post__description {
@@ -102,6 +102,11 @@ body {
   padding: 0.5rem;
 }
 
+.post__username-link {
+  color: inherit;
+  text-decoration: none;
+}
+
 .post__username {
   padding: 0 1rem;
   font-size: 2rem;
@@ -117,7 +122,7 @@ body {
 }
 
 .post__content-description {
-  font-family: 'webpixel-bitmap.medium', 'Courier New', monospace;
+  font-family: "webpixel-bitmap.medium", "Courier New", monospace;
   padding-top: 0.5rem;
   padding-right: 1rem;
   text-align: justify;
@@ -156,7 +161,7 @@ body {
 }
 
 .post__time {
-  font-family: 'webpixel-bitmap.bold', 'Courier New', monospace;
+  font-family: "webpixel-bitmap.bold", "Courier New", monospace;
   font-size: 2.2rem;
 }
 
@@ -178,23 +183,28 @@ body {
   justify-content: space-between;
 }
 
+.post__author-link {
+  color: inherit;
+  text-decoration: none;
+}
+
 .post__comment-author {
-  font-family: 'webpixel-bitmap.bold', 'Courier New', monospace;
+  font-family: "webpixel-bitmap.bold", "Courier New", monospace;
   font-size: 1.8rem;
   padding-left: 1rem;
 }
 
 .post__comment-body {
-  font-family: 'webpixel-bitmap.medium', 'Courier New', monospace;
+  font-family: "webpixel-bitmap.medium", "Courier New", monospace;
   font-size: 1.6rem;
   text-align: justify;
   width: 68%;
 }
 
 .post__comment-date {
-  font-family: 'webpixel-bitmap.bold', 'Courier New', monospace;
-  font-size: 1.5rem;
-  margin:0 1rem;
+  font-family: "webpixel-bitmap.regular", "Courier New", monospace;
+  font-size: 1.4rem;
+  margin: 0 1rem;
 }
 
 .post__add-comment {
@@ -216,7 +226,7 @@ body {
 }
 
 .post__comment-user-text {
-  font-family: 'webpixel-bitmap.bold', 'Courier New', monospace;
+  font-family: "webpixel-bitmap.bold", "Courier New", monospace;
   font-size: 1.8rem;
   padding-left: 1rem;
 }
@@ -233,7 +243,7 @@ body {
 
 .post__add-comment-submit {
   font-size: 2rem;
-  font-family: 'webpixel-bitmap.bold', 'Courier New', monospace;
+  font-family: "webpixel-bitmap.bold", "Courier New", monospace;
   margin-right: 1rem;
   border: 1px solid white;
   border-radius: 110px;
@@ -272,13 +282,13 @@ body {
 }
 
 .news__title {
-  font-family: 'webpixel-bitmap.medium', 'Courier New', monospace;
+  font-family: "webpixel-bitmap.medium", "Courier New", monospace;
   font-size: 34px;
 }
 
 .news__link {
   font-size: 18px;
-  color: inherit
+  color: inherit;
 }
 
 .news__link:hover {
@@ -294,7 +304,7 @@ body {
 
 .news__time-text {
   font-size: 16px;
-  margin: 0 1%
+  margin: 0 1%;
 }
 
 .elements {
