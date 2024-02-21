@@ -1,18 +1,4 @@
-import {
-  renderHeader,
-  initHeader,
-  renderFooter,
-  loadLoginPage,
-  loadRegisterPage,
-  initLogin,
-  loadHomeFeedPage,
-  initHome,
-  insertNewsFeedPage,
-  loadAccountPage,
-  loadOtherAccountPage1,
-  loadOtherAccountPage2,
-  initProfile,
-} from "./components/index.js";
+import { layout, login, homefeed, newsfeed, profile } from "./pages/index.js";
 
 function loadPageContent(content, displayHeader = true) {
   const header = document.getElementsByTagName("header")[0];
@@ -27,13 +13,13 @@ function loadPageContent(content, displayHeader = true) {
   }
 
   if (displayHeader) {
-    document.body.insertAdjacentHTML("afterbegin", renderHeader);
-    initHeader();
+    document.body.insertAdjacentHTML("afterbegin", layout.renderHeader);
+    layout.initHeader();
   }
 
   document.getElementsByClassName("content")[0].innerHTML = content;
 
-  document.body.insertAdjacentHTML("beforeend", renderFooter);
+  document.body.insertAdjacentHTML("beforeend", layout.renderFooter);
 }
 
 function navigateTo(hash) {
@@ -42,44 +28,44 @@ function navigateTo(hash) {
   switch (hash) {
     case "#/login":
       document.body.classList.add("login");
-      loadPageContent(loadLoginPage, false);
-      initLogin();
+      loadPageContent(login.loadLoginPage, false);
+      login.initLogin();
       break;
     case "#/register":
       document.body.classList.add("register");
-      loadPageContent(loadRegisterPage, false);
-      initLogin();
+      loadPageContent(login.loadRegisterPage, false);
+      login.initLogin();
       break;
     case "#/home":
       document.body.classList.add("home");
-      loadPageContent(loadHomeFeedPage);
-      insertNewsFeedPage();
-      initHome();
+      loadPageContent(homefeed.loadHomeFeedPage);
+      newsfeed.insertNewsFeedPage();
+      homefeed.initHome();
       break;
     case "#/profile":
       document.body.classList.add("profile");
-      loadPageContent(loadAccountPage);
-      initProfile();
+      loadPageContent(profile.loadAccountPage);
+      profile.initProfile();
       break;
     case "#/gamerhafsah26":
       document.body.classList.add("profile");
-      loadPageContent(loadOtherAccountPage1);
-      initProfile();
+      loadPageContent(profile.loadOtherAccountPage1);
+      profile.initProfile();
       break;
     case "#/John-Doe":
       document.body.classList.add("profile");
-      loadPageContent(loadOtherAccountPage2);
-      initProfile();
+      loadPageContent(profile.loadOtherAccountPage2);
+      profile.initProfile();
       break;
     case "#/bimbimbambam":
       document.body.classList.add("profile");
-      loadPageContent(loadAccountPage);
-      initProfile();
+      loadPageContent(profile.loadAccountPage);
+      profile.initProfile();
       break;
     default:
       document.body.classList.add("login");
-      loadPageContent(loadLoginPage, false);
-      initLogin();
+      loadPageContent(login.loadLoginPage, false);
+      login.initLogin();
       break;
   }
 }
