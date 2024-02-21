@@ -40,6 +40,60 @@ nav {
   box-sizing: border-box;
 }
 
+.popup__friend-request {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  border-radius: 7px;
+  background-color: azure;
+  width: 50%;
+}
+
+.popup__close {
+  width: fit-content;
+  height: fit-content;
+  cursor: pointer;
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: end;
+}
+
+.popup__close__icon {
+  width: 6%;
+  height: 6%;
+}
+
+.popup__request-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: burlywood;
+  margin: 0 auto;
+  width: 25%;
+}
+
+.popup__request__approval {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup__request__button {
+  border: none;
+  background: none;
+}
+
+.popup__request__icon {
+  width: 50%;
+  height: 50%;
+}
+
 .nav-menu {
   display: flex;
   flex-wrap: nowrap;
