@@ -77,15 +77,22 @@ const renderHeader = /*HTML*/ `
         </textarea>
       </div>
       <div class="popup__post__share">
-        <button class="popup__post__button button--attach">
-          <img src="../assets/common/attachment.svg" alt="attach icon" 
-          class="popup__post__attach__icon">
+        <button class="popup__post__button post__button--attach">
+          <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+            <img src="../assets/common/attachment.svg" alt="attach icon" 
+            class="popup__post__attach__icon">
         </button>
-        <button class="popup__post__button button--share">
-          <img class="popup__post__share__icon" src="../assets/common/share.svg"
-          alt="share button">Share post
+        <button class="popup__post__button post__button--share">
+          <img class="popup__post__share__icon" 
+          src="../assets/common/share.svg" alt="share button">Share post
         </button>
       </div>
+    </dialog>
+    <dialog class="popup-search">
+      <label for="toggle">
+        <input type="checkbox" id="toggle">
+        <span class="slider"></span>
+      </label>
     </dialog>
     <nav>
       <div class="nav-menu">
@@ -166,6 +173,11 @@ function initHeader() {
   const openPostButton = document.getElementsByClassName("button--add-post")[0];
   const closePostButton = document.getElementsByClassName("close--post")[0];
   const addPostPopup = document.getElementsByClassName("popup__add-post")[0];
+
+  document.getElementsByClassName('post__button--attach')[0].
+  addEventListener('click', function() {
+    document.getElementById('imageUpload').click();
+  });
 
   openFriendButton.addEventListener("click", () => {
     friendRequestPopup.showModal();
