@@ -264,7 +264,4 @@ function initHome() {
   });
 }
 
-export { 
-  loadHomeFeedPage,
-  initHome
-};
+export { loadHomeFeedPage, initHome };
