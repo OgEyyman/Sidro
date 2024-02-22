@@ -82,13 +82,21 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+}
+
+.edit-bio__container {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+  width: 100%;
 }
 
 .edit-bio__banner {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
+  margin-top: 1%;
 }
 
 .edit-bio__header {
@@ -108,15 +116,33 @@
 
 #bio-description {
   width: 80%;
-  height: 55%;
+  height: 75%;
   margin: 2rem auto;
   font-size: 24px;
-  padding: 0 1rem;
+  padding: 0 0;
   text-align: start;
   border-radius: 7px;
   border: none;
   background-color: antiquewhite;
   resize: none;
+}
+
+#bio-description::placeholder {
+  color: black;
+  opacity: 0.7;
+  padding-left: 2%;
+} 
+
+.edit-bio__submit {
+  border: 1px solid darksalmon;
+  background-color: darksalmon;
+  box-shadow: 0 2px 1px 1px #faa8ce;
+  border-radius: 110px;
+  font-size: 2rem;
+  padding: 0.2rem 1rem;
+  margin: 2rem auto;
+  cursor: pointer;
+
 }
 
 .profile__description {
