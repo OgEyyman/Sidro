@@ -1,17 +1,5 @@
 const loadAccountPage = /*HTML*/ `
   <button class="log-out">Log out</button>
-  <dialog class="edit-bio__popup">
-    <div class="edit-bio__banner">
-      <h1 class="edit-bio__header">Change bio description</h1>
-      <button class="close__popup">
-        <img class="close__popup__image" src="../assets/common/cross.svg">
-      </button>
-    </div>
-    <textarea id="bio-description" cols="30" rows="4" 
-      placeholder="Change bio...">
-    </textarea>
-    <button class="edit-bio__submit">Save</button>
-  </dialog>
   <div class="profile__banner">
     <div class="profile__avatar">
       <div class="profile__picture">
@@ -30,6 +18,20 @@ const loadAccountPage = /*HTML*/ `
         <p class="profile__description__text">
           Valorant fan... currently among the top players
         </p>
+        <dialog class="edit-bio__popup">
+          <div class="edit-bio__container">
+            <div class="edit-bio__banner">
+              <h1 class="edit-bio__header">Change bio description</h1>
+              <button class="close__popup">
+                <img class="close__popup__image" src="../assets/common/cross.svg">
+              </button>
+            </div>
+            <textarea id="bio-description" cols="30" rows="8"
+              placeholder="Change bio...">
+            </textarea>
+            <button class="edit-bio__submit">Save</button>
+          </div>
+        </dialog>
         <button class="profile__description__edit">
           <img class="profile__description__edit-image" 
           src="../assets/common/edit.svg" alt="edit button">
