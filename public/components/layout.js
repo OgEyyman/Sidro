@@ -247,7 +247,7 @@ function initHeader() {
 
     if (placeholder === "Search posts") {
       document.getElementsByClassName('popup-search__results')[0].innerHTML = /*HTML*/ `
-      <div class="post">
+      <div class="post" id="post">
         <div class="post__description">
           <div class="post__user">
             <img

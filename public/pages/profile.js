@@ -1,5 +1,17 @@
 const loadAccountPage = /*HTML*/ `
   <button class="log-out">Log out</button>
+  <dialog class="edit-bio__popup">
+    <div class="edit-bio__banner">
+      <h1 class="edit-bio__header">Change bio description</h1>
+      <button class="close__popup">
+        <img class="close__popup__image" src="../assets/common/cross.svg">
+      </button>
+    </div>
+    <textarea id="bio-description" cols="30" rows="4" 
+      placeholder="Change bio...">
+    </textarea>
+    <button class="edit-bio__submit">Save</button>
+  </dialog>
   <div class="profile__banner">
     <div class="profile__avatar">
       <div class="profile__picture">
@@ -285,6 +297,20 @@ const loadOtherAccountPage2 = /*HTML*/ `
 `;
 
 function initProfile() {
+  const editBioButton = document.getElementsByClassName("profile__description__edit")[0];
+  const closePopupButton = document.getElementsByClassName("close__popup")[0];
+  const bioPopup = document.getElementsByClassName("edit-bio__popup")[0];
+  
+  editBioButton.addEventListener("click", () => {
+    bioPopup.showModal();
+    document.body.style.overflow = "hidden";
+  });
+  
+  closePopupButton.addEventListener("click", () => {
+    bioPopup.close();
+    document.body.style.overflow = "auto";
+  });
+
   document.querySelector(".log-out").addEventListener("click", () => {
     window.location.hash = "#/login";
   });

@@ -235,7 +235,7 @@
   border: none;
   border-radius: 7px;
   background-color: azure;
-  width: 75%;
+  width: 60%;
   height: 90%;
   overflow-y: auto;
 }
@@ -342,7 +342,7 @@
 .popup-search__results {
   display: flex;
   flex-direction: row;
-  margin-top: 5%;
+  margin-top: 3%;
   width: 70%;
 }
 
@@ -368,6 +368,10 @@
   height: 15%;
   border: none;
   background: none;
+}
+
+#post {
+  width: 100%;
 }
 
 nav {
