@@ -28,13 +28,13 @@ const renderLoginIcons = /*HTML*/ `
   `;
 
 const loadLoginPage =
-  renderLoginIcons /*HTML*/ +
+  renderLoginIcons + /*HTML*/
   `<div class="display-box">
     <h1 class="display-box__header">Login</h1>  
     <form class="display-box__form">
-      <input class="display-box__input input--username" type="text" 
+      <input class="display-box__input input--username" type="text" maxlength="21"
         name="username" placeholder="Username">
-      <input class="display-box__input input--password" type="password" 
+      <input class="display-box__input input--password" type="password" maxlength="21"
         name="password" placeholder="Password">
       <button class="display-box__show-password">
         <img class="display-box__show-password__image" src="../assets/login/show-button.svg" 
@@ -48,13 +48,13 @@ const loadLoginPage =
     `;
 
 const loadRegisterPage =
-  renderLoginIcons /*HTML*/ +
+  renderLoginIcons  + /*HTML*/
   `<div class="display-box">
     <h1 class="display-box__header">Register</h1>  
     <form class="display-box__form">
-      <input class="display-box__input input--username" type="text" 
+      <input class="display-box__input input--username" type="text" maxlength="15"
       name="username" placeholder="Username">
-      <input class="display-box__input input--password" type="password" 
+      <input class="display-box__input input--password" type="password" maxlength="10" 
       name="password" placeholder="Password">
       <button class="display-box__show-password">
         <img class="display-box__show-password__image" src="../assets/login/show-button.svg" 
