@@ -125,16 +125,18 @@ const loadOtherAccountPage1 = /*HTML*/ `
       </div>
     </div>
     <div class="profile__info">
-      <h1 class="profile__name">gamerhafsah26</h1>
+      <div class="profile__header">
+        <h1 class="profile__name">gamerhafsah26</h1>
+        <button class="profile__add-friend">
+          <img class="profile__add-friend__image"
+          src="../assets/common/add-friend.svg" alt="edit button">
+        </button>
+      </div>
       <p class="profile__info__bio">Bio</p>
       <div class="profile__description">
         <p class="profile__description__text">
           Loves playing stardew valley and terraria!
         </p>
-        <button class="profile__add-friend">
-          <img class="profile__add-friend__image" 
-          src="../assets/common/add-friend.svg" alt="edit button">
-        </button>
       </div>
     </div>
   </div>
@@ -207,16 +209,18 @@ const loadOtherAccountPage2 = /*HTML*/ `
       </div>
     </div>
     <div class="profile__info">
+      <div class="profile__header">
       <h1 class="profile__name">John Doe</h1>
-      <p class="profile__info__bio">Bio</p>
+      <button class="profile__add-friend">
+        <img class="profile__add-friend__image"
+        src="../assets/common/add-friend.svg" alt="edit button">
+      </button>
+    </div>
+    <p class="profile__info__bio">Bio</p>
       <div class="profile__description">
         <p class="profile__description__text">
           Big fan of battlefied :p
         </p>
-        <button class="profile__add-friend">
-          <img class="profile__add-friend__image" 
-          src="../assets/common/add-friend.svg" alt="edit button">
-        </button>
       </div>
     </div>
   </div>
