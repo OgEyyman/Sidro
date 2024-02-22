@@ -179,19 +179,23 @@ body {
 .post__comment-header {
   margin: 0 1rem;
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   align-items: center;
-  justify-content: space-between;
+  width: 20%;
 }
 
 .post__author-link {
   color: inherit;
   text-decoration: none;
+  display: inline-block;
+  padding-left: 10%;
+  width: 80%;
 }
 
 .post__comment-author {
   font-family: "webpixel-bitmap.bold", "Courier New", monospace;
   font-size: 1.8rem;
-  padding-left: 1rem;
 }
 
 .post__comment-body {
