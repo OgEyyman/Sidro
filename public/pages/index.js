@@ -1,4 +1,4 @@
-import * as layout from '../components/layout.js'
+import * as layout from './layout.js'
 import * as login from './login.js';
 import * as homefeed from './homefeed.js';
 import * as newsfeed from './newsfeed.js';
