@@ -1,26 +1,96 @@
 const renderHeader = /*HTML*/ `
   <header>
+    <dialog class="popup__friend-request">
+      <div class="popup__header">
+        <h1 class="popup__header__text">Friend requests</h1>
+        <button class="popup__close close--friend">
+          <img class="popup__close__icon" src="../assets/common/cross.svg"
+          alt="close button">
+        </button>
+      </div>
+      <div class="popup__request__list">
+        <div class="popup__request-container">
+          <img src="../assets/common/account_icon.svg" alt="user icon" 
+          class="popup__user-icon">
+          <a href="#/bimbimbambam" class="popup__request__author">
+            bimbimbambam
+          </a>
+          <div class="popup__request__approval">
+            <button class="popup__request__button button--accept">
+              <img src="../assets/common/tick.svg"
+              alt="tick button" class="popup__request__icon">
+            </button>
+            <button class="popup__request__button button--decline">
+              <img src="../assets/common/cross.svg"
+              alt="cross button" class="popup__request__icon">
+            </button>
+          </div>
+        </div>
+        <div class="popup__request-container">
+          <img src="../assets/common/account_icon.svg" alt="user icon" 
+          class="popup__user-icon">
+          <a href="#/John-Doe" class="popup__request__author">John Doe</a>
+          <div class="popup__request__approval">
+            <button class="popup__request__button">
+              <img src="../assets/common/tick.svg"
+              alt="tick button" class="popup__request__icon">
+            </button>
+            <button class="popup__request__button">
+              <img src="../assets/common/cross.svg"
+              alt="cross button" class="popup__request__icon">
+            </button>
+          </div>
+        </div>
+        <div class="popup__request-container">
+          <img src="../assets/common/account_icon.svg" alt="user icon" 
+          class="popup__user-icon">
+          <a href="#/gamerhafsah26" class="popup__request__author">
+            gamerhafsah26
+          </a>
+          <div class="popup__request__approval">
+            <button class="popup__request__button">
+              <img src="../assets/common/tick.svg"
+              alt="tick button" class="popup__request__icon">
+            </button>
+            <button class="popup__request__button">
+              <img src="../assets/common/cross.svg"
+              alt="cross button" class="popup__request__icon">
+            </button>
+          </div>
+        </div>
+      </div>
+    </dialog>
+    <dialog class="popup__add-post">
+      <div class="popup__header">
+        <h1 class="popup__header__text">Create a post</h1>
+        <button class="popup__close close--post">
+          <img class="popup__close__icon" src="../assets/common/cross.svg"
+          alt="close button">
+        </button>
+      </div>
+      <div class="popup__post__container">
+        <input placeholder="Game title" class="popup__game__title" rows="1" 
+          maxlength="40">
+        </input>
+        <textarea placeholder="Share something..." class="popup__post__description" 
+          rows="14">
+        </textarea>
+      </div>
+      <div class="popup__post__share">
+        <button class="popup__post__button button--attach">
+          <img src="../assets/common/attachment.svg" alt="attach icon" 
+          class="popup__post__attach__icon">
+        </button>
+        <button class="popup__post__button button--share">
+          <img class="popup__post__share__icon" src="../assets/common/share.svg"
+          alt="share button">Share post
+        </button>
+      </div>
+    </dialog>
     <nav>
       <div class="nav-menu">
-        <dialog class="popup__friend-request">
-          <button class="popup__close"><img class="popup__close__icon"
-            src="../assets/common/cross.svg" alt="close button">
-          </button>
-          <div class="popup__request-container">
-            <img src="../assets/common/account_icon.svg" alt="user icon" class="popup__user-icon">
-            <p class="popup__request-author">aymangamer45</p>
-            <div class="popup__request__approval">
-              <button class="popup__request__button"><img src="../assets/common/tick.svg" 
-                alt="tick button" class="popup__request__icon">
-              </button>
-              <button class="popup__request__button"><img src="../assets/common/cross.svg" 
-                alt="cross button" class="popup__request__icon">
-              </button>
-            </div>
-          </div>
-        </dialog>
         <div class="nav-menu__item item--menu">
-          <button class="nav-menu__button button--add-post">
+          <button class="nav-menu__button button--add-friend">
             <img
               class="nav-menu__icon--friend-request"
               src="../assets/common/friend_request.svg"
@@ -43,7 +113,8 @@ const renderHeader = /*HTML*/ `
         </div>
         <div class="nav-menu__item item--profile">
           <button class="nav-menu__button button--search">
-            <img class="nav-menu__icon" src="../assets/common/search.svg" alt="search" />
+            <img class="nav-menu__icon" src="../assets/common/search.svg" 
+            alt="search" />
           </button>
           <span class="nav-menu__text text--search">Search</span>
         </div>
@@ -88,12 +159,31 @@ function initHeader() {
     window.location.hash = "#/profile";
   });
 
-  const openButton = document.getElementsByClassName("button--add-post")[0];
-  const closeButton = document.getElementsByClassName("popup__friend-request")[0];
+  const openFriendButton = document.getElementsByClassName("button--add-friend")[0];
+  const closeFriendButton = document.getElementsByClassName("close--friend")[0];
   const friendRequestPopup = document.getElementsByClassName("popup__friend-request")[0];
 
-  openButton.addEventListener("click", () => friendRequestPopup.showModal());
-  closeButton.addEventListener("click", () => friendRequestPopup.close());
+  const openPostButton = document.getElementsByClassName("button--add-post")[0];
+  const closePostButton = document.getElementsByClassName("close--post")[0];
+  const addPostPopup = document.getElementsByClassName("popup__add-post")[0];
+
+  openFriendButton.addEventListener("click", () => {
+    friendRequestPopup.showModal();
+    document.body.style.overflow = "hidden";
+  });
+  closeFriendButton.addEventListener("click", () => {
+    friendRequestPopup.close();
+    document.body.style.overflow = "auto";
+  });
+
+  openPostButton.addEventListener("click", () => {
+    addPostPopup.showModal();
+    document.body.style.overflow = "hidden";
+  });
+  closePostButton.addEventListener("click", () => {
+    addPostPopup.close();
+    document.body.style.overflow = "auto";
+  });
 }
 
 export { renderHeader, renderFooter, initHeader };
