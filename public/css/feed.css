@@ -177,12 +177,12 @@ body {
 }
 
 .post__comment-header {
-  margin: 0 1rem;
+  margin-left: 1rem;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  width: 20%;
+  width: 16%;
 }
 
 .post__author-link {
@@ -190,7 +190,6 @@ body {
   text-decoration: none;
   display: inline-block;
   padding-left: 10%;
-  width: 80%;
 }
 
 .post__comment-author {
