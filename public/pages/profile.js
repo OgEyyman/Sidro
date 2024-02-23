@@ -26,9 +26,7 @@ const loadAccountPage = /*HTML*/ `
                 <img class="close__popup__image" src="../assets/common/cross.svg">
               </button>
             </div>
-            <textarea id="bio-description" cols="30" rows="8"
-              placeholder="Change bio...">
-            </textarea>
+            <textarea id="bio-description" cols="30" rows="8" placeholder="Change bio..."></textarea>
             <button class="edit-bio__submit">Save</button>
           </div>
         </dialog>
