@@ -1,13 +1,13 @@
 .log-out {
-  border: 1px solid darksalmon;
-  background-color: darksalmon;
-  box-shadow: 0 0 3px 1px #faa8ce;
+  border: 1px solid #FAD8D6;
+  background-color: #FAD8D6;
+  box-shadow: 0 1px 1px 1px #faa8ce;
   position: absolute;
   border-radius: 7px;
   font-size: 2rem;
   padding: 0.2rem 1rem;
-  top: 2.2%;
-  left: 90%;
+  top: 16px;
+  right: 65px;
   cursor: pointer;
 }
 
@@ -16,7 +16,8 @@
 }
 
 .profile__banner {
-  background-color: rgb(175, 175, 175);
+  background-color: #ecdcb0;
+  box-shadow: 0 2px 1px 1px #A59132;
   width: 40%;
   border-radius: 7px;
   margin: 3% auto;
