@@ -100,6 +100,10 @@
   transform: translate(-50%, -50%);
 }
 
+.edit-bio__popup::backdrop {
+  backdrop-filter: blur(2px);
+}
+
 .edit-bio__container {
   display: flex;
   flex-direction: column;
