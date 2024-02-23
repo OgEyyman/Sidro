@@ -71,6 +71,9 @@ const loadRegisterPage =
     </div>
     `;
 
+/**
+ * Initializes the login functionality.
+ */
 function initLogin() {
   const images = document.getElementsByTagName("img");
   for (let i = 0; i < images.length; i++) {

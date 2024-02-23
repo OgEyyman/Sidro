@@ -77,10 +77,11 @@ const loadNewsFeedPage = /* HTML */ `
   </div>
   `;
 
+/**
+ * Inserts the news feed page into the DOM.
+ */
 function insertNewsFeedPage() {
   document.getElementById("newsfeed").innerHTML = loadNewsFeedPage;
 }
 
-export { 
-  insertNewsFeedPage
-};
+export { insertNewsFeedPage };

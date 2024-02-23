@@ -4,10 +4,8 @@ import * as homefeed from './homefeed.js';
 import * as newsfeed from './newsfeed.js';
 import * as profile from './profile.js';
 
-export {
-  layout,
-  login,
-  homefeed,
-  newsfeed,
-  profile
-};
+/**
+ * This module exports the layout, login, homefeed, newsfeed, and profile functions.
+ * @module index
+ */
+export { layout, login, homefeed, newsfeed, profile };

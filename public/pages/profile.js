@@ -296,6 +296,9 @@ const loadOtherAccountPage2 = /*HTML*/ `
   </div>
 `;
 
+/**
+ * Initializes the profile page.
+ */
 function initProfile() {
   const editBioButton = document.getElementsByClassName("profile__description__edit")[0];
   const closePopupButton = document.getElementsByClassName("close__popup")[0];

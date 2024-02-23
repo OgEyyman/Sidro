@@ -191,6 +191,9 @@ const loadHomeFeedPage = /*HTML*/ `
   </div>
   `;
 
+/**
+ * Initializes the home page functionality.
+ */
 function initHome() {
   const toggleSwitch = document.getElementById("switch");
   const toggleContainer = document.querySelector(".content-utilities__toggle-feed");

@@ -174,6 +174,9 @@ const renderFooter = /*HTML*/ `
   </footer>
   `;
 
+/**
+ * Initializes the header functionality.
+ */
 function initHeader() {
   document.querySelector(".nav-logo__button").addEventListener("click", function () {
     window.location.hash = "#/home";

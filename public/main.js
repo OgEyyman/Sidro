@@ -1,5 +1,10 @@
 import { layout, login, homefeed, newsfeed, profile } from "./pages/index.js";
 
+/**
+ * Loads the content of a page and updates the DOM.
+ * @param {string} content - The HTML content to be loaded.
+ * @param {boolean} [displayHeader=true] - Indicates whether to display the header or not. Default is true.
+ */
 function loadPageContent(content, displayHeader = true) {
   const header = document.getElementsByTagName("header")[0];
   const footer = document.getElementsByTagName("footer")[0];
@@ -22,6 +27,10 @@ function loadPageContent(content, displayHeader = true) {
   document.body.insertAdjacentHTML("beforeend", layout.renderFooter);
 }
 
+/**
+ * Navigates to the specified hash and updates the document body accordingly.
+ * @param {string} hash - The hash to navigate to.
+ */
 function navigateTo(hash) {
   document.body.className = "";
 
