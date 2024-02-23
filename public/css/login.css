@@ -2,6 +2,7 @@ body.login, body.register {
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 25vh 50vh 25vh;
+  background-color: #FFECD1;
 }
 
 .content {
@@ -11,10 +12,22 @@ body.login, body.register {
 .symbols img {
   width: 6vw;
   height: 6vw;
-  opacity: 0.15;
+  opacity: 0.3;
   animation-name: spin;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
+}
+
+img[src*="controller"] {
+  opacity: 0.2;
+}
+
+img[src*="handheld"]:not([src*="handheld_console"]) {
+  opacity: 0.3;
+}
+
+img[src*="ps5"] {
+  opacity: 0.3;
 }
 
 @keyframes spin {
@@ -42,7 +55,7 @@ body.login, body.register {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(207, 207, 207, 0.5);
+  background: #8BBEB2;
   border-radius: 7px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
@@ -53,6 +66,7 @@ body.login, body.register {
 
 .display-box__header {
   font-size: 63px;
+  color: #1F2663;
 }
 
 .display-box__form {
@@ -66,21 +80,27 @@ body.login, body.register {
 .display-box__input {
   margin: 20px 0;
   border: none;
-  border-bottom: 3px solid rgb(123, 255, 93);
+  border-bottom: 3px solid #33A1FD;
   padding-left: 10px;
   background: none;
-  width: 300px;
+  width: 100%;
   height: 55px;
   font-size: 36px;
+  color: #1F2663;
 }
 
 .display-box__input:focus {
   outline: none;
-  border-bottom: 3px solid rebeccapurple;
+  border-bottom: 3px solid #1F2663;
 }
 
 .display-box__input::placeholder { 
-  opacity: 0.4;
+  opacity: 0.5;
+  color: white;
+}
+
+.display-box__password-input {
+  position: relative;
 }
 
 .display-box__show-password {
@@ -91,27 +111,50 @@ body.login, body.register {
 
 .display-box__submit {
   font-size: 36px;
-  padding: 5px 10px;
-  border-radius: 7px;
-  background-color: antiquewhite;
-  box-shadow: 0 1px 1px 1px rgb(255, 221, 177);
+  padding: 0 10px;
+  padding-bottom: 5px;
+  border-radius: 110px;
+  text-align: center;
+  background-color: #660B42;
+  color: #8BBEB2;
   border: none;
   cursor: pointer;
+}
+
+.display-box__submit:hover {
+  background-color: #FFECD1;
+  color: #660B42;
+}
+
+.display-box__show-password {
+  position: absolute;
+  right: 0;
+  top: 34px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.display-box__show-password__image {
+  width: 3rem;
+  height: 3rem;
 }
 
 .display-box__redirect-text {
   position: relative;
   margin: 20px 0px 0px 0px;
   font-size: 32px;
+  color: #1F2663;
 }
 
 .display-box__redirect-link {
   font-size: 20px;
   margin: -3px 0px 15px 0px;
+  color: #1F2663; 
 }
 
-.display-box__redirect-link:visited {
-  color: inherit; 
+.display-box__redirect-link:hover{
+  color: #FFECD1; 
 }
 
 footer {
