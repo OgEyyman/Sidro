@@ -237,11 +237,11 @@ function initHome() {
         toggleSwitch.style.left = "130px";
       }
 
-      toggleContainer.style.boxShadow = "0 2px 3px 3px #569cd1";
+      toggleContainer.style.boxShadow = "0 2px 3px 3px #8BBEB2";
       toggleContainer.style.transitionDuration = "0.3s";
 
       setTimeout(function () {
-        toggleContainer.style.boxShadow = "0 2px 1px 1px #569cd1bb";
+        toggleContainer.style.boxShadow = "0 2px 1px 1px #8BBEB2";
       }, 300);
 
       const targetId = button.dataset.target;
