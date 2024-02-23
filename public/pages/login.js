@@ -34,12 +34,14 @@ const loadLoginPage =
     <form class="display-box__form">
       <input class="display-box__input input--username" type="text" maxlength="21"
         name="username" placeholder="Username">
-      <input class="display-box__input input--password" type="password" maxlength="21"
-        name="password" placeholder="Password">
-      <button class="display-box__show-password">
-        <img class="display-box__show-password__image" src="../assets/login/show-button.svg" 
-        alt="show password">
-      </button>
+      <div class="display-box__password-input">
+        <input class="display-box__input input--password" type="password" maxlength="19"
+          name="password" placeholder="Password">
+        <button class="display-box__show-password">
+          <img class="display-box__show-password__image" src="../assets/login/show-button.svg"
+          alt="show password">
+        </button>
+      </div>
     </form>
     <button class="display-box__submit">Login</button>
     <p class="display-box__redirect-text">New to Sidro™?</p>
@@ -54,12 +56,14 @@ const loadRegisterPage =
     <form class="display-box__form">
       <input class="display-box__input input--username" type="text" maxlength="15"
       name="username" placeholder="Username">
-      <input class="display-box__input input--password" type="password" maxlength="10" 
-      name="password" placeholder="Password">
-      <button class="display-box__show-password">
-        <img class="display-box__show-password__image" src="../assets/login/show-button.svg" 
-        alt="show password">
-      </button>
+      <div class="display-box__password-input">
+        <input class="display-box__input input--password" type="password" maxlength="19"
+          name="password" placeholder="Password">
+        <button class="display-box__show-password">
+          <img class="display-box__show-password__image" src="../assets/login/show-button.svg"
+          alt="show password">
+        </button>
+      </div>
     </form>
     <button class="display-box__submit">Register</button>
     <p class="display-box__redirect-text">Already registered?</p>
@@ -91,8 +95,4 @@ function initLogin() {
   });
 }
 
-export {
-  loadLoginPage,
-  loadRegisterPage,
-  initLogin
-};
+export { loadLoginPage, loadRegisterPage, initLogin };
