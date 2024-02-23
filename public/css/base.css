@@ -38,7 +38,7 @@
   transform: translate(-50%, -50%);
   border: none;
   border-radius: 7px;
-  background-color: azure;
+  background-color: #ffefdc;
   width: 40%;
   height: 80%;
   overflow-y: auto;
@@ -86,7 +86,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: aquamarine;
+  background-color: #dcc88f;
   border-radius: 7px;
   width: 40%;
   height: 40%;
@@ -107,7 +107,7 @@
 }
 
 .popup__request__author:hover {
-  color: plum;
+  color: #660B42;
 }
 
 .popup__request__approval {
@@ -134,8 +134,8 @@
   transform: translate(-50%, -50%);
   border: none;
   border-radius: 7px;
-  background-color: azure;
-  width: 50%;
+  background-color: #ffefdc;
+  width: 40%;
   height: 80%;
   overflow-y: auto;
 }
@@ -154,37 +154,40 @@
 
 .popup__game__title {
   margin-top: 5%;
-  width: 50%;
+  width: 70%;
   font-size: 2rem;
   padding: 1% 2%;
   border: none;
-  background-color: #7a7a7b;
+  background-color: #ecdcb0;
+  box-shadow: 0 2px 2px 2px #FAD8D6;
   border-radius: 110px;
   resize: none;
   outline: none;
-  color:white;
+  color:black;
 }
 
 .popup__game__title::placeholder {
   opacity: 0.7;
-  color: white;
+  color: black;
 }
 
 .popup__post__description {
   margin-top: 5%;
-  width: 50%;
+  width: 70%;
   font-size: 2rem;
   padding: 1% 2%;
   border: none;
-  background-color: #7A7A7B;
+  background-color: #ecdcb0;
+  box-shadow: 0 2px 2px 2px #FAD8D6;
   border-radius: 7px;
   resize: none;
   outline: none;
+  color: black;
 }
 
 .popup__post__description::placeholder {
   opacity: 0.7;
-  color: white;
+  color: black;
 }
 
 .popup__post__share {
@@ -203,14 +206,16 @@
 }
 
 .post__button--attach {
-  background: #663399;
+  background: #dcc88f;
+  box-shadow: 0 2px 2px 2px #A59132;
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
 }
 
 .post__button--share {
-  background: #663399;
+  background: #dcc88f;
+  box-shadow: 0 2px 2px 2px #A59132;
   width: 19rem;
   height: 5rem;
   border-radius: 110px;
@@ -234,7 +239,7 @@
   transform: translate(-50%, -50%);
   border: none;
   border-radius: 7px;
-  background-color: azure;
+  background-color: #ffefdc;
   width: 60%;
   height: 90%;
   overflow-y: auto;
@@ -260,10 +265,11 @@
 }
 
 .popup-search__search-bar {
-  background-color: cadetblue;
+  background-color: #dcc88f;
   border-radius: 110px;
   padding: 0.8% 1%;
   width: 50%;
+  margin-top: 2%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -275,7 +281,7 @@
   position: relative;
   width: 6rem;
   height: 3rem;
-  background-color: #ff3737;
+  background-color: #FAD8D6;
   border-radius: 2.5rem;
   border: none;
   cursor: pointer;
@@ -298,7 +304,7 @@
 }
 
 .popup-search__toggle:checked + .popup-search__slider {
-  background-color: #4CAF50;
+  background-color: #1326D4;
 }
 
 .popup-search__slider::after {
@@ -308,14 +314,14 @@
   height: 2.5rem;
   left: 0.3rem;
   top: 0.2rem;
-  background-color: white;
+  background-color: rgb(254, 150, 150);
   border-radius: 50%;
   transition: transform 0.3s ease-in-out;
 }
 
 .popup-search__toggle:checked + .popup-search__slider::after {
   transform: translateX(2.7rem);
-  background-color: cornflowerblue;
+  background-color: #33A1FD;
 }
 
 .popup-search__search-input {
@@ -379,7 +385,7 @@ nav {
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   padding: 0.5rem 0.5rem;
-  border-bottom: 2px solid #663399;
+  border-bottom: 2px solid #1F2663;
   box-sizing: border-box;
 }
 
@@ -398,7 +404,7 @@ nav {
 }
 
 .nav-menu__item:hover {
-  background-color: grey;
+  background-color: #dcc88f;
   border-radius: 50%;
 }
 
@@ -415,11 +421,11 @@ nav {
 
 .nav-menu__text {
   font-size: 1.5rem;
-  border: 1px solid rgb(170, 170, 170);
-  background-color: rgb(144, 144, 144);
+  border: none;
+  background-color: #dcc88f;
   border-radius: 7px;
   position: absolute;
-  color: white;
+  color: black;
   visibility: hidden;
   padding: 0.3rem;
   transition-delay: 0.05s;
@@ -475,7 +481,7 @@ nav {
 }
 
 .nav-profile:hover {
-  background-color: grey;
+  background-color: #dcc88f;
   border-radius: 50%;
 }
 
@@ -490,11 +496,11 @@ nav {
 
 .text--profile {
   font-size: 1.5rem;
-  border: 1px solid rgb(170, 170, 170);
-  background-color: rgb(144, 144, 144);
+  border: none;
+  background-color: #dcc88f;
   border-radius: 7px;
   position: absolute;
-  color: white;
+  color: black;
   visibility: hidden;
   padding: 0.3rem;
   transition-delay: 0.1s;
