@@ -90,7 +90,7 @@
 /* -------------------------------------------------------------------------- */
 .edit-bio__popup {
   border: none;
-  background-color: white;
+  background-color: #ecdcb0;
   border-radius: 7px;
   position: absolute;
   width: 40%;
@@ -138,7 +138,8 @@
   text-align: start;
   border-radius: 7px;
   border: none;
-  background-color: antiquewhite;
+  background-color: #ffefdc;
+  box-shadow: 0 2px 1px 1px #A59132;
   resize: none;
 }
 
@@ -149,14 +150,19 @@
 } 
 
 .edit-bio__submit {
-  border: 1px solid darksalmon;
-  background-color: darksalmon;
-  box-shadow: 0 2px 1px 1px #faa8ce;
+  border: 1px solid #FAD8D6;
+  background-color: #660B42;
+  color: white;
   border-radius: 110px;
   font-size: 2rem;
   padding: 0.2rem 1rem;
   margin: 2rem auto;
   cursor: pointer;
+}
+
+.edit-bio__submit:hover {
+  background-color: #FAD8D6;
+  color: #660B42;
 }
 /* -------------------------------------------------------------------------- */
 /*                                END Bio Popup                               */
