@@ -1,5 +1,6 @@
 body {
   display: block;
+  background-color: #FFECD1;
 }
 
 .content-utilities {
@@ -16,8 +17,8 @@ body {
   position: relative;
   align-items: center;
   border-radius: 110px;
-  border: 1px solid #569cd1bb;
-  box-shadow: 0 2px 1px 1px #569cd1bb;
+  border: 1px solid #8BBEB2;
+  box-shadow: 0 2px 1px 1px #8BBEB2;
 }
 
 #switch {
@@ -29,7 +30,7 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  background: linear-gradient(to right, #b95bc7, #e74c3c);
+  background: linear-gradient(to right, #f7b963, #7d0e51);
   transition: 0.4s;
 }
 
@@ -79,15 +80,16 @@ body {
 }
 
 .post {
-  border: 1px solid #d3d3d3;
+  border: 1px solid #FAD8D6;
   border-radius: 7px;
-  background-color: rgb(180, 180, 180);
+  background-color: #ffefdc;
   width: 50%;
+  box-shadow: 0 2px 2px 2px #FAD8D6;
   margin: 2rem auto;
 }
 
 .post__description {
-  background-color: #cccccc;
+  background-color: #ecdcb0;
   border-radius: 7px;
   margin: 2% auto;
   width: 95%;
@@ -167,7 +169,7 @@ body {
 
 .post__comment {
   border-radius: 7px;
-  background-color: rgb(126, 126, 126);
+  background-color: #dcc88f;
   width: 90%;
   padding: 1rem 0;
   margin: 1rem auto;
@@ -212,7 +214,7 @@ body {
 
 .post__add-comment {
   border-radius: 7px;
-  background-color: rgb(126, 126, 126);
+  background-color: #dcc88f;
   width: 90%;
   padding: 1rem 0;
   margin: 1rem auto;
@@ -238,20 +240,24 @@ body {
   font-size: 2rem;
   width: 68%;
   opacity: 1;
-  border: 1px solid white;
+  border: none;
   border-radius: 110px;
-  background-color: rgb(227, 227, 227);
+  background-color: #f3fefb;
   padding: 0.5rem 1rem;
+}
+
+.post__add-comment-input:focus {
+  outline: none;
 }
 
 .post__add-comment-submit {
   font-size: 2rem;
   font-family: "webpixel-bitmap.bold", "Courier New", monospace;
   margin-right: 1rem;
-  border: 1px solid white;
+  border: none;
   border-radius: 110px;
-  background-color: rgb(227, 227, 227);
-  padding: 0.3rem;
+  background-color: #f3fefb;
+  padding: 0.5rem;
   cursor: pointer;
 }
 
@@ -265,9 +271,9 @@ body {
 
 .news {
   width: 50%;
-  background-color: rgb(210, 210, 210);
+  background-color: #dcc88f;
   border-radius: 7px;
-  box-shadow: 0 0 6px 1px #545454;
+  box-shadow: 0 2px 2px 2px #A59132;
   margin: 1% auto;
 }
 
@@ -295,7 +301,7 @@ body {
 }
 
 .news__link:hover {
-  color: #6000b9;
+  color: #1F2663;
 }
 
 .news__time {
