@@ -2,7 +2,7 @@ import express from "express";
 import { MongoClient, ServerApiVersion } from "mongodb";
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 app.use(express.static("public"));
 
@@ -15,41 +15,54 @@ const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
     strict: false,
-    deprecationErrors: false,
+    deprecationErrors: true,
   },
 });
 
+app.get("/M00952409/user-data", async (req, res) => {
+  try {
+    const db = client.db('Sidro');
+    const collection = db.collection('users');
+    const result = await collection.find({}).toArray();
+    res.status(200).json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'An error occurred while fetching data from the database.' });
+  }
+});
+
+app.post("/M00952409/user-data", async (req, res) => {
+  const user = {
+    name: req.body.name,
+    studentID: req.body.studentID,
+    email: req.body.email
+  };
+  try {
+    const document = await client.db('Sidro').collection('users').insertOne(user);
+    if (document.insertedId) {
+      res.status(201).json(document);
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
+/**
+ * Runs the application.
+ * @returns {Promise<void>} A promise that resolves when the application finishes running.
+ */
 async function run() {
   try {
-    // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+    console.log("Successfully connected to MongoDB!");
   } catch (err) {
     console.error(err);
   }
 }
 
-run();
-
-app.get("/M00952409", (req, res) => {});
-
-app.post("/M00952409", async (req, res) => {
-  try {
-    const requestData = req.body; 
-    const db = client.db('Sidro');
-    const result = await db.collection('user').insertOne(requestData); 
-    if (result.insertedId) {
-        const insertedDocument = await db.collection('user').findOne({ _id: result.insertedId });
-        res.status(201).json(insertedDocument);
-    } else {
-        throw new Error('No document was inserted.');
-    }
-} catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server Error' });
-}
-});
-
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+run();
