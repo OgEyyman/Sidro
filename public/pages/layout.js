@@ -72,9 +72,7 @@ const renderHeader = /*HTML*/ `
         <input placeholder="Game title" class="popup__game__title" rows="1" 
           maxlength="40">
         </input>
-        <textarea placeholder="Share something..." class="popup__post__description" 
-          rows="14">
-        </textarea>
+        <textarea placeholder="Share something..." class="popup__post__description" rows="14"></textarea>
       </div>
       <div class="popup__post__share">
         <button class="popup__post__button post__button--attach">
