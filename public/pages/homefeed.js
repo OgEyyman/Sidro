@@ -1,13 +1,18 @@
 const loadHomeFeedPage = /*HTML*/ `
+  <!-- Content utilities container -->
   <div class="content-utilities">
+    <!-- Feed toggle section -->
     <div class="content-utilities__toggle-feed">
+      <!-- Switch button -->
       <button id="switch"></button>
+      <!-- Home feed button -->
       <button
         class="content-utilities__feed-button button--active"
         data-target="homefeed"
       >
         Home feed
       </button>
+      <!-- News feed button -->
       <button
         class="content-utilities__feed-button button--inactive"
         data-target="newsfeed"
@@ -15,7 +20,9 @@ const loadHomeFeedPage = /*HTML*/ `
         News feed
       </button>
     </div>
+    <!-- Filter and sort section -->
     <div class="content-utilities__filter-sort">
+      <!-- Filter button -->
       <button class="content-utilities__filter-sort-button">
         <img
           class="content-utilities__filter-sort-image"
@@ -23,6 +30,7 @@ const loadHomeFeedPage = /*HTML*/ `
           alt="filter icon"
         />
       </button>
+      <!-- Sort button -->
       <button class="content-utilities__filter-sort-button">
         <img
           class="content-utilities__filter-sort-image"
@@ -33,9 +41,13 @@ const loadHomeFeedPage = /*HTML*/ `
     </div>
   </div>
   <div class="content-container">
+    <!-- Home feed container -->
     <div id="homefeed" class="feed feed--active">
+      <!-- Individual post container -->
       <div class="post">
+        <!-- Post description section -->
         <div class="post__description">
+          <!-- User information section -->
           <div class="post__user">
             <img
               class="post__user-profile-img"
@@ -46,8 +58,9 @@ const loadHomeFeedPage = /*HTML*/ `
               <span class="post__username">
                 gamerhafsah26
               </span>
-            </a>  
+            </a>
           </div>
+          <!-- Post content section -->
           <div class="post__content">
             <p class="post__content-description">
               porttitor viverra et, dapibus sit amet hulla.porttitor viverra
@@ -72,7 +85,9 @@ const loadHomeFeedPage = /*HTML*/ `
               alt="attached img"
             />
           </div>
+          <!-- Post details section -->
           <div class="post__details">
+            <!-- Post interactions section -->
             <div class="post__interactions">
               <button id="svgButton" class="post__button-like">
                 <img
@@ -89,6 +104,7 @@ const loadHomeFeedPage = /*HTML*/ `
               />
               <span class="post__button-comment-count">2</span>
             </div>
+            <!-- Post time section -->
             <time class="post__time" datetime="2023-10-01">10/01/2023</time>
           </div>
         </div>

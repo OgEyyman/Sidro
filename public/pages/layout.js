@@ -1,6 +1,9 @@
 const renderHeader = /*HTML*/ `
+  <!-- Header section -->
   <header>
+    <!-- Friend request popup dialog -->
     <dialog class="popup__friend-request">
+      <!-- Popup header -->
       <div class="popup__header">
         <h1 class="popup__header__text">Friend requests</h1>
         <button class="popup__close close--friend">
@@ -8,7 +11,9 @@ const renderHeader = /*HTML*/ `
           alt="close button">
         </button>
       </div>
+      <!-- Friend request list -->
       <div class="popup__request__list">
+        <!-- Individual friend request -->
         <div class="popup__request-container">
           <img src="../assets/common/account_icon.svg" alt="user icon" 
           class="popup__user-icon">
@@ -60,7 +65,9 @@ const renderHeader = /*HTML*/ `
         </div>
       </div>
     </dialog>
+    <!-- Add post dialog -->
     <dialog class="popup__add-post">
+      <!-- Dialog header -->
       <div class="popup__header">
         <h1 class="popup__header__text">Create a post</h1>
         <button class="popup__close close--post">
@@ -68,12 +75,14 @@ const renderHeader = /*HTML*/ `
           alt="close button">
         </button>
       </div>
+      <!-- Post input container -->
       <div class="popup__post__container">
         <input placeholder="Game title" class="popup__game__title" rows="1" 
           maxlength="40">
         </input>
         <textarea placeholder="Share something..." class="popup__post__description" rows="14"></textarea>
       </div>
+      <!-- Post share buttons -->
       <div class="popup__post__share">
         <button class="popup__post__button post__button--attach">
           <input type="file" id="imageUpload" accept="image/*" style="display: none;">
@@ -86,7 +95,9 @@ const renderHeader = /*HTML*/ `
         </button>
       </div>
     </dialog>
+    <!-- Search dialog -->
     <dialog class="popup-search">
+      <!-- Dialog header -->
       <div class="popup__header header--search">
         <h1 class="popup__header__text">Search</h1>
         <button class="popup__close close--search">
@@ -94,7 +105,9 @@ const renderHeader = /*HTML*/ `
           alt="close button">
         </button>
       </div>
+      <!-- Search container -->
       <div class="popup-search__container">
+        <!-- Search bar -->
         <div class="popup-search__search-bar">
           <label class="popup-search__label" for="toggle">
             <input class="popup-search__toggle" type="checkbox" id="toggle">
@@ -107,12 +120,16 @@ const renderHeader = /*HTML*/ `
               class="popup-search__search-icon">
           </button>
         </div>
+        <!-- Search results -->
         <div class="popup-search__results">
         </div>
       </div>
     </dialog>
+    <!-- Navigation bar -->
     <nav>
+      <!-- Navigation menu -->
       <div class="nav-menu">
+        <!-- Friend request menu item -->
         <div class="nav-menu__item item--menu">
           <button class="nav-menu__button button--add-friend">
             <img
@@ -125,6 +142,7 @@ const renderHeader = /*HTML*/ `
             >Friend requests</span
           >
         </div>
+        <!-- Add post menu item -->
         <div class="nav-menu__item item--logo">
           <button class="nav-menu__button button--add-post">
             <img
@@ -135,6 +153,7 @@ const renderHeader = /*HTML*/ `
           </button>
           <span class="nav-menu__text text--add-post">Create a post</span>
         </div>
+        <!-- Search menu item -->
         <div class="nav-menu__item item--profile">
           <button class="nav-menu__button button--search">
             <img class="nav-menu__icon" src="../assets/common/search.svg" 
@@ -143,6 +162,7 @@ const renderHeader = /*HTML*/ `
           <span class="nav-menu__text text--search">Search</span>
         </div>
       </div>
+      <!-- Logo section -->
       <div class="nav-logo">
         <button class="nav-logo__button">
           <img class="nav-logo__img" 
@@ -150,6 +170,7 @@ const renderHeader = /*HTML*/ `
           />
         </button>
       </div>
+      <!-- Profile section -->
       <div class="nav-profile">
         <button class="nav-profile__button">
           <img

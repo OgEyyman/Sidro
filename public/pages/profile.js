@@ -1,7 +1,11 @@
 const loadAccountPage = /*HTML*/ `
+  <!-- Log out button -->
   <button class="log-out">Log out</button>
+  <!-- Profile banner section-->
   <div class="profile__banner">
+    <!-- Avatar section -->
     <div class="profile__avatar">
+      <!-- Profile information section -->
       <div class="profile__picture">
         <img class="profile__picture__image" 
         src="../assets/common/account_icon.svg" alt="user icon">
@@ -14,10 +18,12 @@ const loadAccountPage = /*HTML*/ `
     <div class="profile__info">
       <h1 class="profile__name">Bimbimbambam</h1>
       <p class="profile__info__bio">Bio</p>
+      <!-- Profile description section -->
       <div class="profile__description">
         <p class="profile__description__text">
           Valorant fan... currently among the top players
         </p>
+        <!-- Edit bio popup -->
         <dialog class="edit-bio__popup">
           <div class="edit-bio__container">
             <div class="edit-bio__banner">
@@ -37,8 +43,11 @@ const loadAccountPage = /*HTML*/ `
       </div>
     </div>
   </div>
+  <!-- Post container -->
   <div class="post">
+    <!-- Post description section -->
     <div class="post__description">
+      <!-- User section -->
       <div class="post__user">
         <img
           class="post__user-profile-img"
@@ -51,6 +60,7 @@ const loadAccountPage = /*HTML*/ `
           </span>
         </a>
       </div>
+      <!-- Post content section -->
       <div class="post__content">
         <p class="post__content-description">
           porttitor viverra et, dapibus sit amet hulla.porttitor viverra
@@ -70,6 +80,7 @@ const loadAccountPage = /*HTML*/ `
           dapibus sit amet
         </p>
       </div>
+      <!-- Post details, including interactions and timestamp -->
       <div class="post__details">
         <div class="post__interactions">
           <button id="svgButton" class="post__button-like">
@@ -90,8 +101,10 @@ const loadAccountPage = /*HTML*/ `
         <time class="post__time" datetime="2023-10-01">10/01/2023</time>
       </div>
     </div>
+    <!-- Comment section -->
     <div class="post__comment-section">
       <!-- Existing comments will be dynamically inserted here -->
+      <!-- Individual comments -->
       <div class="post__comment">
         <div class="post__comment-header">
           <img
@@ -108,6 +121,7 @@ const loadAccountPage = /*HTML*/ `
         <div class="post__comment-body">This is a comment.</div>
         <span class="post__comment-date">2022-01-01</span>
       </div>
+      <!-- Individual comments -->
       <div class="post__comment">
         <div class="post__comment-header">
           <img
@@ -129,14 +143,18 @@ const loadAccountPage = /*HTML*/ `
   `;
 
 const loadOtherAccountPage1 = /*HTML*/ `
+  <!-- Profile banner section -->
   <div class="profile__banner">
+    <!-- Avatar section -->
     <div class="profile__avatar">
       <div class="profile__picture">
         <img class="profile__picture__image" 
         src="../assets/common/account_icon.svg" alt="user icon">
       </div>
     </div>
+    <!-- Profile info section -->
     <div class="profile__info">
+      <!-- Profile header section -->
       <div class="profile__header">
         <h1 class="profile__name">gamerhafsah26</h1>
         <button class="profile__add-friend">
@@ -145,6 +163,7 @@ const loadOtherAccountPage1 = /*HTML*/ `
         </button>
       </div>
       <p class="profile__info__bio">Bio</p>
+      <!-- Profile description section -->
       <div class="profile__description">
         <p class="profile__description__text">
           Loves playing stardew valley and terraria!
