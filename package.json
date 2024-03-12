@@ -12,11 +12,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2",
     "mongodb": "^6.3.0"
   },
   "devDependencies": {
+    "body-parser": "^1.20.2",
     "browser-sync": "^3.0.2",
+    "express": "^4.18.3",
+    "express-session": "^1.18.0",
+    "joi": "^17.12.2",
+    "mongoose": "^8.2.1",
     "nodemon": "^3.0.3"
   }
 }
