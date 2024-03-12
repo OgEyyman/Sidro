@@ -80,12 +80,13 @@ const loadRegisterPage =
     <p class="display-box__redirect-text">Already registered?</p>
     <a class="display-box__redirect-link" href="#/login">Login instead!</a>
     </div>
-    `;
+  `;
 
 /**
  * Initializes the login functionality.
  */
 function initLogin() {
+  const loginButton = document.querySelector(".display-box__submit");
   const images = document.getElementsByTagName("img");
   for (let i = 0; i < images.length; i++) {
     const duration = Math.random() * 15 + 1;
@@ -107,6 +108,13 @@ function initLogin() {
   document.querySelector(".display-box__submit").addEventListener("click", function () {
     window.location.hash = "#/home";
   });
+
+  loginButton.addEventListener("click", () => {
+    const username = document.querySelector(".input--username").value;
+    const password = document.querySelector(".input--password").value;
+
+
+  })
 }
 
 export { loadLoginPage, loadRegisterPage, initLogin };
