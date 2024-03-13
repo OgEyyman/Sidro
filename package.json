@@ -5,8 +5,8 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon src/server.js & browser-sync start --config bs-config.cjs",
-    "start": "node src/server.js"
+    "start": "cd src && node server.js",
+    "dev": "cd src && nodemon server.js & browser-sync start --config ./bs-config.cjs"
   },
   "author": "",
   "license": "ISC",
@@ -18,7 +18,6 @@
     "browser-sync": "^3.0.2",
     "express": "^4.18.3",
     "express-session": "^1.18.0",
-    "joi": "^17.12.2",
     "mongoose": "^8.2.1",
     "nodemon": "^3.0.3"
   }
