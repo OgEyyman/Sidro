@@ -1,6 +1,6 @@
 body {
   display: block;
-  background-color: #FFECD1;
+  background-color: #ffecd1;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -20,8 +20,8 @@ body {
   position: relative;
   align-items: center;
   border-radius: 110px;
-  border: 1px solid #8BBEB2;
-  box-shadow: 0 2px 1px 1px #8BBEB2;
+  border: 1px solid #8bbeb2;
+  box-shadow: 0 2px 1px 1px #8bbeb2;
 }
 
 #switch {
@@ -89,11 +89,11 @@ body {
 /*                         BEGIN Style homefeed posts                         */
 /* -------------------------------------------------------------------------- */
 .post {
-  border: 1px solid #FAD8D6;
+  border: 1px solid #fad8d6;
   border-radius: 7px;
   background-color: #ffefdc;
   width: 50%;
-  box-shadow: 0 2px 2px 2px #FAD8D6;
+  box-shadow: 0 2px 2px 2px #fad8d6;
   margin: 2rem auto;
 }
 
@@ -110,7 +110,8 @@ body {
   justify-content: space-evenly;
   width: fit-content;
   flex-wrap: wrap;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
+  padding-left: 1rem;
 }
 
 .post__username-link {
@@ -134,8 +135,8 @@ body {
 
 .post__content-description {
   font-family: "webpixel-bitmap.medium", "Courier New", monospace;
+  padding: 0 0.5rem;
   padding-top: 0.5rem;
-  padding-right: 1rem;
   text-align: justify;
   font-size: 1.6rem;
 }
@@ -288,7 +289,7 @@ body {
   width: 50%;
   background-color: #dcc88f;
   border-radius: 7px;
-  box-shadow: 0 2px 2px 2px #A59132;
+  box-shadow: 0 2px 2px 2px #a59132;
   margin: 1% auto;
 }
 
@@ -316,7 +317,7 @@ body {
 }
 
 .news__link:hover {
-  color: #1F2663;
+  color: #1f2663;
 }
 
 .news__time {
