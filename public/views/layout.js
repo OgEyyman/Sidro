@@ -78,9 +78,11 @@ const renderHeader = /*HTML*/ `
       <!-- Post input container -->
       <div class="popup__post__container">
         <input placeholder="Game title" class="popup__game__title" rows="1" 
-          maxlength="40">
+          maxlength="46">
         </input>
-        <textarea placeholder="Share something..." class="popup__post__description" rows="14"></textarea>
+        <span id="error__message__title"></span>
+        <textarea placeholder="Share something..." class="popup__post__description" rows="14" maxlength="644"></textarea>
+        <span id="error__message__description"></span>
       </div>
       <!-- Post share buttons -->
       <div class="popup__post__share">
@@ -218,9 +220,9 @@ function initHeader() {
   const openSearchButton = document.getElementsByClassName("button--search")[0];
   const closeSearchButton = document.getElementsByClassName("close--search")[0];
   const searchPopup = document.getElementsByClassName("popup-search")[0];
-  const toggle = document.getElementById('toggle');
-  const searchInput = document.getElementsByClassName('popup-search__search-input')[0];
-  const searchButton = document.getElementsByClassName('popup-search__button')[0];
+  const toggle = document.getElementById("toggle");
+  const searchInput = document.getElementsByClassName("popup-search__search-input")[0];
+  const searchButton = document.getElementsByClassName("popup-search__button")[0];
 
   openFriendButton.addEventListener("click", () => {
     friendRequestPopup.showModal();
@@ -241,9 +243,8 @@ function initHeader() {
     document.body.style.overflow = "auto";
   });
 
-  document.getElementsByClassName('post__button--attach')[0].
-  addEventListener('click', function() {
-    document.getElementById('imageUpload').click();
+  document.getElementsByClassName("post__button--attach")[0].addEventListener("click", function () {
+    document.getElementById("imageUpload").click();
   });
 
   openSearchButton.addEventListener("click", () => {
@@ -256,7 +257,7 @@ function initHeader() {
     document.body.style.overflow = "auto";
   });
 
-  toggle.addEventListener('change', function() {
+  toggle.addEventListener("change", function () {
     if (this.checked) {
       searchInput.placeholder = "Search posts";
     } else {
@@ -264,11 +265,11 @@ function initHeader() {
     }
   });
 
-  searchButton.addEventListener('click', function() {
-    const placeholder = searchInput.getAttribute('placeholder');
+  searchButton.addEventListener("click", function () {
+    const placeholder = searchInput.getAttribute("placeholder");
 
     if (placeholder === "Search posts") {
-      document.getElementsByClassName('popup-search__results')[0].innerHTML = /*HTML*/ `
+      document.getElementsByClassName("popup-search__results")[0].innerHTML = /*HTML*/ `
       <div class="post" id="post">
         <div class="post__description">
           <div class="post__user">
@@ -329,7 +330,7 @@ function initHeader() {
       </div>
     `;
     } else {
-      document.getElementsByClassName('popup-search__results')[0].innerHTML = /*HTML*/ `
+      document.getElementsByClassName("popup-search__results")[0].innerHTML = /*HTML*/ `
       <div class="popup__request-container">
         <button class="popup__add-friend__button">
           <img src="../assets/common/add-friend.svg" alt="add friend" 
@@ -361,9 +362,40 @@ function initHeader() {
           gamerhafsah26
         </a>
       </div>
-      `
+      `;
     }
   });
+}
+
+async function addPost() {
+  const postButton = document.querySelector(".popup__post__button");
+  const gameTitle = document.querySelector(".popup__game__title").value;
+  const postDescription = document.querySelector(".popup__post__description").value;
+  const errorTitle = document.getElementById("error__message__title");
+  const errorDescription = document.getElementById("error__message__description");
+
+  if (gameTitle.length === 0) {
+    errorTitle.textContent = "Please enter a game title.";
+  }
+
+  if (postDescription.length === 0) {
+    errorDescription.textContent = "Please enter a post description.";
+  }
+
+  if (gameTitle.length > 0 && postDescription.length > 0) {
+    errorTitle.textContent = "";
+    errorDescription.textContent = "";
+
+    try {
+      const res = await fetch("/share-post", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title: gameTitle, description: postDescription})
+      })
+    } catch{error} { console.error("Error:", error);}
+  }
 }
 
 export { renderHeader, renderFooter, initHeader };
