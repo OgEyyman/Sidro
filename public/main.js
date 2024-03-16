@@ -1,4 +1,4 @@
-import { layout, login, homefeed, newsfeed, profile } from "./pages/index.js";
+import { layout, login, homefeed, newsfeed, profile, validate } from "./views/index.js";
 
 /**
  * Loads the content of a page and updates the DOM.
