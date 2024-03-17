@@ -1,3 +1,4 @@
+import e from "express";
 import app from "./app.js";
 import { MongoClient, ServerApiVersion } from "mongodb";
 
@@ -16,6 +17,7 @@ const client = new MongoClient(uri, {
 
 const db = client.db("Sidro");
 const userCollection = db.collection("users");
+const postCollection = db.collection("homefeed");
 
 /**
  * Handles POST requests to the "/login" endpoint.
@@ -89,17 +91,62 @@ app.post("/register", async (req, res) => {
   }
 });
 
+/**
+ * POST /logout
+ * This endpoint handles user logout.
+ * It destroys the user's session.
+ * If an error occurs during the session destruction, it responds with a 500 status code.
+ * Otherwise, it responds with a 200 status code and a success message.
+ *
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
 app.post("/logout", (req, res) => {
-  req.session.destroy();
-  res.status(200).end();
+  req.session.destroy((error) => {
+    if (error) {
+      // If there's an error, respond with a 500 status code
+      res.status(500).end();
+    }
+    // If the session is successfully destroyed, respond with a 200 status code and a success message
+    res.status(200).json({ message: "User successfully logged out." });
+  });
 });
-
+/**
+ * POST /share-post
+ * This endpoint handles sharing a new post.
+ * It adds the username from the session to the request data and inserts it into the post collection.
+ * If the operation is successful, it responds with a 201 status code and a success message.
+ * If an error occurs during the operation, it responds with a 500 status code and an error message.
+ *
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
 app.post("/share-post", async (req, res) => {
   try {
     const reqData = req.body;
 
-    await userCollection.insertOne({ name: reqData.username }, { posts: reqData.post });
-  } catch {}
+    reqData.username = req.session.username;
+
+    await postCollection.insertOne(reqData);
+    res.status(201).json({ message: "Post successfully shared." });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to share post." });
+  }
+});
+
+app.get("/homefeed", async (req, res) => {
+  try {
+    const posts = await postCollection.find().toArray();
+
+    if (!posts) {
+      res.status(404).json({ message: "No posts found." });
+    } else {
+      console.log("Posts:", posts)
+      res.status(200).json(posts);
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Failed to fetch posts." });
+  }
 });
 
 /**
