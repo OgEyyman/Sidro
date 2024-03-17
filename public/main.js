@@ -1,4 +1,4 @@
-import { layout, login, homefeed, newsfeed, profile, validate } from "./views/index.js";
+import { layout, login, homefeed, newsfeed, profile} from "./views/index.js";
 
 /**
  * Loads the content of a page and updates the DOM.
@@ -48,8 +48,8 @@ function navigateTo(hash) {
     case "#/home":
       document.body.classList.add("home");
       loadPageContent(homefeed.loadHomeFeedPage);
+      homefeed.getHomeFeed();
       newsfeed.insertNewsFeedPage();
-      homefeed.initHome();
       break;
     case "#/profile":
       document.body.classList.add("profile");
