@@ -217,6 +217,8 @@ function initHeader() {
   const closePostButton = document.getElementsByClassName("close--post")[0];
   const addPostPopup = document.getElementsByClassName("popup__add-post")[0];
 
+  const sharePostButton = document.getElementsByClassName("post__button--share")[0];
+
   const openSearchButton = document.getElementsByClassName("button--search")[0];
   const closeSearchButton = document.getElementsByClassName("close--search")[0];
   const searchPopup = document.getElementsByClassName("popup-search")[0];
@@ -228,6 +230,7 @@ function initHeader() {
     friendRequestPopup.showModal();
     document.body.style.overflow = "hidden";
   });
+
   closeFriendButton.addEventListener("click", () => {
     friendRequestPopup.close();
     document.body.style.overflow = "auto";
@@ -238,9 +241,15 @@ function initHeader() {
     document.body.style.overflow = "hidden";
   });
 
+  sharePostButton.addEventListener("click", addPost);
+
   closePostButton.addEventListener("click", () => {
     addPostPopup.close();
     document.body.style.overflow = "auto";
+    document.querySelector(".popup__game__title").value = "";
+    document.querySelector(".popup__post__description").value = "";
+    document.getElementById("error__message__title").textContent = "";
+    document.getElementById("error__message__description").textContent = "";
   });
 
   document.getElementsByClassName("post__button--attach")[0].addEventListener("click", function () {
@@ -367,8 +376,14 @@ function initHeader() {
   });
 }
 
+/**
+ * Adds a post to the database  .
+ *
+ * @async
+ * @function addPost
+ * @returns {Promise<void>} A Promise that resolves when the post is added successfully.
+ */
 async function addPost() {
-  const postButton = document.querySelector(".popup__post__button");
   const gameTitle = document.querySelector(".popup__game__title").value;
   const postDescription = document.querySelector(".popup__post__description").value;
   const errorTitle = document.getElementById("error__message__title");
@@ -386,15 +401,40 @@ async function addPost() {
     errorTitle.textContent = "";
     errorDescription.textContent = "";
 
+    const today = new Date();
+
+    const postDetails = JSON.stringify({
+      username: "",
+      gameTitle: gameTitle,
+      postDescription: postDescription,
+      date: today,
+      comment_list: [],
+      image: "",
+      likes: 0,
+    });
+
     try {
       const res = await fetch("/share-post", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ title: gameTitle, description: postDescription})
-      })
-    } catch{error} { console.error("Error:", error);}
+        body: postDetails,
+      });
+
+      if (res.status === 201) {
+        document.getElementsByClassName("popup__add-post")[0].close();
+        document.body.style.overflow = "auto";
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+
+    errorTitle.textContent = "";
+    errorDescription.textContent = "";
+
+    document.querySelector(".popup__game__title").value = "";
+    document.querySelector(".popup__post__description").value = "";
   }
 }
 
