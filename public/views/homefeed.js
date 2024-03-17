@@ -283,4 +283,78 @@ function initHome() {
   });
 }
 
-export { loadHomeFeedPage, initHome };
+async function getHomeFeed() {
+  const res = await fetch("/homefeed", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await res.json();
+
+  console.log("Checking response");
+
+  if (res.status === 200) {
+    data.forEach((post) => {
+      const postElement = document.createElement("div");
+      postElement.classList.add("post");
+      postElement.id = post._id;
+      postElement.innerHTML = /*html*/ `
+      <div class="post__description">
+          <!-- User information section -->
+          <div class="post__user">
+            <img
+              class="post__user-profile-img"
+              src="../assets/home/user-icon-profile.svg"
+              alt="avatar"
+            />
+            <a class="post__username-link" href="#/gamerhafsah26">
+              <span class="post__username">
+                ${post.username}
+              </span>
+            </a>
+          </div>
+          <!-- Post content section -->
+          <div class="post__content">
+            <p class="post__content-description">
+              ${post.postDescription}
+            </p>
+            <!--TODO Load image with javascript -->
+            <!-- <img
+              class="post__content-image"
+              src="${post.image}"
+              alt="attached img"
+            /> -->
+          </div>
+          <!-- Post details section -->
+          <div class="post__details">
+            <!-- Post interactions section -->
+            <div class="post__interactions">
+              <button id="svgButton" class="post__button-like">
+                <img
+                  id="svgImage"
+                  src="../assets/home/normal-thumb.svg"
+                  alt="like button"
+                />
+              </button>
+              <span class="post__button-like-count">${post.likes}</span>
+              <img
+                class="post__button-comment"
+                src="../assets/home/comment.svg"
+                alt="comment button"
+              />
+              <span class="post__button-comment-count">${post.comment_list.length}</span>
+            </div>
+            <!-- Post time section -->
+            <time class="post__time" datetime="2023-10-01">${post.date}</time>
+          </div>
+        </div>
+      `;
+      document.getElementById("homefeed").appendChild(postElement);
+    });
+
+    initHome();
+  }
+}
+
+export { loadHomeFeedPage, getHomeFeed };
