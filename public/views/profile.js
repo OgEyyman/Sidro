@@ -322,12 +322,16 @@ function initProfile() {
   const editBioButton = document.getElementsByClassName("profile__description__edit")[0];
   const closePopupButton = document.getElementsByClassName("close__popup")[0];
   const bioPopup = document.getElementsByClassName("edit-bio__popup")[0];
-  
+
+  const logoutButton = document.querySelector(".log-out");
+
+  logoutButton.addEventListener("click", logout);
+
   editBioButton.addEventListener("click", () => {
     bioPopup.showModal();
     document.body.style.overflow = "hidden";
   });
-  
+
   closePopupButton.addEventListener("click", () => {
     bioPopup.close();
     document.body.style.overflow = "auto";
@@ -336,6 +340,28 @@ function initProfile() {
   document.querySelector(".log-out").addEventListener("click", () => {
     window.location.hash = "#/login";
   });
+}
+
+/**
+ * Logs out the user by sending a POST request to the "/logout" endpoint.
+ * If the request is successful (status code 200), redirects the user to the login page.
+ * @returns {Promise<void>} A promise that resolves when the logout process is complete.
+ */
+async function logout() {
+  try {
+    const res = await fetch("/logout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}),
+    });
+
+    if (res.status === 200) {
+      window.location.hash = "#/login";
+    }
+  } catch (error) {
+    console.log("Error:", error);}
 }
 
 export { loadAccountPage, loadOtherAccountPage1, loadOtherAccountPage2, initProfile };
