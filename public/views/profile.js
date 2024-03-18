@@ -1,3 +1,5 @@
+import { appendPostToFeed, addComment, directToProfile } from "./homefeed.js";
+
 const loadAccountPage = /*HTML*/ `
   <!-- Log out button -->
   <button class="log-out">Log out</button>
@@ -142,7 +144,7 @@ const loadAccountPage = /*HTML*/ `
   </div>
   `;
 
-const loadOtherAccountPage1 = /*HTML*/ `
+const loadOtherAccountPage = /*HTML*/ `
   <!-- Profile banner section -->
   <div class="profile__banner">
     <!-- Avatar section -->
@@ -153,10 +155,29 @@ const loadOtherAccountPage1 = /*HTML*/ `
       </div>
     </div>
     <!-- Profile info section -->
-    <div class="profile__info">
-      <!-- Profile header section -->
+  </div>
+`;
+
+async function getOtherProfileContent(username) {
+  try {
+    const res = await fetch(`/getOtherProfile?username=${username}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const resData = await res.json();
+
+    if (res.status === 200) {
+      const profileBanner = document.querySelector(".profile__banner");
+      const userData = resData.userData;
+      const profileInfo = document.createElement("div");
+      profileInfo.classList.add("profile__info");
+
+      profileInfo.innerHTML = /*HTML*/ `
       <div class="profile__header">
-        <h1 class="profile__name">gamerhafsah26</h1>
+        <h1 class="profile__name">${userData.name}</h1>
         <button class="profile__add-friend">
           <img class="profile__add-friend__image"
           src="../assets/common/add-friend.svg" alt="edit button">
@@ -166,180 +187,24 @@ const loadOtherAccountPage1 = /*HTML*/ `
       <!-- Profile description section -->
       <div class="profile__description">
         <p class="profile__description__text">
-          Loves playing stardew valley and terraria!
+          ${userData.bio ? userData.bio : ""}
         </p>
       </div>
-    </div>
-  </div>
-  <div class="post">
-    <div class="post__description">
-      <div class="post__user">
-        <img
-          class="post__user-profile-img"
-          src="../assets/home/user-icon-profile.svg"
-          alt="avatar"
-        />
-        <a class="post__username-link" href="#/gamerhafsah26">
-          <span class="post__username">
-            gamerhafsah26
-          </span>
-        </a>
-      </div>
-      <div class="post__content">
-        <p class="post__content-description">
-          porttitor viverra et, dapibus sit amet hulla.porttitor viverra
-          et, dapibus sit amet hulla.porttitor viverra et, dapibus sit
-          amet hulla.porttitor viverra et, dapibus sit amet
-          hulla.porttitor viverra et, dapibus sit amet hulla. porttitor
-          viverra et, dapibus sit amet hulla.porttitor viverra et,
-          dapibus sit amet hulla.porttitor viverra et, dapibus sit amet
-          hulla.porttitor viverra et, dapibus sit amet hulla.porttitor
-          viverra et, dapibus sit amet hulla. porttitor viverra et,
-          dapibus sit amet hulla.porttitor viverra et, dapibus sit amet
-          hulla.porttitor viverra et, dapibus sit amet hulla.porttitor
-          viverra et, dapibus sit amet hulla.porttitor viverra et,
-          dapibus sit amet hulla. porttitor viverra et, dapibus sit amet
-          hulla.porttitor viverra et, dapibus sit amet hulla.porttitor
-          viverra et, dapibus sit amet hulla.porttitor viverra et,
-          dapibus sit amet, viverra et, dapibus sit amet hulla.porttitor 
-          viverra et, dapibus sit amet hulla. porttitor viverra et, 
-          dapibus sit amet hulla.porttitor viverra et, dapibus sit amet 
-          hulla.porttitor viverra et, dapibus sit amet hulla.porttitor 
-          viverra et, dapibus sit amet
-        </p>
-      </div>
-      <div class="post__details">
-        <div class="post__interactions">
-          <button id="svgButton" class="post__button-like">
-            <img
-              id="svgImage"
-              src="../assets/home/normal-thumb.svg"
-              alt="like button"
-            />
-          </button>
-          <span class="post__button-like-count">15</span>
-          <img
-            class="post__button-comment"
-            src="../assets/home/comment.svg"
-            alt="comment button"
-          />
-          <span class="post__button-comment-count">2</span>
-        </div>
-        <time class="post__time" datetime="2023-10-01">10/01/2023</time>
-      </div>
-    </div>
-  </div>
-`;
+      `;
 
-const loadOtherAccountPage2 = /*HTML*/ `
-  <div class="profile__banner">
-    <div class="profile__avatar">
-      <div class="profile__picture">
-        <img class="profile__picture__image" 
-        src="../assets/common/account_icon.svg" alt="user icon">
-      </div>
-    </div>
-    <div class="profile__info">
-      <div class="profile__header">
-      <h1 class="profile__name">John Doe</h1>
-      <button class="profile__add-friend">
-        <img class="profile__add-friend__image"
-        src="../assets/common/add-friend.svg" alt="edit button">
-      </button>
-    </div>
-    <p class="profile__info__bio">Bio</p>
-      <div class="profile__description">
-        <p class="profile__description__text">
-          Big fan of battlefied :p
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="post">
-    <div class="post__description">
-      <div class="post__user">
-        <img
-          class="post__user-profile-img"
-          src="../assets/home/user-icon-profile.svg"
-          alt="avatar"
-        />
-        <a class="post__username-link" href="#/John-Doe">
-          <span class="post__username">
-            John Doe
-          </span>
-        </a>
-      </div>
-      <div class="post__content">
-        <p class="post__content-description">
-          porttitor viverra et, dapibus sit amet hulla.porttitor viverra
-          et, dapibus sit amet hulla.porttitor viverra et, dapibus sit
-          amet hulla.porttitor viverra et, dapibus sit amet
-          hulla.porttitor viverra et, dapibus sit amet hulla. porttitor
-          viverra et, dapibus sit amet hulla.porttitor viverra et,
-          dapibus sit amet hulla.porttitor viverra et, dapibus sit amet
-          hulla.porttitor viverra et, dapibus sit amet hulla.porttitor
-          viverra et, dapibus sit amet hulla. porttitor viverra et,
-          dapibus sit amet hulla.porttitor viverra et, dapibus sit amet
-          hulla.porttitor viverra et, dapibus sit amet hulla.porttitor
-          viverra et, dapibus sit amet hulla.porttitor viverra et,
-          dapibus sit amet hulla. porttitor viverra et, dapibus sit amet
-          hulla.porttitor viverra et, dapibus sit amet hulla.porttitor
-          viverra et, dapibus sit amet hulla.porttitor viverra et,
-          dapibus sit amet, viverra et, dapibus sit amet hulla.porttitor 
-          viverra et, dapibus sit amet hulla. porttitor viverra et, 
-          dapibus sit amet hulla.porttitor viverra et, dapibus sit amet 
-          hulla.porttitor viverra et, dapibus sit amet hulla.porttitor 
-          viverra et, dapibus sit amet
-        </p>
-      </div>
-      <div class="post__details">
-        <div class="post__interactions">
-          <button id="svgButton" class="post__button-like">
-            <img
-              id="svgImage"
-              src="../assets/home/normal-thumb.svg"
-              alt="like button"
-            />
-          </button>
-          <span class="post__button-like-count">15</span>
-          <img
-            class="post__button-comment"
-            src="../assets/home/comment.svg"
-            alt="comment button"
-          />
-          <span class="post__button-comment-count">2</span>
-        </div>
-        <time class="post__time" datetime="2023-10-01">10/01/2023</time>
-      </div>
-    </div>
-  </div>
-`;
+      profileBanner.appendChild(profileInfo);
 
-/**
- * Initializes the profile page.
- */
-function initProfile() {
-  const editBioButton = document.getElementsByClassName("profile__description__edit")[0];
-  const closePopupButton = document.getElementsByClassName("close__popup")[0];
-  const bioPopup = document.getElementsByClassName("edit-bio__popup")[0];
+      const posts = resData.posts;
 
-  const logoutButton = document.querySelector(".log-out");
+      appendPostToFeed("content", posts);
 
-  logoutButton.addEventListener("click", logout);
+      addComment();
 
-  editBioButton.addEventListener("click", () => {
-    bioPopup.showModal();
-    document.body.style.overflow = "hidden";
-  });
-
-  closePopupButton.addEventListener("click", () => {
-    bioPopup.close();
-    document.body.style.overflow = "auto";
-  });
-
-  document.querySelector(".log-out").addEventListener("click", () => {
-    window.location.hash = "#/login";
-  });
+      directToProfile();
+    }
+  } catch (error) {
+    console.log("Error:", error);
+  }
 }
 
 /**
@@ -361,7 +226,35 @@ async function logout() {
       window.location.hash = "#/login";
     }
   } catch (error) {
-    console.log("Error:", error);}
+    console.log("Error:", error);
+  }
 }
 
-export { loadAccountPage, loadOtherAccountPage1, loadOtherAccountPage2, initProfile };
+/**
+ * Initializes the profile page.
+ */
+function initProfile() {
+  if (window.location.hash === "#/profile") {
+    const editBioButton = document.getElementsByClassName("profile__description__edit")[0];
+    const closePopupButton = document.getElementsByClassName("close__popup")[0];
+    const bioPopup = document.getElementsByClassName("edit-bio__popup")[0];
+    const logoutButton = document.querySelector(".log-out");
+
+    logoutButton.addEventListener("click", logout);
+
+    editBioButton.addEventListener("click", () => {
+      bioPopup.showModal();
+      document.body.style.overflow = "hidden";
+    });
+
+    closePopupButton.addEventListener("click", () => {
+      bioPopup.close();
+      document.body.style.overflow = "auto";
+    });
+    document.querySelector(".log-out").addEventListener("click", () => {
+      window.location.hash = "#/login";
+    });
+  }
+}
+
+export { loadAccountPage, loadOtherAccountPage, initProfile, getOtherProfileContent };
