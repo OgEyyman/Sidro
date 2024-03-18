@@ -1,4 +1,4 @@
-import { layout, login, homefeed, newsfeed, profile} from "./views/index.js";
+import { layout, login, homefeed, newsfeed, profile } from "./views/index.js";
 
 /**
  * Loads the content of a page and updates the DOM.
@@ -34,6 +34,17 @@ function loadPageContent(content, displayHeader = true) {
 function navigateTo(hash) {
   document.body.className = "";
 
+  let prefix = "#/userProfile/";
+
+  if (hash.startsWith(prefix)) {
+    let username = hash.slice(prefix.length);
+    document.body.classList.add("profile");
+    loadPageContent(profile.loadOtherAccountPage);
+    profile.getOtherProfileContent(username);
+    profile.initProfile();
+    return;
+  }
+
   switch (hash) {
     case "#/login":
       document.body.classList.add("login");
@@ -52,21 +63,6 @@ function navigateTo(hash) {
       newsfeed.insertNewsFeedPage();
       break;
     case "#/profile":
-      document.body.classList.add("profile");
-      loadPageContent(profile.loadAccountPage);
-      profile.initProfile();
-      break;
-    case "#/gamerhafsah26":
-      document.body.classList.add("profile");
-      loadPageContent(profile.loadOtherAccountPage1);
-      profile.initProfile();
-      break;
-    case "#/John-Doe":
-      document.body.classList.add("profile");
-      loadPageContent(profile.loadOtherAccountPage2);
-      profile.initProfile();
-      break;
-    case "#/bimbimbambam":
       document.body.classList.add("profile");
       loadPageContent(profile.loadAccountPage);
       profile.initProfile();
