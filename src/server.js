@@ -1,6 +1,6 @@
 import e from "express";
 import app from "./app.js";
-import { MongoClient, ServerApiVersion } from "mongodb";
+import { MongoClient, ObjectId, ServerApiVersion } from "mongodb";
 
 const PORT = 3000;
 
@@ -111,6 +111,7 @@ app.post("/logout", (req, res) => {
     res.status(200).json({ message: "User successfully logged out." });
   });
 });
+
 /**
  * POST /share-post
  * This endpoint handles sharing a new post.
@@ -134,6 +135,21 @@ app.post("/share-post", async (req, res) => {
   }
 });
 
+/**
+ * GET /homefeed
+ * This endpoint is responsible for fetching all posts from the database.
+ * It uses the Express.js framework to define a route handler for the GET HTTP method at the path '/homefeed'.
+ *
+ * @async
+ * @function
+ * @param {Object} req - Express 'request' object
+ * @param {Object} res - Express 'response' object
+ *
+ * @returns {Object} JSON response
+ * - If there are no posts in the database, it returns a 404 status code with a message "No posts found."
+ * - If there are posts, it returns a 200 status code along with the posts in JSON format.
+ * - If there's an error while fetching the posts, it returns a 500 status code with a message "Failed to fetch posts."
+ */
 app.get("/homefeed", async (req, res) => {
   try {
     const posts = await postCollection.find().toArray();
@@ -141,11 +157,95 @@ app.get("/homefeed", async (req, res) => {
     if (!posts) {
       res.status(404).json({ message: "No posts found." });
     } else {
-      console.log("Posts:", posts)
       res.status(200).json(posts);
     }
   } catch (error) {
     res.status(500).json({ message: "Failed to fetch posts." });
+  }
+});
+
+/**
+ * POST /add-comment
+ * This endpoint is responsible for adding a comment to a post in the database.
+ * It uses the Express.js framework to define a route handler for the POST HTTP method at the path '/add-comment'.
+ *
+ * @async
+ * @function
+ * @param {Object} req - Express 'request' object. The body of the request should contain 'postId', 'commentText', and 'commentDate'.
+ * @param {Object} res - Express 'response' object
+ *
+ * @returns {Object} JSON response
+ * - If the post is found, it adds the comment to the post's 'comment_list' and returns a 200 status code with a success message.
+ * - If the post is not found, it returns a 404 status code with a message "Post not found."
+ * - If there's an error while adding the comment, it returns a 500 status code with a message "Failed to add comment."
+ */
+app.post("/add-comment", async (req, res) => {
+  try {
+    const reqData = req.body;
+
+    const post = await postCollection.findOne({
+      _id: ObjectId.createFromHexString(reqData.postId),
+    });
+
+    if (post) {
+      post.comment_list.push({
+        username: req.session.username,
+        commentText: reqData.commentText,
+        commentDate: reqData.commentDate,
+      });
+
+      await postCollection.updateOne(
+        { _id: ObjectId.createFromHexString(reqData.postId) },
+        { $set: { comment_list: post.comment_list } }
+      );
+
+      res
+        .status(200)
+        .json({ username: req.session.username, message: "Comment successfully added." });
+    } else {
+      res.status(404).json({ message: "Post not found." });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Failed to add comment." });
+  }
+});
+
+app.get("/getProfile", async (req, res) => {
+  try {
+    const username = req.query.username;
+    const sessionUser = req.session.username;
+
+    console.log("username", username);
+    console.log("sessionUser", sessionUser);
+
+    if (username === sessionUser) {
+      res.status(200).json({ isSessionUser: true });
+    } else {
+      res.status(200).json({ isSessionUser: false });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Failed to fetch user data." });
+  }
+});
+
+app.get("/getOtherProfile", async (req, res) => {
+  try {
+    const username = req.query.username;
+
+    const user = await userCollection.findOne({ name: username }, { projection: { password: 0 } });
+
+    // Find all the post for the user
+    const posts = await postCollection.find({ username: username }).toArray();
+
+    if (user) {
+      res.status(200).json({ userData: user, posts: posts });
+    } else {
+      res.status(404).json({ message: "User not found." });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Failed to fetch user data." });
   }
 });
 
