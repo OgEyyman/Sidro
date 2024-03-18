@@ -402,12 +402,13 @@ async function addPost() {
     errorDescription.textContent = "";
 
     const today = new Date();
+    const date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
 
     const postDetails = JSON.stringify({
       username: "",
       gameTitle: gameTitle,
       postDescription: postDescription,
-      date: today,
+      date: date,
       comment_list: [],
       image: "",
       likes: 0,
