@@ -229,6 +229,26 @@ app.get("/getProfile", async (req, res) => {
   }
 });
 
+app.get("/myProfile", async (req, res) => {
+  try {
+    const username = req.session.username;
+
+    const user = await userCollection.findOne({ name: username }, { projection: { password: 0 } });
+
+    // Find all the post for the user
+    const posts = await postCollection.find({ username: username }).toArray();
+
+    if (user) {
+      res.status(200).json({ userData: user, posts: posts });
+    } else {
+      res.status(404).json({ message: "User not found." });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Failed to fetch user data." });
+  }
+})
+
 app.get("/getOtherProfile", async (req, res) => {
   try {
     const username = req.query.username;
