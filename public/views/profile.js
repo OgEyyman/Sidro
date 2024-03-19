@@ -17,13 +17,52 @@ const loadAccountPage = /*HTML*/ `
         alt="edit button">
       </button>
     </div>
-    <div class="profile__info">
-      <h1 class="profile__name">Bimbimbambam</h1>
+  </div>
+  <!-- Post container -->
+  `;
+
+const loadOtherAccountPage = /*HTML*/ `
+  <!-- Profile banner section -->
+  <div class="profile__banner">
+    <!-- Avatar section -->
+    <div class="profile__avatar">
+      <div class="profile__picture">
+        <img class="profile__picture__image" 
+        src="../assets/common/account_icon.svg" alt="user icon">
+      </div>
+    </div>
+    <!-- Profile info section -->
+  </div>
+`;
+
+/**
+ * Fetches profile content from the server and updates the profile page.
+ * @returns {Promise<void>} A promise that resolves when the profile content is fetched and updated.
+ */
+async function getProfileContent() {
+  try {
+    const res = await fetch("/myProfile", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const resData = await res.json();
+
+    if (res.status === 200) {
+      const profileBanner = document.querySelector(".profile__banner");
+      const userData = resData.userData;
+      const profileInfo = document.createElement("div");
+      profileInfo.classList.add("profile__info");
+
+      profileInfo.innerHTML = /*HTML*/ `
+      <h1 class="profile__name">${userData.name}</h1>
       <p class="profile__info__bio">Bio</p>
       <!-- Profile description section -->
       <div class="profile__description">
         <p class="profile__description__text">
-          Valorant fan... currently among the top players
+          ${userData.bio ? userData.bio : ""}
         </p>
         <!-- Edit bio popup -->
         <dialog class="edit-bio__popup">
@@ -43,121 +82,30 @@ const loadAccountPage = /*HTML*/ `
           src="../assets/common/edit.svg" alt="edit button">
         </button>
       </div>
-    </div>
-  </div>
-  <!-- Post container -->
-  <div class="post">
-    <!-- Post description section -->
-    <div class="post__description">
-      <!-- User section -->
-      <div class="post__user">
-        <img
-          class="post__user-profile-img"
-          src="../assets/home/user-icon-profile.svg"
-          alt="avatar"
-        />
-        <a class="post__username-link" href="#/bimbimbambam">
-          <span class="post__username">
-            bimbimbambam
-          </span>
-        </a>
-      </div>
-      <!-- Post content section -->
-      <div class="post__content">
-        <p class="post__content-description">
-          porttitor viverra et, dapibus sit amet hulla.porttitor viverra
-          et, dapibus sit amet hulla.porttitor viverra et, dapibus sit
-          amet hulla.porttitor viverra et, dapibus sit amet
-          hulla.porttitor viverra et, dapibus sit amet hulla. porttitor
-          viverra et, dapibus sit amet hulla.porttitor viverra et,
-          dapibus sit amet hulla.porttitor viverra et, dapibus sit amet
-          hulla.porttitor viverra et, dapibus sit amet hulla.porttitor
-          viverra et, dapibus sit amet hulla. porttitor viverra et,
-          dapibus sit amet hulla.porttitor viverra et, dapibus sit amet
-          hulla.porttitor viverra et, dapibus sit amet hulla.porttitor
-          viverra et, dapibus sit amet hulla.porttitor viverra et,
-          dapibus sit amet hulla. porttitor viverra et, dapibus sit amet
-          hulla.porttitor viverra et, dapibus sit amet hulla.porttitor
-          viverra et, dapibus sit amet hulla.porttitor viverra et,
-          dapibus sit amet
-        </p>
-      </div>
-      <!-- Post details, including interactions and timestamp -->
-      <div class="post__details">
-        <div class="post__interactions">
-          <button id="svgButton" class="post__button-like">
-            <img
-              id="svgImage"
-              src="../assets/home/normal-thumb.svg"
-              alt="like button"
-            />
-          </button>
-          <span class="post__button-like-count">15</span>
-          <img
-            class="post__button-comment"
-            src="../assets/home/comment.svg"
-            alt="comment button"
-          />
-          <span class="post__button-comment-count">2</span>
-        </div>
-        <time class="post__time" datetime="2023-10-01">10/01/2023</time>
-      </div>
-    </div>
-    <!-- Comment section -->
-    <div class="post__comment-section">
-      <!-- Existing comments will be dynamically inserted here -->
-      <!-- Individual comments -->
-      <div class="post__comment">
-        <div class="post__comment-header">
-          <img
-          src="../assets/home/user-icon-profile.svg"
-          alt="user icon"
-          class="post__comment-user-icon"
-          />
-          <a class="post__author-link" href="#/John-Doe">
-            <span class="post__comment-author">
-              John Doe
-            </span>
-          </a>
-        </div>
-        <div class="post__comment-body">This is a comment.</div>
-        <span class="post__comment-date">2022-01-01</span>
-      </div>
-      <!-- Individual comments -->
-      <div class="post__comment">
-        <div class="post__comment-header">
-          <img
-          src="../assets/home/user-icon-profile.svg"
-          alt="user icon"
-          class="post__comment-user-icon"
-          />
-          <a class="post__author-link" href="#/John-Doe">
-            <span class="post__comment-author">
-              John Doe
-            </span>
-          </a>
-        </div>
-        <div class="post__comment-body">This is a comment.</div>
-        <span class="post__comment-date">2022-01-01</span>
-      </div>
-    </div>
-  </div>
-  `;
+      `;
 
-const loadOtherAccountPage = /*HTML*/ `
-  <!-- Profile banner section -->
-  <div class="profile__banner">
-    <!-- Avatar section -->
-    <div class="profile__avatar">
-      <div class="profile__picture">
-        <img class="profile__picture__image" 
-        src="../assets/common/account_icon.svg" alt="user icon">
-      </div>
-    </div>
-    <!-- Profile info section -->
-  </div>
-`;
+      profileBanner.appendChild(profileInfo);
 
+      const posts = resData.posts;
+
+      appendPostToFeed("content", posts);
+
+      addComment();
+
+      directToProfile();
+    }
+  } catch (error) {
+    console.log("Error:", error);
+  }
+
+  initProfile();
+}
+
+/**
+ * Fetches and displays the profile content of a user.
+ * @param {string} username - The username of the user whose profile content is to be fetched.
+ * @returns {Promise<void>} - A promise that resolves when the profile content is fetched and displayed.
+ */
 async function getOtherProfileContent(username) {
   try {
     const res = await fetch(`/getOtherProfile?username=${username}`, {
@@ -234,27 +182,26 @@ async function logout() {
  * Initializes the profile page.
  */
 function initProfile() {
-  if (window.location.hash === "#/profile") {
-    const editBioButton = document.getElementsByClassName("profile__description__edit")[0];
-    const closePopupButton = document.getElementsByClassName("close__popup")[0];
-    const bioPopup = document.getElementsByClassName("edit-bio__popup")[0];
-    const logoutButton = document.querySelector(".log-out");
+  const editBioButton = document.getElementsByClassName("profile__description__edit")[0];
+  const closePopupButton = document.getElementsByClassName("close__popup")[0];
+  const bioPopup = document.getElementsByClassName("edit-bio__popup")[0];
+  const logoutButton = document.querySelector(".log-out");
 
-    logoutButton.addEventListener("click", logout);
+  logoutButton.addEventListener("click", logout);
 
-    editBioButton.addEventListener("click", () => {
-      bioPopup.showModal();
-      document.body.style.overflow = "hidden";
-    });
+  editBioButton.addEventListener("click", () => {
+    bioPopup.showModal();
+    document.body.style.overflow = "hidden";
+  });
 
-    closePopupButton.addEventListener("click", () => {
-      bioPopup.close();
-      document.body.style.overflow = "auto";
-    });
-    document.querySelector(".log-out").addEventListener("click", () => {
-      window.location.hash = "#/login";
-    });
-  }
+  closePopupButton.addEventListener("click", () => {
+    bioPopup.close();
+    document.body.style.overflow = "auto";
+  });
+
+  document.querySelector(".log-out").addEventListener("click", () => {
+    window.location.hash = "#/login";
+  });
 }
 
-export { loadAccountPage, loadOtherAccountPage, initProfile, getOtherProfileContent };
+export { loadAccountPage, loadOtherAccountPage, getProfileContent, getOtherProfileContent };
