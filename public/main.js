@@ -41,7 +41,6 @@ function navigateTo(hash) {
     document.body.classList.add("profile");
     loadPageContent(profile.loadOtherAccountPage);
     profile.getOtherProfileContent(username);
-    profile.initProfile();
     return;
   }
 
@@ -65,7 +64,7 @@ function navigateTo(hash) {
     case "#/profile":
       document.body.classList.add("profile");
       loadPageContent(profile.loadAccountPage);
-      profile.initProfile();
+      profile.getProfileContent();
       break;
     default:
       document.body.classList.add("login");
