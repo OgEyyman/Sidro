@@ -209,6 +209,21 @@ app.post("/add-comment", async (req, res) => {
   }
 });
 
+/**
+ * GET /getProfile
+ * This endpoint is responsible for checking if the requested profile belongs to the currently logged in user.
+ * It uses the Express.js framework to define a route handler for the GET HTTP method at the path '/getProfile'.
+ *
+ * @async
+ * @function
+ * @param {Object} req - Express 'request' object. The query of the request should contain 'username'.
+ * @param {Object} res - Express 'response' object
+ *
+ * @returns {Object} JSON response
+ * - If the 'username' query parameter matches the 'username' stored in the session, it returns a 200 status code with a JSON object { isSessionUser: true }.
+ * - If the 'username' query parameter does not match the 'username' stored in the session, it returns a 200 status code with a JSON object { isSessionUser: false }.
+ * - If there's an error while processing the request, it returns a 500 status code with a message "Failed to fetch user data."
+ */
 app.get("/getProfile", async (req, res) => {
   try {
     const username = req.query.username;
@@ -228,6 +243,21 @@ app.get("/getProfile", async (req, res) => {
   }
 });
 
+/**
+ * GET /myProfile
+ * This endpoint is responsible for fetching the profile data of the currently logged in user.
+ * It uses the Express.js framework to define a route handler for the GET HTTP method at the path '/myProfile'.
+ *
+ * @async
+ * @function
+ * @param {Object} req - Express 'request' object. The session of the request should contain 'username'.
+ * @param {Object} res - Express 'response' object
+ *
+ * @returns {Object} JSON response
+ * - If the user is found, it returns a 200 status code with a JSON object containing the user's data (excluding the password) and all the posts made by the user.
+ * - If the user is not found, it returns a 404 status code with a message "User not found."
+ * - If there's an error while processing the request, it returns a 500 status code with a message "Failed to fetch user data."
+ */
 app.get("/myProfile", async (req, res) => {
   try {
     const username = req.session.username;
@@ -248,6 +278,21 @@ app.get("/myProfile", async (req, res) => {
   }
 });
 
+/**
+ * GET /getOtherProfile
+ * This endpoint is responsible for fetching the profile data of a specified user.
+ * It uses the Express.js framework to define a route handler for the GET HTTP method at the path '/getOtherProfile'.
+ *
+ * @async
+ * @function
+ * @param {Object} req - Express 'request' object. The query of the request should contain 'username'.
+ * @param {Object} res - Express 'response' object
+ *
+ * @returns {Object} JSON response
+ * - If the user is found, it returns a 200 status code with a JSON object containing the user's data (excluding the password) and all the posts made by the user.
+ * - If the user is not found, it returns a 404 status code with a message "User not found."
+ * - If there's an error while processing the request, it returns a 500 status code with a message "Failed to fetch user data."
+ */
 app.get("/getOtherProfile", async (req, res) => {
   try {
     const username = req.query.username;
@@ -268,6 +313,21 @@ app.get("/getOtherProfile", async (req, res) => {
   }
 });
 
+/**
+ * GET /search-users
+ * This endpoint is responsible for searching users based on the provided query.
+ * It uses the Express.js framework to define a route handler for the GET HTTP method at the path '/search-users'.
+ *
+ * @async
+ * @function
+ * @param {Object} req - Express 'request' object. The query of the request should contain 'value'.
+ * @param {Object} res - Express 'response' object
+ *
+ * @returns {Object} JSON response
+ * - If users are found, it returns a 200 status code with a JSON object containing the users' data and a success message.
+ * - If no users are found, it returns a 404 status code with a message "No users found."
+ * - If there's an error while processing the request, it returns a 500 status code with a message "Failed to fetch users."
+ */
 app.get("/search-users", async (req, res) => {
   try {
     const query = req.query.value;
@@ -286,6 +346,21 @@ app.get("/search-users", async (req, res) => {
   }
 });
 
+/**
+ * GET /search-posts
+ * This endpoint is responsible for searching posts based on the game title.
+ * It uses the Express.js framework to define a route handler for the GET HTTP method at the path '/search-posts'.
+ *
+ * @async
+ * @function
+ * @param {Object} req - Express 'request' object. The query of the request should contain 'value'.
+ * @param {Object} res - Express 'response' object
+ *
+ * @returns {Object} JSON response
+ * - If posts are found, it returns a 200 status code with a JSON object containing the found posts and a success message.
+ * - If no posts are found, it returns a 404 status code with a message "No posts found."
+ * - If there's an error while processing the request, it returns a 500 status code with a message "Failed to fetch posts."
+ */
 app.get("/search-posts", async (req, res) => {
   try {
     const query = req.query.value;
