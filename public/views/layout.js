@@ -1,3 +1,5 @@
+import { directToProfile, appendPostToFeed } from "./homefeed.js";
+
 const renderHeader = /*HTML*/ `
   <!-- Header section -->
   <header>
@@ -123,7 +125,7 @@ const renderHeader = /*HTML*/ `
           </button>
         </div>
         <!-- Search results -->
-        <div class="popup-search__results">
+        <div class="popup-search__results" id="search__results">
         </div>
       </div>
     </dialog>
@@ -197,9 +199,6 @@ const renderFooter = /*HTML*/ `
   </footer>
   `;
 
-/**
- * Initializes the header functionality.
- */
 function initHeader() {
   document.querySelector(".nav-logo__button").addEventListener("click", function () {
     window.location.hash = "#/home";
@@ -274,106 +273,169 @@ function initHeader() {
     }
   });
 
-  searchButton.addEventListener("click", function () {
-    const placeholder = searchInput.getAttribute("placeholder");
+  searchButton.addEventListener("click", search);
 
-    if (placeholder === "Search posts") {
-      document.getElementsByClassName("popup-search__results")[0].innerHTML = /*HTML*/ `
-      <div class="post" id="post">
-        <div class="post__description">
-          <div class="post__user">
-            <img
-              class="post__user-profile-img"
-              src="../assets/home/user-icon-profile.svg"
-              alt="avatar"
-            />
-            <a class="post__username-link" href="#/John-Doe">
-              <span class="post__username">
-                John Doe
-              </span>
-            </a>
-          </div>
-          <div class="post__content">
-            <p class="post__content-description">
-              porttitor viverra et, dapibus sit amet hulla.porttitor viverra
-              et, dapibus sit amet hulla.porttitor viverra et, dapibus sit
-              amet hulla.porttitor viverra et, dapibus sit amet
-              hulla.porttitor viverra et, dapibus sit amet hulla. porttitor
-              viverra et, dapibus sit amet hulla.porttitor viverra et,
-              dapibus sit amet hulla.porttitor viverra et, dapibus sit amet
-              hulla.porttitor viverra et, dapibus sit amet hulla.porttitor
-              viverra et, dapibus sit amet hulla. porttitor viverra et,
-              dapibus sit amet hulla.porttitor viverra et, dapibus sit amet
-              hulla.porttitor viverra et, dapibus sit amet hulla.porttitor
-              viverra et, dapibus sit amet hulla.porttitor viverra et,
-              dapibus sit amet hulla. porttitor viverra et, dapibus sit amet
-              hulla.porttitor viverra et, dapibus sit amet hulla.porttitor
-              viverra et, dapibus sit amet hulla.porttitor viverra et,
-              dapibus sit amet, viverra et, dapibus sit amet hulla.porttitor 
-              viverra et, dapibus sit amet hulla. porttitor viverra et, 
-              dapibus sit amet hulla.porttitor viverra et, dapibus sit amet 
-              hulla.porttitor viverra et, dapibus sit amet hulla.porttitor 
-              viverra et, dapibus sit amet
-            </p>
-          </div>
-          <div class="post__details">
-            <div class="post__interactions">
-              <button id="svgButton" class="post__button-like">
-                <img
-                  id="svgImage"
-                  src="../assets/home/normal-thumb.svg"
-                  alt="like button"
-                />
-              </button>
-              <span class="post__button-like-count">15</span>
-              <img
-                class="post__button-comment"
-                src="../assets/home/comment.svg"
-                alt="comment button"
-              />
-              <span class="post__button-comment-count">2</span>
-            </div>
-            <time class="post__time" datetime="2023-10-01">10/01/2023</time>
-          </div>
-        </div>
-      </div>
-    `;
-    } else {
-      document.getElementsByClassName("popup-search__results")[0].innerHTML = /*HTML*/ `
-      <div class="popup__request-container">
-        <button class="popup__add-friend__button">
-          <img src="../assets/common/add-friend.svg" alt="add friend" 
-          class="popup__add-friend__icon">
-        </button>
-        <img src="../assets/common/account_icon.svg" alt="user icon" 
-        class="popup__user-icon">
-        <a href="#/bimbimbambam" class="popup__request__author">
-          bimbimbambam
-        </a>
-      </div>
-      <div class="popup__request-container">
-        <button class="popup__add-friend__button">
-          <img src="../assets/common/add-friend.svg" alt="add friend" 
-          class="popup__add-friend__icon">
-        </button>
-        <img src="../assets/common/account_icon.svg" alt="user icon" 
-        class="popup__user-icon">
-        <a href="#/John-Doe" class="popup__request__author">John Doe</a>
-      </div>
-      <div class="popup__request-container">
-        <button class="popup__add-friend__button">
-          <img src="../assets/common/add-friend.svg" alt="add friend"
-          class="popup__add-friend__icon">
-        </button>
-        <img src="../assets/common/account_icon.svg" alt="user icon" 
-        class="popup__user-icon">
-        <a href="#/gamerhafsah26" class="popup__request__author">
-          gamerhafsah26
-        </a>
-      </div>
-      `;
-    }
-  });
+  // searchButton.addEventListener("click", function () {
+  //   const placeholder = searchInput.getAttribute("placeholder");
+
+  //   if (placeholder === "Search posts") {
+  //     document.getElementsByClassName("popup-search__results")[0].style.flexDirection = "column";
+
+  //     document.getElementsByClassName("popup-search__results")[0].innerHTML = /*HTML*/ `
+  //     <div class="post" id="post">
+  //       <div class="post__description">
+  //         <div class="post__user">
+  //           <img
+  //             class="post__user-profile-img"
+  //             src="../assets/home/user-icon-profile.svg"
+  //             alt="avatar"
+  //           />
+  //           <a class="post__username-link" href="#/John-Doe">
+  //             <span class="post__username">
+  //               John Doe
+  //             </span>
+  //           </a>
+  //         </div>
+  //         <div class="post__content">
+  //           <p class="post__content-description">
+  //             porttitor viverra et, dapibus sit amet hulla.porttitor viverra
+  //             et, dapibus sit amet hulla.porttitor viverra et, dapibus sit
+  //             amet hulla.porttitor viverra et, dapibus sit amet
+  //             hulla.porttitor viverra et, dapibus sit amet hulla. porttitor
+  //             viverra et, dapibus sit amet hulla.porttitor viverra et,
+  //             dapibus sit amet hulla.porttitor viverra et, dapibus sit amet
+  //             hulla.porttitor viverra et, dapibus sit amet hulla.porttitor
+  //             viverra et, dapibus sit amet hulla. porttitor viverra et,
+  //             dapibus sit amet hulla.porttitor viverra et, dapibus sit amet
+  //             hulla.porttitor viverra et, dapibus sit amet hulla.porttitor
+  //             viverra et, dapibus sit amet hulla.porttitor viverra et,
+  //             dapibus sit amet hulla. porttitor viverra et, dapibus sit amet
+  //             hulla.porttitor viverra et, dapibus sit amet hulla.porttitor
+  //             viverra et, dapibus sit amet hulla.porttitor viverra et,
+  //             dapibus sit amet, viverra et, dapibus sit amet hulla.porttitor
+  //             viverra et, dapibus sit amet hulla. porttitor viverra et,
+  //             dapibus sit amet hulla.porttitor viverra et, dapibus sit amet
+  //             hulla.porttitor viverra et, dapibus sit amet hulla.porttitor
+  //             viverra et, dapibus sit amet
+  //           </p>
+  //         </div>
+  //         <div class="post__details">
+  //           <div class="post__interactions">
+  //             <button id="svgButton" class="post__button-like">
+  //               <img
+  //                 id="svgImage"
+  //                 src="../assets/home/normal-thumb.svg"
+  //                 alt="like button"
+  //               />
+  //             </button>
+  //             <span class="post__button-like-count">15</span>
+  //             <img
+  //               class="post__button-comment"
+  //               src="../assets/home/comment.svg"
+  //               alt="comment button"
+  //             />
+  //             <span class="post__button-comment-count">2</span>
+  //           </div>
+  //           <time class="post__time" datetime="2023-10-01">10/01/2023</time>
+  //         </div>
+  //       </div>
+  //     </div>
+  //     <div class="post" id="post">
+  //       <div class="post__description">
+  //         <div class="post__user">
+  //           <img
+  //             class="post__user-profile-img"
+  //             src="../assets/home/user-icon-profile.svg"
+  //             alt="avatar"
+  //           />
+  //           <a class="post__username-link" href="#/John-Doe">
+  //             <span class="post__username">
+  //               John Doe
+  //             </span>
+  //           </a>
+  //         </div>
+  //         <div class="post__content">
+  //           <p class="post__content-description">
+  //             porttitor viverra et, dapibus sit amet hulla.porttitor viverra
+  //             et, dapibus sit amet hulla.porttitor viverra et, dapibus sit
+  //             amet hulla.porttitor viverra et, dapibus sit amet
+  //             hulla.porttitor viverra et, dapibus sit amet hulla. porttitor
+  //             viverra et, dapibus sit amet hulla.porttitor viverra et,
+  //             dapibus sit amet hulla.porttitor viverra et, dapibus sit amet
+  //             hulla.porttitor viverra et, dapibus sit amet hulla.porttitor
+  //             viverra et, dapibus sit amet hulla. porttitor viverra et,
+  //             dapibus sit amet hulla.porttitor viverra et, dapibus sit amet
+  //             hulla.porttitor viverra et, dapibus sit amet hulla.porttitor
+  //             viverra et, dapibus sit amet hulla.porttitor viverra et,
+  //             dapibus sit amet hulla. porttitor viverra et, dapibus sit amet
+  //             hulla.porttitor viverra et, dapibus sit amet hulla.porttitor
+  //             viverra et, dapibus sit amet hulla.porttitor viverra et,
+  //             dapibus sit amet, viverra et, dapibus sit amet hulla.porttitor
+  //             viverra et, dapibus sit amet hulla. porttitor viverra et,
+  //             dapibus sit amet hulla.porttitor viverra et, dapibus sit amet
+  //             hulla.porttitor viverra et, dapibus sit amet hulla.porttitor
+  //             viverra et, dapibus sit amet
+  //           </p>
+  //         </div>
+  //         <div class="post__details">
+  //           <div class="post__interactions">
+  //             <button id="svgButton" class="post__button-like">
+  //               <img
+  //                 id="svgImage"
+  //                 src="../assets/home/normal-thumb.svg"
+  //                 alt="like button"
+  //               />
+  //             </button>
+  //             <span class="post__button-like-count">15</span>
+  //             <img
+  //               class="post__button-comment"
+  //               src="../assets/home/comment.svg"
+  //               alt="comment button"
+  //             />
+  //             <span class="post__button-comment-count">2</span>
+  //           </div>
+  //           <time class="post__time" datetime="2023-10-01">10/01/2023</time>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   `;
+  //   } else {
+  //     document.getElementsByClassName("popup-search__results")[0].style.flexDirection = "row";
+  //     document.getElementsByClassName("popup-search__results")[0].innerHTML = /*HTML*/ `
+  //     <div class="popup__request-container">
+  //       <button class="popup__add-friend__button">
+  //         <img src="../assets/common/add-friend.svg" alt="add friend"
+  //         class="popup__add-friend__icon">
+  //       </button>
+  //       <img src="../assets/common/account_icon.svg" alt="user icon"
+  //       class="popup__user-icon">
+  //       <a href="#/bimbimbambam" class="popup__request__author">
+  //         bimbimbambam
+  //       </a>
+  //     </div>
+  //     <div class="popup__request-container">
+  //       <button class="popup__add-friend__button">
+  //         <img src="../assets/common/add-friend.svg" alt="add friend"
+  //         class="popup__add-friend__icon">
+  //       </button>
+  //       <img src="../assets/common/account_icon.svg" alt="user icon"
+  //       class="popup__user-icon">
+  //       <a href="#/John-Doe" class="popup__request__author">John Doe</a>
+  //     </div>
+  //     <div class="popup__request-container">
+  //       <button class="popup__add-friend__button">
+  //         <img src="../assets/common/add-friend.svg" alt="add friend"
+  //         class="popup__add-friend__icon">
+  //       </button>
+  //       <img src="../assets/common/account_icon.svg" alt="user icon"
+  //       class="popup__user-icon">
+  //       <a href="#/gamerhafsah26" class="popup__request__author">
+  //         gamerhafsah26
+  //       </a>
+  //     </div>
+  //     `;
+  //   }
+  // });
 }
 
 /**
@@ -436,6 +498,80 @@ async function addPost() {
 
     document.querySelector(".popup__game__title").value = "";
     document.querySelector(".popup__post__description").value = "";
+  }
+}
+
+async function search() {
+  const searchInput = document.getElementsByClassName("popup-search__search-input")[0];
+
+  if (searchInput.value === "") {
+    document.getElementsByClassName("popup-search__results")[0].innerHTML = /*HTML*/ `
+      <p class="popup-search__no-results">No results found for blank</p>
+    `;
+  } else {
+    if (searchInput.placeholder === "Search users") {
+      const res = await fetch(`/search-users?value=${searchInput.value}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await res.json();
+
+      if (res.status === 200 && data.users.length > 0) {
+        document.getElementsByClassName("popup-search__results")[0].style.flexDirection = "row";
+
+        document.getElementsByClassName("popup-search__results")[0].innerHTML = "";
+
+        // Display the search results
+        data.users.forEach((element) => {
+          document.getElementsByClassName("popup-search__results")[0].innerHTML += /*HTML*/ `
+        <div class="popup__request-container">
+          <button class="popup__add-friend__button">
+            <img src="../assets/common/add-friend.svg" alt="add friend" 
+            class="popup__add-friend__icon">
+          </button>
+          <img src="../assets/common/account_icon.svg" alt="user icon" 
+          class="popup__user-icon">
+          <a class="popup__request__author name-link">
+            <span class="name-value">${element.name}</span>
+          </a>
+        </div>
+        `;
+        });
+
+        directToProfile();
+      } else {
+        document.getElementsByClassName("popup-search__results")[0].innerHTML = /*HTML*/ `
+          <p class="search__no-results">No results found for search value</p>
+        `;
+      }
+    } else {
+      const res = await fetch(`/search-posts?value=${searchInput.value}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await res.json();
+
+      if (res.status === 200 && data.posts.length > 0) {
+        document.getElementsByClassName("popup-search__results")[0].style.flexDirection = "column";
+
+        document.getElementsByClassName("popup-search__results")[0].innerHTML = "";
+
+        // Display the search results
+        appendPostToFeed("search__results", data.posts, true);
+
+        directToProfile();
+      } else {
+        document.getElementsByClassName("popup-search__results")[0].innerHTML = /*HTML*/ `
+          <p class="search__no-results">No results found for search value</p>
+        `;
+      }
+    }
   }
 }
 
