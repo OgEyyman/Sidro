@@ -1,4 +1,3 @@
-import e from "express";
 import app from "./app.js";
 import { MongoClient, ObjectId, ServerApiVersion } from "mongodb";
 
@@ -247,7 +246,7 @@ app.get("/myProfile", async (req, res) => {
     console.log(error);
     res.status(500).json({ message: "Failed to fetch user data." });
   }
-})
+});
 
 app.get("/getOtherProfile", async (req, res) => {
   try {
@@ -266,6 +265,43 @@ app.get("/getOtherProfile", async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Failed to fetch user data." });
+  }
+});
+
+app.get("/search-users", async (req, res) => {
+  try {
+    const query = req.query.value;
+
+    const users = await userCollection.find({ name: { $regex: query, $options: "i" } }).toArray();
+
+    console.log(users);
+    if (users != []) {
+      res.status(200).json({ users: users, message: "users found" });
+    } else {
+      res.status(404).json({ message: "No users found." });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Failed to fetch users." });
+  }
+});
+
+app.get("/search-posts", async (req, res) => {
+  try {
+    const query = req.query.value;
+
+    const posts = await postCollection
+      .find({ gameTitle: { $regex: query, $options: "i" } })
+      .toArray();
+
+    if (posts != []) {
+      res.status(200).json({ posts: posts, message: "posts found" });
+    } else {
+      res.status(404).json({ message: "No posts found." });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Failed to fetch posts." });
   }
 });
 
