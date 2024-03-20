@@ -223,10 +223,11 @@ function initHome() {
  * @param {Array} posts - An array of post objects to be appended to the feed.
  * @returns {void}
  */
-function appendPostToFeed(container, posts) {
+function appendPostToFeed(container, posts, search = false) {
   posts.forEach((post) => {
     const postElement = document.createElement("div");
     postElement.classList.add("post");
+    postElement.classList.add("search-post");
     postElement.id = post._id;
     postElement.innerHTML = /*html*/ `
       <div class="post__description">
@@ -283,10 +284,12 @@ function appendPostToFeed(container, posts) {
     const commentSection = document.createElement("div");
     commentSection.className = "post__comment-section";
 
-    post.comment_list.forEach((comment) => {
-      const commentElement = document.createElement("div");
-      commentElement.className = "post__comment";
-      commentElement.innerHTML = /*html*/ `
+    if (!search) {
+      postElement.classList.remove("search-post");
+      post.comment_list.forEach((comment) => {
+        const commentElement = document.createElement("div");
+        commentElement.className = "post__comment";
+        commentElement.innerHTML = /*html*/ `
         <div class="post__comment-header">
           <img
           src="../assets/home/user-icon-profile.svg"
@@ -302,15 +305,15 @@ function appendPostToFeed(container, posts) {
         <div class="post__comment-body">${comment.commentText}</div>
         <span class="post__comment-date">${comment.commentDate}</span>
         `;
-      commentSection.appendChild(commentElement);
-    });
+        commentSection.appendChild(commentElement);
+      });
 
-    postElement.innerHTML += commentSection.outerHTML;
+      postElement.innerHTML += commentSection.outerHTML;
 
-    const addCommentSection = document.createElement("div");
-    addCommentSection.className = "post__add-comment";
+      const addCommentSection = document.createElement("div");
+      addCommentSection.className = "post__add-comment";
 
-    addCommentSection.innerHTML = /*html*/ `
+      addCommentSection.innerHTML = /*html*/ `
       <div class="post__add-comment-header">
         <img
         src="../assets/home/user-icon-profile.svg"
@@ -327,7 +330,8 @@ function appendPostToFeed(container, posts) {
       <button class="post__add-comment-submit">Post</button>
       `;
 
-    postElement.innerHTML += addCommentSection.outerHTML;
+      postElement.innerHTML += addCommentSection.outerHTML;
+    }
 
     document.getElementById(`${container}`).appendChild(postElement);
   });
