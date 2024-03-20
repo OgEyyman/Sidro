@@ -97,17 +97,6 @@
   row-gap: 2rem;
 }
 
-.popup__request-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #dcc88f;
-  border-radius: 7px;
-  width: 40%;
-  height: 40%;
-  padding: 4% 0;
-}
-
 .popup__user-icon {
   width: 40%;
   height: 40%;
@@ -375,15 +364,21 @@
 .popup-search__results {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   margin-top: 3%;
   width: 70%;
 }
 
 .popup__request-container {
-  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #dcc88f;
+  border-radius: 7px;
+  width: 29%;
   height: 30%;
   padding: 2% 0;
-  margin: 0 2%;
+  margin: 1% 2%;
 }
 
 .popup__add-friend__button {
