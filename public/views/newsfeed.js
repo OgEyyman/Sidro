@@ -81,6 +81,21 @@ const loadNewsFeedPage = /* HTML */ `
   </div>
   `;
 
+async function loadNewsFeedPage() {
+  const res = await fetch("/newsfeed", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const resData = await res.json();
+
+  if (res.status === 200) {
+    console.log(resData);
+  }
+}
+
 /**
  * Inserts the news feed page into the DOM.
  */
