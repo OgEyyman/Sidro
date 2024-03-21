@@ -1,5 +1,7 @@
 import app from "./app.js";
 import { MongoClient, ObjectId, ServerApiVersion } from "mongodb";
+import axios from "axios";
+import cheerio from "cheerio";
 
 const PORT = 3000;
 
@@ -175,11 +177,21 @@ app.get("/homefeed", async (req, res) => {
 
 app.get("/newsfeed", async (req, res) => {
   try {
-    
+    const websiteURL = "https://www.gameinformer.com/news";
+    const html = await fetchHTML(websiteURL);
+
+    console.log("HTML:", html);
+
+    if (html) {
+      const newsData = scrapeNewsData(html);
+      res.status(200).json(newsData);
+    } else {
+      res.status(400).json({ message: "Failed to fetch news feed." });
+    }
   } catch (error) {
     res.status(500).json({ message: "Failed to fetch news feed." });
   }
-})
+});
 
 /**
  * POST /add-comment
@@ -600,6 +612,49 @@ app.get("/search-posts", async (req, res) => {
     res.status(500).json({ message: "Failed to fetch posts." });
   }
 });
+
+/**
+ * Fetches the HTML content from the specified URL.
+ * @param {string} url - The URL to fetch the HTML from.
+ * @returns {Promise<string|null>} - A promise that resolves with the HTML content, or null if an error occurs.
+ */
+async function fetchHTML(url) {
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching HTML:", error);
+    return null;
+  }
+}
+
+/**
+ * Scrapes news data from HTML and returns an array of news objects.
+ *
+ * @param {string} html - The HTML content to scrape data from.
+ * @returns {Array} - An array of news objects containing title, link, and published date.
+ */
+function scrapeNewsData(html) {
+  const $ = cheerio.load(html);
+  const newsData = [];
+
+  // Select the viewrows within the specified class and extract data from each
+  $(".views-infinite-scroll-content-wrapper .views-row")
+    .slice(0, 5)
+    .each((index, element) => {
+      const newsTitle = $(element).find(".page-title").find("a").text().trim();
+      const newsLink = $(element).find(".page-title").find("a").attr("href");
+      const newsPublished = $(element)
+        .find(".node__submitted")
+        .find(".field--name-created")
+        .text()
+        .trim();
+
+      newsData.push({ title: newsTitle, link: newsLink, published: newsPublished });
+    });
+
+  return newsData;
+}
 
 /**
  * Connects to the MongoDB database.
