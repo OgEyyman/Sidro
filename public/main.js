@@ -28,6 +28,23 @@ function loadPageContent(content, displayHeader = true) {
 }
 
 /**
+ * Checks the login status by making a GET request to "/checkLoginStatus" endpoint.
+ * If the response status is 401, it redirects the user to the login page.
+ */
+async function checkLoginStatus() {
+  const res = await fetch("/checkLoginStatus", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (res.status === 401) {
+    window.location.hash = "#/login";
+  }
+}
+
+/**
  * Navigates to the specified hash and updates the document body accordingly.
  * @param {string} hash - The hash to navigate to.
  */
@@ -37,10 +54,12 @@ function navigateTo(hash) {
   let prefix = "#/userProfile/";
 
   if (hash.startsWith(prefix)) {
+    checkLoginStatus();
     let username = hash.slice(prefix.length);
     document.body.classList.add("profile");
     loadPageContent(profile.loadOtherAccountPage);
     profile.getOtherProfileContent(username);
+    document.body.style.overflow = "auto";
     return;
   }
 
@@ -56,15 +75,18 @@ function navigateTo(hash) {
       login.initLogin();
       break;
     case "#/home":
+      checkLoginStatus();
       document.body.classList.add("home");
       loadPageContent(homefeed.loadHomeFeedPage);
       homefeed.getHomeFeed();
       newsfeed.insertNewsFeedPage();
       break;
     case "#/profile":
+      checkLoginStatus();
       document.body.classList.add("profile");
       loadPageContent(profile.loadAccountPage);
       profile.getProfileContent();
+      document.body.style.overflow = "auto";
       break;
     default:
       document.body.classList.add("login");
