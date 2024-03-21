@@ -94,8 +94,8 @@ async function getNewsData() {
   if (res.status === 200) {
     console.log(resData);
     const newsPage = document.getElementById("newsfeed");
-  
-    resData.forEach(element => {
+
+    resData.forEach((element) => {
       newsPage.innerHTML += /* HTML */ `
       <div class="news">
         <!-- News header section -->
@@ -104,22 +104,21 @@ async function getNewsData() {
         </div>
         <!-- News description section -->
         <div class="news__description">
-          <p class="news__title">Valorant patch notes 1.01</p>
+          <p class="news__title">${element.title}</p>
           <a class="news__link" 
-          href="https://playvalorant.com/en-gb/news/game-updates/valorant-patch-notes-8-01/" 
+          href="${"https://www.gameinformer.com" + element.link}" 
           target="_blank">
-          https://playvalorant.com/en-gb/news/game-updates/valorant-patch-notes-8-01/
+            ${"https://www.gameinformer.com" + element.link}
           </a>
         </div>
         <!-- News time section -->
         <div class="news__time">
           <img class="news__time-icon" src="../assets/home/clock.svg" alt="clock"></img>
-          <p class="news__time-text">12hrs ago</p>
+          <p class="news__time-text">${element.published}</p>
         </div>
       </div>
       `;
-
-    });;
+    });
   }
 }
 
