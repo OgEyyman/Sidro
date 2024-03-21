@@ -91,9 +91,6 @@ function addComment() {
       const comment = commentInput.value;
       const postId = button.parentElement.parentElement.id;
 
-      console.log("postId: ", postId);
-      console.log("comment: ", comment);
-
       const today = new Date();
       const date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
 

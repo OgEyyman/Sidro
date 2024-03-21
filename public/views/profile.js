@@ -182,12 +182,8 @@ async function addFriend() {
       body: JSON.stringify({ username: document.querySelector(".profile__name").textContent }),
     });
 
-    const resData = await res.json();
-
     if (res.status === 200) {
       document.querySelector(".profile__add-friend__image").src = "../assets/common/pending.svg";
-    } else if (res.status === 400) {
-      console.log("Message:", resData.message);
     }
   } catch (error) {
     console.log("Error:", error);

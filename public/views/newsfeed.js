@@ -92,7 +92,6 @@ async function getNewsData() {
   const resData = await res.json();
 
   if (res.status === 200) {
-    console.log(resData);
     const newsPage = document.getElementById("newsfeed");
 
     resData.forEach((element) => {

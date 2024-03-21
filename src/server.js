@@ -155,8 +155,7 @@ app.get("/homefeed", async (req, res) => {
   try {
     // Retrieve posts only for users that the active user is following
     const activeUser = req.session.username;
-    console.log("activeUser:", activeUser);
-
+    
     const users = await userCollection.findOne({ name: activeUser });
 
     if (users.following) {
@@ -179,8 +178,6 @@ app.get("/newsfeed", async (req, res) => {
   try {
     const websiteURL = "https://www.gameinformer.com/news";
     const html = await fetchHTML(websiteURL);
-
-    console.log("HTML:", html);
 
     if (html) {
       const newsData = scrapeNewsData(html);
@@ -351,8 +348,6 @@ app.get("/getOtherProfile", async (req, res) => {
       }
     }
 
-    console.log("FriendJSON:", friendJSON);
-
     if (user) {
       res.status(200).json({ userData: user, posts: posts, friendJSON });
     } else {
@@ -380,23 +375,15 @@ app.get("/getOtherProfile", async (req, res) => {
  * - If there's an error while processing the request, it returns a 500 status code.
  */
 app.get("/retrieve-friend-requests", async (req, res) => {
-  console.log("Retrieving friend requests");
   try {
     const username = req.session.username;
 
-    console.log("username:", username);
-
     const user = await userCollection.findOne({ name: username });
 
-    console.log("user:", user);
-
     if (user) {
-      console.log("In if statement");
-
       // Fetch the friend request array of user
       const friendRequests = user.friendRequests;
 
-      console.log("friendRequests:", friendRequests);
       if (friendRequests) {
         res.status(200).json({ friendRequests: friendRequests });
       } else {
