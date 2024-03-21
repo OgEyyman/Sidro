@@ -649,7 +649,7 @@ function scrapeNewsData(html) {
         .find(".field--name-created")
         .text()
         .trim();
-
+      
       newsData.push({ title: newsTitle, link: newsLink, published: newsPublished });
     });
 
