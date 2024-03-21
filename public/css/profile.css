@@ -2,8 +2,8 @@
 /*                             BEGIN Layout banner                            */
 /* -------------------------------------------------------------------------- */
 .log-out {
-  border: 1px solid #FAD8D6;
-  background-color: #FAD8D6;
+  border: 1px solid #fad8d6;
+  background-color: #fad8d6;
   box-shadow: 0 1px 1px 1px #faa8ce;
   position: absolute;
   border-radius: 7px;
@@ -26,7 +26,7 @@
 /* -------------------------------------------------------------------------- */
 .profile__banner {
   background-color: #ecdcb0;
-  box-shadow: 0 2px 1px 1px #A59132;
+  box-shadow: 0 2px 1px 1px #a59132;
   width: 40%;
   border-radius: 7px;
   margin: 3% auto;
@@ -38,28 +38,13 @@
 .profile__avatar {
   position: relative;
   align-self: center;
+  margin-right: 1rem;
 }
 
-.profile__picture {
-  background-color: #d9d9d9;
-  margin: 2rem 0;
-  margin-right: 2rem;
-  padding: 1.5rem;
-}
-
-.profile__avatar__edit {
-  border: none;
-  background: none;
-  cursor: pointer;
-  position: absolute;
-  width: 20%;
-  top: 89px;
-  left: 66px;
-}
-
-.profile__avatar__edit-image {
-  width: 1.5rem;
-  height: 1.5rem;
+.img--avatar {
+  width: 6rem;
+  height: 6rem;
+  margin: 0 1%;
 }
 
 .profile__info {
@@ -144,7 +129,7 @@
   border-radius: 7px;
   border: none;
   background-color: #ffefdc;
-  box-shadow: 0 2px 1px 1px #A59132;
+  box-shadow: 0 2px 1px 1px #a59132;
   resize: none;
 }
 
@@ -152,11 +137,11 @@
   color: black;
   opacity: 0.7;
   padding-left: 2%;
-} 
+}
 
 .edit-bio__submit {
-  border: 1px solid #FAD8D6;
-  background-color: #660B42;
+  border: 1px solid #fad8d6;
+  background-color: #660b42;
   color: white;
   border-radius: 110px;
   font-size: 2rem;
@@ -166,8 +151,8 @@
 }
 
 .edit-bio__submit:hover {
-  background-color: #FAD8D6;
-  color: #660B42;
+  background-color: #fad8d6;
+  color: #660b42;
 }
 /* -------------------------------------------------------------------------- */
 /*                                END Bio Popup                               */
