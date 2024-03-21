@@ -81,7 +81,7 @@ const loadNewsFeedPage = /* HTML */ `
   </div>
   `;
 
-async function loadNewsFeedPage() {
+async function getNewsData() {
   const res = await fetch("/newsfeed", {
     method: "GET",
     headers: {
@@ -93,6 +93,33 @@ async function loadNewsFeedPage() {
 
   if (res.status === 200) {
     console.log(resData);
+    const newsPage = document.getElementById("newsfeed");
+  
+    resData.forEach(element => {
+      newsPage.innerHTML += /* HTML */ `
+      <div class="news">
+        <!-- News header section -->
+        <div class="news__header">
+          <p class="news__header-text">News</p>
+        </div>
+        <!-- News description section -->
+        <div class="news__description">
+          <p class="news__title">Valorant patch notes 1.01</p>
+          <a class="news__link" 
+          href="https://playvalorant.com/en-gb/news/game-updates/valorant-patch-notes-8-01/" 
+          target="_blank">
+          https://playvalorant.com/en-gb/news/game-updates/valorant-patch-notes-8-01/
+          </a>
+        </div>
+        <!-- News time section -->
+        <div class="news__time">
+          <img class="news__time-icon" src="../assets/home/clock.svg" alt="clock"></img>
+          <p class="news__time-text">12hrs ago</p>
+        </div>
+      </div>
+      `;
+
+    });;
   }
 }
 
@@ -100,7 +127,7 @@ async function loadNewsFeedPage() {
  * Inserts the news feed page into the DOM.
  */
 function insertNewsFeedPage() {
-  document.getElementById("newsfeed").innerHTML = loadNewsFeedPage;
+  getNewsData();
 }
 
 export { insertNewsFeedPage };
