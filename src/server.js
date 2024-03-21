@@ -112,25 +112,25 @@ app.post("/logout", (req, res) => {
 });
 
 /**
- * POST /share-post
- * This endpoint handles sharing a new post.
- * It adds the username from the session to the request data and inserts it into the post collection.
- * If the operation is successful, it responds with a 201 status code and a success message.
- * If an error occurs during the operation, it responds with a 500 status code and an error message.
+ * GET /checkLoginStatus
+ * This endpoint checks if the user is currently logged in.
+ * It checks if the 'username' field exists in the user's session.
+ * If it does, it responds with a 200 status code, indicating the user is logged in.
+ * If it doesn't, it responds with a 401 status code, indicating the user is not authenticated.
+ * If an error occurs during the operation, it responds with a 500 status code.
  *
- * @param {Object} req - Express request object
+ * @param {Object} req - Express request object. The session of the request should contain a 'username' field if the user is logged in.
  * @param {Object} res - Express response object
  */
-app.post("/share-post", async (req, res) => {
+app.get("/checkLoginStatus", (req, res) => {
   try {
-    const reqData = req.body;
-
-    reqData.username = req.session.username;
-
-    await postCollection.insertOne(reqData);
-    res.status(201).json({ message: "Post successfully shared." });
+    if (req.session.username) {
+      res.status(200).end();
+    } else {
+      res.status(401).end();
+    }
   } catch (error) {
-    res.status(500).json({ message: "Failed to share post." });
+    res.status(500).end();
   }
 });
 
@@ -151,17 +151,35 @@ app.post("/share-post", async (req, res) => {
  */
 app.get("/homefeed", async (req, res) => {
   try {
-    const posts = await postCollection.find().toArray();
+    // Retrieve posts only for users that the active user is following
+    const activeUser = req.session.username;
+    console.log("activeUser:", activeUser);
 
-    if (!posts) {
-      res.status(404).json({ message: "No posts found." });
-    } else {
-      res.status(200).json(posts);
+    const users = await userCollection.findOne({ name: activeUser });
+
+    if (users.following) {
+      const following = users.following;
+
+      const posts = await postCollection.find({ username: { $in: following } }).toArray();
+
+      if (!posts) {
+        res.status(404).json({ message: "No posts found." });
+      } else {
+        res.status(200).json(posts);
+      }
     }
   } catch (error) {
     res.status(500).json({ message: "Failed to fetch posts." });
   }
 });
+
+app.get("/newsfeed", async (req, res) => {
+  try {
+    
+  } catch (error) {
+    res.status(500).json({ message: "Failed to fetch news feed." });
+  }
+})
 
 /**
  * POST /add-comment
@@ -229,9 +247,6 @@ app.get("/getProfile", async (req, res) => {
     const username = req.query.username;
     const sessionUser = req.session.username;
 
-    console.log("username", username);
-    console.log("sessionUser", sessionUser);
-
     if (username === sessionUser) {
       res.status(200).json({ isSessionUser: true });
     } else {
@@ -297,19 +312,226 @@ app.get("/getOtherProfile", async (req, res) => {
   try {
     const username = req.query.username;
 
+    const activeUser = req.session.username;
+
     const user = await userCollection.findOne({ name: username }, { projection: { password: 0 } });
 
     // Find all the post for the user
     const posts = await postCollection.find({ username: username }).toArray();
 
+    // Check if activeUser is in the friend request list of username
+    const friendRequest = await userCollection.findOne({
+      name: username,
+      friendRequests: activeUser,
+    });
+
+    let friendJSON = {};
+
+    if (friendRequest) {
+      friendJSON = { message: "Friend request" };
+    } else {
+      // Check if in the following array of activeUser contains username
+      const following = await userCollection.findOne({ name: activeUser, following: username });
+      if (following) {
+        friendJSON = { message: "Following" };
+      } else {
+        friendJSON = { message: "none" };
+      }
+    }
+
+    console.log("FriendJSON:", friendJSON);
+
     if (user) {
-      res.status(200).json({ userData: user, posts: posts });
+      res.status(200).json({ userData: user, posts: posts, friendJSON });
     } else {
       res.status(404).json({ message: "User not found." });
     }
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Failed to fetch user data." });
+  }
+});
+
+/**
+ * GET /retrieve-friend-requests
+ * This endpoint is responsible for fetching the friend requests of the currently logged in user.
+ * It uses the Express.js framework to define a route handler for the GET HTTP method at the path '/retrieve-friend-requests'.
+ *
+ * @async
+ * @function
+ * @param {Object} req - Express 'request' object. The session of the request should contain 'username'.
+ * @param {Object} res - Express 'response' object
+ *
+ * @returns {Object} JSON response
+ * - If the user is found and has friend requests, it returns a 200 status code with a JSON object containing the friend requests.
+ * - If the user is found but has no friend requests, it returns a 404 status code with a message "No friend requests found."
+ * - If there's an error while processing the request, it returns a 500 status code.
+ */
+app.get("/retrieve-friend-requests", async (req, res) => {
+  console.log("Retrieving friend requests");
+  try {
+    const username = req.session.username;
+
+    console.log("username:", username);
+
+    const user = await userCollection.findOne({ name: username });
+
+    console.log("user:", user);
+
+    if (user) {
+      console.log("In if statement");
+
+      // Fetch the friend request array of user
+      const friendRequests = user.friendRequests;
+
+      console.log("friendRequests:", friendRequests);
+      if (friendRequests) {
+        res.status(200).json({ friendRequests: friendRequests });
+      } else {
+        res.status(404).json({ message: "No friend requests found." });
+      }
+    }
+  } catch (error) {
+    console.log("Error:", error);
+    res.status(500).end();
+  }
+});
+
+/**
+ * GET /retrieve-friend-requests
+ * This endpoint is responsible for fetching the friend requests of the currently logged in user.
+ * It uses the Express.js framework to define a route handler for the GET HTTP method at the path '/retrieve-friend-requests'.
+ *
+ * @async
+ * @function
+ * @param {Object} req - Express 'request' object. The session of the request should contain 'username'.
+ * @param {Object} res - Express 'response' object
+ *
+ * @returns {Object} JSON response
+ * - If the user is found and has friend requests, it returns a 200 status code with a JSON object containing the friend requests.
+ * - If the user is found but has no friend requests, it returns a 404 status code with a message "No friend requests found."
+ * - If there's an error while processing the request, it returns a 500 status code.
+ */
+app.post("/accept-friend-request", async (req, res) => {
+  try {
+    const username = req.session.username;
+    const friendName = req.body.username;
+
+    // Update the user's document to remove the friendName from friendRequests array
+    // and add the friendName to the following array
+    const result = await userCollection.updateOne(
+      { name: friendName },
+      {
+        $push: { following: username },
+      }
+    );
+
+    const result2 = await userCollection.updateOne(
+      { name: username },
+      {
+        $pull: { friendRequests: friendName },
+      }
+    );
+
+    if (result.modifiedCount === 1 && result2.modifiedCount === 1) {
+      res.status(200).json({ message: "Friend request accepted." });
+    }
+  } catch (error) {
+    console.log("Error:", error);
+    res.status(500).end();
+  }
+});
+
+/**
+ * POST /decline-friend-request
+ * This endpoint handles declining a friend request from another user.
+ * It first retrieves the username from the session and the friend's username from the request body.
+ * Then, it updates the user's document to remove the friend's username from the friendRequests array.
+ * If the update is successful, it responds with a 200 status code and a message indicating the friend request was declined.
+ * If an error occurs during the operation, it logs the error and responds with a 500 status code.
+ *
+ * @param {Object} req - Express request object. The session of the request should contain a 'username' field with the name of the logged in user, and the body of the request should contain a 'username' field with the name of the user whose friend request is being declined.
+ * @param {Object} res - Express response object
+ */
+app.post("/decline-friend-request", async (req, res) => {
+  try {
+    const username = req.session.username;
+    const friendName = req.body.username;
+
+    // Update the user's document to remove the friendName from friendRequests array
+    const result = await userCollection.updateOne(
+      { name: username },
+      {
+        $pull: { friendRequests: friendName },
+      }
+    );
+
+    if (result.modifiedCount === 1) {
+      res.status(200).json({ message: "Friend request declined." });
+    }
+  } catch (error) {
+    console.log("Error:", error);
+    res.status(500).end();
+  }
+});
+
+/**
+ * POST /addFriend
+ * This endpoint handles sending a friend request from the active user to another user.
+ * It first checks if the active user is already in the friend list of the user they clicked on.
+ * If they are, it responds with a 400 status code and a message indicating they are already friends.
+ * If they are not, it updates the userClicked's document in the userCollection to include the active user's name in their friendRequests array.
+ * It then responds with a 200 status code and a message indicating the friend request was sent.
+ * If an error occurs during the operation, it responds with a 500 status code.
+ *
+ * @param {Object} req - Express request object. The body of the request should contain a 'username' field with the name of the user to send a friend request to.
+ * @param {Object} res - Express response object
+ */
+app.post("/addFriend", async (req, res) => {
+  try {
+    const userClicked = req.body.username;
+
+    const activeUser = req.session.username;
+
+    // Check if activeUser is in friend list of userClicked
+    const user = await userCollection.findOne({ name: userClicked, friendRequests: activeUser });
+
+    if (user) {
+      res.status(400).json({ message: "Already friends with the user." });
+    } else {
+      const result = await userCollection.updateOne(
+        { name: userClicked },
+        { $push: { friendRequests: activeUser } }
+      );
+
+      res.status(200).json({ message: "Friend request sent." });
+    }
+  } catch (error) {
+    console.log("Error:", error);
+    res.status(500).end();
+  }
+});
+
+/**
+ * POST /share-post
+ * This endpoint handles sharing a new post.
+ * It adds the username from the session to the request data and inserts it into the post collection.
+ * If the operation is successful, it responds with a 201 status code and a success message.
+ * If an error occurs during the operation, it responds with a 500 status code and an error message.
+ *
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
+app.post("/share-post", async (req, res) => {
+  try {
+    const reqData = req.body;
+
+    reqData.username = req.session.username;
+
+    await postCollection.insertOne(reqData);
+    res.status(201).json({ message: "Post successfully shared." });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to share post." });
   }
 });
 
@@ -334,7 +556,6 @@ app.get("/search-users", async (req, res) => {
 
     const users = await userCollection.find({ name: { $regex: query, $options: "i" } }).toArray();
 
-    console.log(users);
     if (users != []) {
       res.status(200).json({ users: users, message: "users found" });
     } else {
