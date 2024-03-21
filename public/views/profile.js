@@ -8,14 +8,11 @@ const loadAccountPage = /*HTML*/ `
     <!-- Avatar section -->
     <div class="profile__avatar">
       <!-- Profile information section -->
-      <div class="profile__picture">
-        <img class="profile__picture__image" 
-        src="../assets/common/account_icon.svg" alt="user icon">
-      </div>
-      <button class="profile__avatar__edit">
-        <img class="profile__avatar__edit-image" src="../assets/common/edit.svg"
-        alt="edit button">
-      </button>
+      <img
+        class="post__user-profile-img img--avatar"
+        src="../assets/home/user-icon-profile.svg"
+        alt="avatar"
+      />
     </div>
   </div>
   <!-- Post container -->
@@ -26,10 +23,12 @@ const loadOtherAccountPage = /*HTML*/ `
   <div class="profile__banner">
     <!-- Avatar section -->
     <div class="profile__avatar">
-      <div class="profile__picture">
-        <img class="profile__picture__image" 
-        src="../assets/common/account_icon.svg" alt="user icon">
-      </div>
+      <!-- Profile information section -->
+      <img
+        class="post__user-profile-img img--avatar"
+        src="../assets/home/user-icon-profile.svg"
+        alt="avatar"
+      />
     </div>
     <!-- Profile info section -->
   </div>
@@ -88,9 +87,10 @@ async function getProfileContent() {
 
       const posts = resData.posts;
 
-      appendPostToFeed("content", posts);
-
-      addComment();
+      if (posts.length != 0) {
+        appendPostToFeed("content", posts);
+        addComment();
+      }
 
       directToProfile();
     }
@@ -128,7 +128,7 @@ async function getOtherProfileContent(username) {
         <h1 class="profile__name">${userData.name}</h1>
         <button class="profile__add-friend">
           <img class="profile__add-friend__image"
-          src="../assets/common/add-friend.svg" alt="edit button">
+          src="../assets/common/add-friend.svg" alt="add friend button">
         </button>
       </div>
       <p class="profile__info__bio">Bio</p>
@@ -142,6 +142,17 @@ async function getOtherProfileContent(username) {
 
       profileBanner.appendChild(profileInfo);
 
+      const friendStatusImg = document.querySelector(".profile__add-friend__image");
+
+      if (resData.friendJSON.message === "Friend request") {
+        friendStatusImg.src = "../assets/common/pending.svg";
+      } else if (resData.friendJSON.message === "Following") {
+        friendStatusImg.src = "../assets/common/friends-with.svg";
+      } else {
+        const addFriendButton = document.querySelector(".profile__add-friend");
+        addFriendButton.addEventListener("click", addFriend);
+      }
+
       const posts = resData.posts;
 
       appendPostToFeed("content", posts);
@@ -149,6 +160,34 @@ async function getOtherProfileContent(username) {
       addComment();
 
       directToProfile();
+    }
+  } catch (error) {
+    console.log("Error:", error);
+  }
+}
+
+/**
+ * Adds a friend by sending a POST request to the server.
+ * @async
+ * @function addFriend
+ * @returns {Promise<void>} A Promise that resolves when the friend is added successfully.
+ */
+async function addFriend() {
+  try {
+    const res = await fetch(`/addFriend`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username: document.querySelector(".profile__name").textContent }),
+    });
+
+    const resData = await res.json();
+
+    if (res.status === 200) {
+      document.querySelector(".profile__add-friend__image").src = "../assets/common/pending.svg";
+    } else if (res.status === 400) {
+      console.log("Message:", resData.message);
     }
   } catch (error) {
     console.log("Error:", error);
