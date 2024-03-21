@@ -148,27 +148,28 @@ function initHome() {
 
   let isClicked = false;
 
-  document.getElementById("svgButton").addEventListener("mouseover", function () {
-    if (!isClicked) {
-      document.getElementById("svgImage").src = "../assets/home/hover-thumb.svg";
-    }
-  });
+  // TODO Like feature
+  // document.getElementById("svgButton").addEventListener("mouseover", function () {
+  //   if (!isClicked) {
+  //     document.getElementById("svgImage").src = "../assets/home/hover-thumb.svg";
+  //   }
+  // });
 
-  document.getElementById("svgButton").addEventListener("mouseout", function () {
-    if (!isClicked) {
-      document.getElementById("svgImage").src = "../assets/home/normal-thumb.svg";
-    }
-  });
+  // document.getElementById("svgButton").addEventListener("mouseout", function () {
+  //   if (!isClicked) {
+  //     document.getElementById("svgImage").src = "../assets/home/normal-thumb.svg";
+  //   }
+  // });
 
-  document.getElementById("svgButton").addEventListener("click", function () {
-    if (isClicked) {
-      document.getElementById("svgImage").src = "../assets/home/normal-thumb.svg";
-      isClicked = false;
-    } else {
-      document.getElementById("svgImage").src = "../assets/home/liked-thumb.svg";
-      isClicked = true;
-    }
-  });
+  // document.getElementById("svgButton").addEventListener("click", function () {
+  //   if (isClicked) {
+  //     document.getElementById("svgImage").src = "../assets/home/normal-thumb.svg";
+  //     isClicked = false;
+  //   } else {
+  //     document.getElementById("svgImage").src = "../assets/home/liked-thumb.svg";
+  //     isClicked = true;
+  //   }
+  // });
 
   directToProfile();
 
