@@ -59,16 +59,6 @@ app.post("/login", async (req, res) => {
 });
 
 /**
- * Finds a user by their username.
- *
- * @param {string} username - The username to search for.
- * @returns {Promise<Object|null>} - A promise that resolves to the user object if found, or null if not found.
- */
-async function findUserByUsername(username) {
-  return await userCollection.findOne({ name: username });
-}
-
-/**
  * Handles POST requests to the "/register" endpoint.
  *
  * This asynchronous function attempts to register a new user. It first checks if a user with the provided username already exists in the database.
@@ -624,6 +614,16 @@ app.get("/search-posts", async (req, res) => {
     res.status(500).json({ message: "Failed to fetch posts." });
   }
 });
+
+/**
+ * Finds a user by their username.
+ *
+ * @param {string} username - The username to search for.
+ * @returns {Promise<Object|null>} - A promise that resolves to the user object if found, or null if not found.
+ */
+async function findUserByUsername(username) {
+  return await userCollection.findOne({ name: username });
+}
 
 /**
  * Fetches the HTML content from the specified URL.
