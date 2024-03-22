@@ -1,4 +1,9 @@
-import { connectDatabase, findUserByUsername } from "../server.js";
+import {
+  connectDatabase,
+  findUserByUsername,
+  getUserAndPosts,
+  addFriendRequest,
+} from "../server.js";
 import { validateUsername, validatePassword } from "../../public/utils/validation.js";
 import app from "../app.js";
 import chaiHttp from "chai-http";
@@ -95,42 +100,29 @@ describe("validatePassword", function () {
   });
 });
 
-describe("GET /checkLoginStatus", () => {
-  it("should return 200 when user is logged in", (done) => {
-    // Create a fake session with a username
-    const agent = chai.request.agent(app);
-    agent.session.username = "testuser";
-
-    agent.get("/checkLoginStatus").end((err, res) => {
-      expect(res).to.have.status(200);
-      done();
+describe("getUserAndPosts", function () {
+  it("should return a user and their posts for a valid username", async function () {
+    const result = await getUserAndPosts("Ayman123");
+    expect(result).to.have.property("user");
+    expect(result.user).to.have.property("name", "Ayman123");
+    expect(result).to.have.property("posts");
+    expect(result.posts).to.be.an("array");
+    result.posts.forEach((post) => {
+      expect(post).to.have.property("username", "Ayman123");
     });
   });
 
-  it("should return 401 when user is not logged in", (done) => {
-    chai
-      .request(app)
-      .get("/checkLoginStatus")
-      .end((err, res) => {
-        expect(res).to.have.status(401);
-        done();
-      });
+  it("should return null and an empty array for an invalid username", async function () {
+    const result = await getUserAndPosts("Peter");
+    expect(result).to.have.property("user", null);
+    expect(result).to.have.property("posts");
+    expect(result.posts).to.be.an("array").that.is.empty;
   });
+});
 
-  it("should return 500 on error", (done) => {
-    // You'll need to force an error to occur within the endpoint
-    // This will depend on how you're handling sessions. Example if using express-session with a store:
-    app.use((req, res, next) => {
-      req.session.destroy(); // Simulate session store failure
-      next();
-    });
-
-    chai
-      .request(app)
-      .get("/checkLoginStatus")
-      .end((err, res) => {
-        expect(res).to.have.status(500);
-        done();
-      });
+describe("addFriendRequest", function () {
+  it("should add a friend request to a user", async function () {
+    const result = await addFriendRequest("Ayman123", "Hafsah");
+    expect(result).to.have.property("modifiedCount", 1);
   });
 });
