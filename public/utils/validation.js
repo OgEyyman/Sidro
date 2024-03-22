@@ -44,7 +44,7 @@ function validatePassword(password) {
     } else if (!/[a-z]/.test(password)) {
       // Checks for lowercase letters in password
       response.message = "Password should contain at least one lowercase letter.";
-      response.isValid = false;
+      response.isValid = false; 
     } else if (!/[A-Z]/.test(password)) {
       // Checks for Uppercase letters in password
       response.message = "Password should contain at least one uppercase letter.";
