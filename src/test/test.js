@@ -5,7 +5,6 @@ import {
   addFriendRequest,
 } from "../server.js";
 import { validateUsername, validatePassword } from "../../public/utils/validation.js";
-import app from "../app.js";
 import chaiHttp from "chai-http";
 import * as chai from "chai";
 
