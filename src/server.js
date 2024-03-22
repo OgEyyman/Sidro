@@ -301,10 +301,7 @@ app.get("/myProfile", async (req, res) => {
   try {
     const username = req.session.username;
 
-    const user = await userCollection.findOne({ name: username }, { projection: { password: 0 } });
-
-    // Find all the post for the user
-    const posts = await postCollection.find({ username: username }).toArray();
+    const { user, posts } = await getUserAndPosts(username);
 
     if (user) {
       res.status(200).json({ userData: user, posts: posts });
@@ -431,8 +428,6 @@ app.post("/accept-friend-request", async (req, res) => {
     const username = req.session.username;
     const friendName = req.body.username;
 
-    // Update the user's document to remove the friendName from friendRequests array
-    // and add the friendName to the following array
     const result = await userCollection.updateOne(
       { name: friendName },
       {
@@ -513,12 +508,11 @@ app.post("/addFriend", async (req, res) => {
     if (user) {
       res.status(400).json({ message: "Already friends with the user." });
     } else {
-      const result = await userCollection.updateOne(
-        { name: userClicked },
-        { $push: { friendRequests: activeUser } }
-      );
+      const result = await addFriendRequest(userClicked, activeUser);
 
-      res.status(200).json({ message: "Friend request sent." });
+      if (result.modifiedCount === 1) {
+        res.status(200).json({ message: "Friend request sent." });
+      }
     }
   } catch (error) {
     console.log("Error:", error);
@@ -626,6 +620,31 @@ async function findUserByUsername(username) {
 }
 
 /**
+ * Retrieves a user and their posts from the database.
+ * @param {string} username - The username of the user to retrieve.
+ * @returns {Promise<{ user: Object, posts: Array<Object> }>} - A promise that resolves to an object containing the user and their posts.
+ */
+async function getUserAndPosts(username) {
+  const user = await userCollection.findOne({ name: username }, { projection: { password: 0 } });
+  const posts = await postCollection.find({ username: username }).toArray();
+  return { user, posts };
+}
+
+/**
+ * Adds a friend request from the active user to the clicked user.
+ *
+ * @param {string} userClicked - The name of the user who was clicked.
+ * @param {string} activeUser - The name of the active user.
+ * @returns {Promise} A promise that resolves to the result of the update operation.
+ */
+async function addFriendRequest(userClicked, activeUser) {
+  return await userCollection.updateOne(
+    { name: userClicked },
+    { $push: { friendRequests: activeUser } }
+  );
+}
+
+/**
  * Fetches the HTML content from the specified URL.
  * @param {string} url - The URL to fetch the HTML from.
  * @returns {Promise<string|null>} - A promise that resolves with the HTML content, or null if an error occurs.
@@ -698,4 +717,4 @@ connectDatabase()
     console.error("Failed to start the server:", err);
   });
 
-export { connectDatabase, findUserByUsername };
+export { connectDatabase, findUserByUsername, getUserAndPosts, addFriendRequest };
