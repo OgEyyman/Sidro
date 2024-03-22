@@ -59,6 +59,16 @@ app.post("/login", async (req, res) => {
 });
 
 /**
+ * Finds a user by their username.
+ *
+ * @param {string} username - The username to search for.
+ * @returns {Promise<Object|null>} - A promise that resolves to the user object if found, or null if not found.
+ */
+async function findUserByUsername(username) {
+  return await userCollection.findOne({ name: username });
+}
+
+/**
  * Handles POST requests to the "/register" endpoint.
  *
  * This asynchronous function attempts to register a new user. It first checks if a user with the provided username already exists in the database.
@@ -77,7 +87,7 @@ app.post("/register", async (req, res) => {
   try {
     const reqData = req.body;
 
-    const existingUser = await userCollection.findOne({ name: reqData.username });
+    const existingUser = await findUserByUsername(reqData.username);
 
     if (existingUser) {
       res.status(409).json({ message: "Username already exists." });
@@ -155,7 +165,7 @@ app.get("/homefeed", async (req, res) => {
   try {
     // Retrieve posts only for users that the active user is following
     const activeUser = req.session.username;
-    
+
     const users = await userCollection.findOne({ name: activeUser });
 
     if (users.following) {
@@ -174,6 +184,21 @@ app.get("/homefeed", async (req, res) => {
   }
 });
 
+/**
+ * GET /newsfeed
+ * This endpoint is responsible for fetching news data from an external website.
+ * It uses the Express.js framework to define a route handler for the GET HTTP method at the path '/newsfeed'.
+ *
+ * @async
+ * @function
+ * @param {Object} req - Express 'request' object
+ * @param {Object} res - Express 'response' object
+ *
+ * @returns {Object} JSON response
+ * - If the news data is successfully fetched, it returns a 200 status code along with the news data in JSON format.
+ * - If there's an error while fetching the news data, it returns a 500 status code with a message "Failed to fetch news feed."
+ * - If the fetched HTML is null or undefined, it returns a 400 status code with a message "Failed to fetch news feed."
+ */
 app.get("/newsfeed", async (req, res) => {
   try {
     const websiteURL = "https://www.gameinformer.com/news";
@@ -636,7 +661,7 @@ function scrapeNewsData(html) {
         .find(".field--name-created")
         .text()
         .trim();
-      
+
       newsData.push({ title: newsTitle, link: newsLink, published: newsPublished });
     });
 
@@ -672,3 +697,5 @@ connectDatabase()
   .catch((err) => {
     console.error("Failed to start the server:", err);
   });
+
+export { connectDatabase, findUserByUsername };
