@@ -1,3 +1,5 @@
+const socket = new WebSocket("ws://localhost:3000");
+
 const loadHomeFeedPage = /*HTML*/ `
   <!-- Content utilities container -->
   <div class="content-utilities">
@@ -338,6 +340,32 @@ function appendPostToFeed(container, posts, search = false) {
         `;
     }
   });
+
+  manageLikes();
+}
+
+/**
+ * Handles the functionality of liking a post.
+ */
+function manageLikes() {
+  const likeButtons = document.querySelectorAll(".post__button-like");
+
+  likeButtons.forEach((button) => {
+    button.addEventListener("click", async () => {
+      const postId = button.closest(".post").id;
+      socket.send(JSON.stringify({ postId }));
+    });
+  });
+
+  socket.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+    const postElement = document.getElementById(data.postId);
+    if (!postElement) {
+      return;
+    }
+    const likes = postElement.querySelector(".post__button-like-count");
+    likes.textContent = data.likes;
+  };
 }
 
 /**
