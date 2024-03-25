@@ -247,12 +247,6 @@ function appendPostToFeed(container, posts, search = false) {
             <p class="post__content-description">
               ${post.postDescription}
             </p>
-            <!-- TODO Load image with javascript -->
-            <!-- <img
-              class="post__content-image"
-              src="${post.image}"
-              alt="attached img"
-            /> -->
           </div>
           <!-- Post details section -->
           <div class="post__details">
@@ -332,6 +326,17 @@ function appendPostToFeed(container, posts, search = false) {
     }
 
     document.getElementById(`${container}`).appendChild(postElement);
+
+    if (post.image !== "") {
+      console.log(document.getElementById(post._id).querySelector(".post__content"));
+      document.getElementById(post._id).querySelector(".post__content").innerHTML += /*html*/ `
+        <img
+          class="post__content-image"
+          src="../assets/post/${post.image}"
+          alt="attached img"
+        />
+        `;
+    }
   });
 }
 
