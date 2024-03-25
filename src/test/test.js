@@ -5,10 +5,8 @@ import {
   addFriendRequest,
 } from "../server.js";
 import { validateUsername, validatePassword } from "../../public/utils/validation.js";
-import chaiHttp from "chai-http";
 import * as chai from "chai";
 
-chai.use(chaiHttp);
 const expect = chai.expect;
 
 describe("findUserByUsername", () => {
