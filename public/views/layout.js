@@ -36,11 +36,12 @@ const renderHeader = /*HTML*/ `
         <span id="error__message__title"></span>
         <textarea placeholder="Share something..." class="popup__post__description" rows="14" maxlength="644"></textarea>
         <span id="error__message__description"></span>
-      </div>
+        <span id="photo__path"></span>
+        </div>
       <!-- Post share buttons -->
       <div class="popup__post__share">
-        <button class="popup__post__button post__button--attach">
-          <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+        <button id="attach__image" class="popup__post__button post__button--attach">
+          <input type="file" id="image__upload" accept="image/*" style="display: none;">
             <img src="../assets/common/attachment.svg" alt="attach icon" 
             class="popup__post__attach__icon">
         </button>
@@ -232,8 +233,7 @@ async function getFriendRequests() {
             grandParent.remove();
           }
         });
-      
-      })
+      });
 
       directToProfile();
     } else {
@@ -243,18 +243,6 @@ async function getFriendRequests() {
     }
   } catch (error) {
     console.error("Error:", error);
-  }
-}
-
-async function manageFriendRequest(type) {
-  if (type === "accept") {
-    const res = await fetch("/accept-friend-request", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-  } else {
   }
 }
 
@@ -270,6 +258,8 @@ async function addPost() {
   const postDescription = document.querySelector(".popup__post__description").value;
   const errorTitle = document.getElementById("error__message__title");
   const errorDescription = document.getElementById("error__message__description");
+
+  const image = document.getElementById("photo__path").textContent;
 
   if (gameTitle.length === 0) {
     errorTitle.textContent = "Please enter a game title.";
@@ -292,7 +282,7 @@ async function addPost() {
       postDescription: postDescription,
       date: date,
       comment_list: [],
-      image: "",
+      image: image,
       likes: 0,
     });
 
@@ -318,6 +308,7 @@ async function addPost() {
 
     document.querySelector(".popup__game__title").value = "";
     document.querySelector(".popup__post__description").value = "";
+    document.getElementById("photo__path").textContent = "";
   }
 }
 
@@ -448,16 +439,22 @@ function initHeader() {
 
   sharePostButton.addEventListener("click", addPost);
 
+  document.getElementById("attach__image").addEventListener("click", function () {
+    document.getElementById("image__upload").click();
+    document.getElementById("image__upload").addEventListener("change", function () {
+      console.log("File path: ", this.files);
+      const filePath = this.files[0].name;
+      const photoPath = document.getElementById("photo__path");
+      photoPath.textContent = filePath;
+    });
+  });
+
   const openSearchButton = document.getElementsByClassName("button--search")[0];
   const closeSearchButton = document.getElementsByClassName("close--search")[0];
   const searchPopup = document.getElementsByClassName("popup-search")[0];
   const toggle = document.getElementById("toggle");
   const searchInput = document.getElementsByClassName("popup-search__search-input")[0];
   const searchButton = document.getElementsByClassName("popup-search__button")[0];
-
-  document.getElementsByClassName("post__button--attach")[0].addEventListener("click", function () {
-    document.getElementById("imageUpload").click();
-  });
 
   openSearchButton.addEventListener("click", () => {
     searchPopup.showModal();
