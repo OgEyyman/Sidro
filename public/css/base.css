@@ -200,6 +200,18 @@
   color: black;
 }
 
+#photo__path {
+  margin-top: 1rem;
+  font-size: 2rem;
+  color: rgb(64, 64, 64);
+}
+
+.post__content-image {
+  width: 200px;
+  height: 200px;
+  margin-right: 5px;
+}
+
 .popup__post__share {
   display: flex;
   flex-direction: row;
