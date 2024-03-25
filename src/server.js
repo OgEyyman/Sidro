@@ -1,4 +1,4 @@
-import app from "./app.js";
+import { app, webSocket } from "./app.js";
 import { MongoClient, ObjectId, ServerApiVersion } from "mongodb";
 import axios from "axios";
 import cheerio from "cheerio";
@@ -158,10 +158,14 @@ app.get("/homefeed", async (req, res) => {
 
     const users = await userCollection.findOne({ name: activeUser });
 
+    let posts = await postCollection.find({ username: activeUser }).toArray();
+
     if (users.following) {
       const following = users.following;
 
-      const posts = await postCollection.find({ username: { $in: following } }).toArray();
+      const userfeed = await postCollection.find({ username: { $in: following } }).toArray();
+
+      posts = posts.concat(userfeed);
 
       if (!posts) {
         res.status(404).json({ message: "No posts found." });
@@ -609,6 +613,29 @@ app.get("/search-posts", async (req, res) => {
   }
 });
 
+webSocket.on("connection", (ws) => {
+  console.log("Connected to webSocket");
+
+  ws.on("message", async (message) => {
+    const postID = JSON.parse(message).postId;
+
+    const post = await postCollection.findOne({ _id: ObjectId.createFromHexString(postID) });
+    let likes = post.likes;
+    likes++;
+
+    const result = await postCollection.updateOne(
+      { _id: ObjectId.createFromHexString(postID) },
+      { $set: { likes: likes } }
+    );
+
+    webSocket.clients.forEach((client) => {
+      if (client.readyState === 1) {
+        client.send(JSON.stringify({ postId: postID, likes: likes }));
+      }
+    });
+  });
+});
+
 /**
  * Finds a user by their username.
  *
@@ -709,8 +736,14 @@ async function connectDatabase() {
  */
 connectDatabase()
   .then(() => {
-    app.listen(PORT, () => {
+    const server = app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
+    });
+
+    server.on("upgrade", (request, socket, head) => {
+      webSocket.handleUpgrade(request, socket, head, (socket) => {
+        webSocket.emit("connection", socket, request);
+      });
     });
   })
   .catch((err) => {
