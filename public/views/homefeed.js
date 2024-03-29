@@ -145,31 +145,6 @@ function initHome() {
   const toggleButtons = document.querySelectorAll(".content-utilities__feed-button");
   const contentSections = document.querySelectorAll(".feed");
 
-  let isClicked = false;
-
-  // TODO Like feature
-  // document.getElementById("svgButton").addEventListener("mouseover", function () {
-  //   if (!isClicked) {
-  //     document.getElementById("svgImage").src = "../assets/home/hover-thumb.svg";
-  //   }
-  // });
-
-  // document.getElementById("svgButton").addEventListener("mouseout", function () {
-  //   if (!isClicked) {
-  //     document.getElementById("svgImage").src = "../assets/home/normal-thumb.svg";
-  //   }
-  // });
-
-  // document.getElementById("svgButton").addEventListener("click", function () {
-  //   if (isClicked) {
-  //     document.getElementById("svgImage").src = "../assets/home/normal-thumb.svg";
-  //     isClicked = false;
-  //   } else {
-  //     document.getElementById("svgImage").src = "../assets/home/liked-thumb.svg";
-  //     isClicked = true;
-  //   }
-  // });
-
   directToProfile();
 
   addComment();
