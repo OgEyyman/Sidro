@@ -97,6 +97,12 @@
   row-gap: 2rem;
 }
 
+.popup__no-requests {
+  font-size: 2.5rem;
+  color: #90125e;
+  text-shadow: 0px 1px 1px #000;
+}
+
 .popup__user-icon {
   width: 40%;
   height: 40%;
@@ -163,7 +169,7 @@
 }
 
 .popup__game__title {
-  margin-top: 5%;
+  margin-top: 15px;
   width: 70%;
   font-size: 2rem;
   padding: 1% 2%;
@@ -181,8 +187,17 @@
   color: black;
 }
 
+#error__message__title {
+  font-size: 1.7rem;
+  color: #000;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
+  margin-bottom: -10px;
+}
+
 .popup__post__description {
-  margin-top: 5%;
+  margin-top: 26px;
   width: 70%;
   font-size: 2rem;
   padding: 1% 2%;
@@ -200,8 +215,18 @@
   color: black;
 }
 
+#error__message__description {
+  font-size: 1.7rem;
+  color: #000;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
+  margin-bottom: -15px;
+}
+
 #photo__path {
-  margin-top: 1rem;
+  margin-top: 20px;
+  margin-bottom: -20px;
   font-size: 2rem;
   color: rgb(64, 64, 64);
 }
@@ -379,6 +404,19 @@
   flex-wrap: wrap;
   margin-top: 3%;
   width: 70%;
+  justify-content: center;
+}
+
+.popup-search__no-results {
+  font-size: 3rem;
+  color: #660b42;
+  text-shadow: 0px 3px 1px rgb(0, 0, 0, 0.2);
+}
+
+.search__no-results {
+  font-size: 3rem;
+  color: #660b42;
+  text-shadow: 0px 3px 1px rgb(0, 0, 0, 0.2);
 }
 
 .popup__request-container {
