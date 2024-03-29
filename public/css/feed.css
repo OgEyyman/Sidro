@@ -184,12 +184,9 @@ body {
 .post__comment {
   border-radius: 7px;
   background-color: #dcc88f;
-  width: 90%;
+  width: 80%;
   padding: 1rem 0;
   margin: 1rem auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 .post__comment-header {
@@ -197,6 +194,7 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  margin-bottom: 3px;
   align-items: center;
   width: 16%;
 }
@@ -216,14 +214,21 @@ body {
 .post__comment-body {
   font-family: "webpixel-bitmap.medium", "Courier New", monospace;
   font-size: 1.6rem;
-  text-align: justify;
-  width: 65%;
+  display: flex;
+  text-align: center;
+  width: 100%;
+  flex-direction: column;
+  word-wrap: break-word;
+  padding: 0 5%;
+  margin-bottom: 3px;
 }
 
 .post__comment-date {
   font-family: "webpixel-bitmap.regular", "Courier New", monospace;
   font-size: 1.4rem;
   margin: 0 1rem;
+  display: flex;
+  justify-content: end;
 }
 
 .post__add-comment {
