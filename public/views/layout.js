@@ -166,8 +166,13 @@ async function getFriendRequests() {
     popupList.innerHTML = "";
 
     if (res.status === 200) {
-      resData.friendRequests.forEach((element) => {
-        popupList.innerHTML += /*HTML*/ `
+      if (resData.friendRequests.length === 0) {
+        popupList.innerHTML = /*HTML*/ `
+          <p class="popup__no-requests">No friend requests</p>
+        `;
+      } else {
+        resData.friendRequests.forEach((element) => {
+          popupList.innerHTML += /*HTML*/ `
         <div class="popup__request-container">
           <img src="../assets/common/account_icon.svg" alt="user icon" 
           class="popup__user-icon">
@@ -186,7 +191,8 @@ async function getFriendRequests() {
           </div>
         </div>
         `;
-      });
+        });
+      }
 
       const acceptButtonArray = document.querySelectorAll(".button--accept");
       const declineButtonArray = document.querySelectorAll(".button--decline");
