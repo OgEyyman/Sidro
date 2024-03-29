@@ -1,11 +1,12 @@
 /* -------------------------------------------------------------------------- */
 /*                        BEGIN Style Body and Content                        */
 /* -------------------------------------------------------------------------- */
-body.login, body.register {
+body.login,
+body.register {
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 25vh 50vh 25vh;
-  background-color: #FFECD1;
+  background-color: #ffecd1;
 }
 
 .content {
@@ -40,8 +41,12 @@ img[src*="ps5"] {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .symbols {
@@ -70,18 +75,17 @@ img[src*="ps5"] {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #8BBEB2;
+  background: #8bbeb2;
   border-radius: 7px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
   width: 400px;
   height: 390px;
 }
 
 .display-box__header {
   font-size: 63px;
-  color: #1F2663;
+  color: #1f2663;
 }
 
 .display-box__form {
@@ -93,25 +97,34 @@ img[src*="ps5"] {
 }
 
 .display-box__input {
-  margin: 20px 0;
+  margin: 20px 0px 15px 0px;
   border: none;
-  border-bottom: 3px solid #33A1FD;
+  border-bottom: 3px solid #33a1fd;
   padding-left: 10px;
   background: none;
   width: 100%;
   height: 55px;
   font-size: 36px;
-  color: #1F2663;
+  color: #1f2663;
 }
 
 .display-box__input:focus {
   outline: none;
-  border-bottom: 3px solid #1F2663;
+  border-bottom: 3px solid #1f2663;
 }
 
-.display-box__input::placeholder { 
+.display-box__input::placeholder {
   opacity: 0.5;
   color: white;
+}
+
+#error-message--username {
+  font-size: 1.5rem;
+  color: #ffecd1;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  width: 340px;
+  word-wrap: break-word;
 }
 
 .display-box__password-input {
@@ -124,21 +137,38 @@ img[src*="ps5"] {
   height: fit-content;
 }
 
+#error-message--password {
+  font-size: 1.5rem;
+  color: #ffecd1;
+  margin-bottom: 10px;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  width: 340px;
+  word-wrap: break-word;
+}
+
+#error-message {
+  font-size: 2.5rem;
+  color: #ffecd1;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
 .display-box__submit {
   font-size: 36px;
   padding: 0 10px;
   padding-bottom: 5px;
   border-radius: 110px;
   text-align: center;
-  background-color: #660B42;
-  color: #8BBEB2;
+  background-color: #660b42;
+  color: #8bbeb2;
   border: none;
   cursor: pointer;
 }
 
 .display-box__submit:hover {
-  background-color: #FFECD1;
-  color: #660B42;
+  background-color: #ffecd1;
+  color: #660b42;
 }
 
 .display-box__show-password {
@@ -157,19 +187,19 @@ img[src*="ps5"] {
 
 .display-box__redirect-text {
   position: relative;
-  margin: 20px 0px 0px 0px;
+  margin: 5px 0px 0px 0px;
   font-size: 32px;
-  color: #1F2663;
+  color: #1f2663;
 }
 
 .display-box__redirect-link {
   font-size: 20px;
-  margin: -3px 0px 15px 0px;
-  color: #1F2663; 
+  margin: -5px 0px 25px 0px;
+  color: #1f2663;
 }
 
-.display-box__redirect-link:hover{
-  color: #FFECD1; 
+.display-box__redirect-link:hover {
+  color: #ffecd1;
 }
 /* -------------------------------------------------------------------------- */
 /*                      END Style Login and Register Form                     */
