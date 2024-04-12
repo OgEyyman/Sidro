@@ -44,7 +44,7 @@ function directToProfile() {
       e.preventDefault();
       const username = link.querySelector(".name-value").innerText;
 
-      const res = await fetch(`/getProfile?username=${username}`, {
+      const res = await fetch(`M00952409/getProfile?username=${username}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -78,7 +78,7 @@ function addComment() {
       const date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
 
       if (comment) {
-        const res = await fetch("/add-comment", {
+        const res = await fetch("M00952409/add-comment", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -330,7 +330,7 @@ function manageLikes() {
  * @returns {Promise<void>} A promise that resolves when the home feed data is fetched and appended to the feed.
  */
 async function getHomeFeed() {
-  const res = await fetch("/homefeed", {
+  const res = await fetch("M00952409/homefeed", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

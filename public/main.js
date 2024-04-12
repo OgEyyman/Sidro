@@ -32,7 +32,7 @@ function loadPageContent(content, displayHeader = true) {
  * If the response status is 401, it redirects the user to the login page.
  */
 async function checkLoginStatus() {
-  const res = await fetch("/checkLoginStatus", {
+  const res = await fetch("M00952409/checkLoginStatus", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

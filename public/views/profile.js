@@ -40,7 +40,7 @@ const loadOtherAccountPage = /*HTML*/ `
  */
 async function getProfileContent() {
   try {
-    const res = await fetch("/myProfile", {
+    const res = await fetch("M00952409/myProfile", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -91,7 +91,7 @@ async function getProfileContent() {
  */
 async function getOtherProfileContent(username) {
   try {
-    const res = await fetch(`/getOtherProfile?username=${username}`, {
+    const res = await fetch(`M00952409/getOtherProfile?username=${username}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -157,7 +157,7 @@ async function getOtherProfileContent(username) {
  */
 async function addFriend() {
   try {
-    const res = await fetch(`/addFriend`, {
+    const res = await fetch(`M00952409/addFriend`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -180,7 +180,7 @@ async function addFriend() {
  */
 async function logout() {
   try {
-    const res = await fetch("/logout", {
+    const res = await fetch("M00952409/logout", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

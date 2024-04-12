@@ -152,7 +152,7 @@ const renderFooter = /*HTML*/ `
 
 async function getFriendRequests() {
   try {
-    const res = await fetch("/retrieve-friend-requests", {
+    const res = await fetch("M00952409/retrieve-friend-requests", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -204,7 +204,7 @@ async function getFriendRequests() {
           // Get the value of the span tag with classname name-value
           const spanValue = grandParent.querySelector(".name-value").textContent;
 
-          const res = await fetch("/accept-friend-request", {
+          const res = await fetch("M00952409/accept-friend-request", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -226,7 +226,7 @@ async function getFriendRequests() {
           // Get the value of the span tag with classname name-value
           const spanValue = grandParent.querySelector(".name-value").textContent;
 
-          const res = await fetch("/decline-friend-request", {
+          const res = await fetch("M00952409/decline-friend-request", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -292,7 +292,7 @@ async function addPost() {
     });
 
     try {
-      const res = await fetch("/share-post", {
+      const res = await fetch("M00952409/share-post", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -330,7 +330,7 @@ async function search() {
     `;
   } else {
     if (searchInput.placeholder === "Search users") {
-      const res = await fetch(`/search-users?value=${searchInput.value}`, {
+      const res = await fetch(`M00952409/search-users?value=${searchInput.value}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -368,7 +368,7 @@ async function search() {
         `;
       }
     } else {
-      const res = await fetch(`/search-posts?value=${searchInput.value}`, {
+      const res = await fetch(`M00952409/search-posts?value=${searchInput.value}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

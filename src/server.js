@@ -36,7 +36,7 @@ const postCollection = db.collection("homefeed");
  *
  * @param {Object} res - The Express response object.
  */
-app.post("/login", async (req, res) => {
+app.post("/M00952409/login", async (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
 
@@ -73,7 +73,7 @@ app.post("/login", async (req, res) => {
  *
  * @param {Object} res - The Express response object.
  */
-app.post("/register", async (req, res) => {
+app.post("/M00952409/register", async (req, res) => {
   try {
     const reqData = req.body;
 
@@ -102,7 +102,7 @@ app.post("/register", async (req, res) => {
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object
  */
-app.post("/logout", (req, res) => {
+app.post("/M00952409/logout", (req, res) => {
   req.session.destroy((error) => {
     if (error) {
       // If there's an error, respond with a 500 status code
@@ -124,7 +124,7 @@ app.post("/logout", (req, res) => {
  * @param {Object} req - Express request object. The session of the request should contain a 'username' field if the user is logged in.
  * @param {Object} res - Express response object
  */
-app.get("/checkLoginStatus", (req, res) => {
+app.get("/M00952409/checkLoginStatus", (req, res) => {
   try {
     if (req.session.username) {
       res.status(200).end();
@@ -151,7 +151,7 @@ app.get("/checkLoginStatus", (req, res) => {
  * - If there are posts, it returns a 200 status code along with the posts in JSON format.
  * - If there's an error while fetching the posts, it returns a 500 status code with a message "Failed to fetch posts."
  */
-app.get("/homefeed", async (req, res) => {
+app.get("/M00952409/homefeed", async (req, res) => {
   try {
     // Retrieve posts only for users that the active user is following
     const activeUser = req.session.username;
@@ -193,7 +193,7 @@ app.get("/homefeed", async (req, res) => {
  * - If there's an error while fetching the news data, it returns a 500 status code with a message "Failed to fetch news feed."
  * - If the fetched HTML is null or undefined, it returns a 400 status code with a message "Failed to fetch news feed."
  */
-app.get("/newsfeed", async (req, res) => {
+app.get("/M00952409/newsfeed", async (req, res) => {
   try {
     const websiteURL = "https://www.gameinformer.com/news";
     const html = await fetchHTML(websiteURL);
@@ -224,7 +224,7 @@ app.get("/newsfeed", async (req, res) => {
  * - If the post is not found, it returns a 404 status code with a message "Post not found."
  * - If there's an error while adding the comment, it returns a 500 status code with a message "Failed to add comment."
  */
-app.post("/add-comment", async (req, res) => {
+app.post("/M00952409/add-comment", async (req, res) => {
   try {
     const reqData = req.body;
 
@@ -270,7 +270,7 @@ app.post("/add-comment", async (req, res) => {
  * - If the 'username' query parameter does not match the 'username' stored in the session, it returns a 200 status code with a JSON object { isSessionUser: false }.
  * - If there's an error while processing the request, it returns a 500 status code with a message "Failed to fetch user data."
  */
-app.get("/getProfile", async (req, res) => {
+app.get("/M00952409/getProfile", async (req, res) => {
   try {
     const username = req.query.username;
     const sessionUser = req.session.username;
@@ -301,7 +301,7 @@ app.get("/getProfile", async (req, res) => {
  * - If the user is not found, it returns a 404 status code with a message "User not found."
  * - If there's an error while processing the request, it returns a 500 status code with a message "Failed to fetch user data."
  */
-app.get("/myProfile", async (req, res) => {
+app.get("/M00952409/myProfile", async (req, res) => {
   try {
     const username = req.session.username;
 
@@ -333,7 +333,7 @@ app.get("/myProfile", async (req, res) => {
  * - If the user is not found, it returns a 404 status code with a message "User not found."
  * - If there's an error while processing the request, it returns a 500 status code with a message "Failed to fetch user data."
  */
-app.get("/getOtherProfile", async (req, res) => {
+app.get("/M00952409/getOtherProfile", async (req, res) => {
   try {
     const username = req.query.username;
 
@@ -390,7 +390,7 @@ app.get("/getOtherProfile", async (req, res) => {
  * - If the user is found but has no friend requests, it returns a 404 status code with a message "No friend requests found."
  * - If there's an error while processing the request, it returns a 500 status code.
  */
-app.get("/retrieve-friend-requests", async (req, res) => {
+app.get("/M00952409/retrieve-friend-requests", async (req, res) => {
   try {
     const username = req.session.username;
 
@@ -427,7 +427,7 @@ app.get("/retrieve-friend-requests", async (req, res) => {
  * - If the user is found but has no friend requests, it returns a 404 status code with a message "No friend requests found."
  * - If there's an error while processing the request, it returns a 500 status code.
  */
-app.post("/accept-friend-request", async (req, res) => {
+app.post("/M00952409/accept-friend-request", async (req, res) => {
   try {
     const username = req.session.username;
     const friendName = req.body.username;
@@ -466,7 +466,7 @@ app.post("/accept-friend-request", async (req, res) => {
  * @param {Object} req - Express request object. The session of the request should contain a 'username' field with the name of the logged in user, and the body of the request should contain a 'username' field with the name of the user whose friend request is being declined.
  * @param {Object} res - Express response object
  */
-app.post("/decline-friend-request", async (req, res) => {
+app.post("/M00952409/decline-friend-request", async (req, res) => {
   try {
     const username = req.session.username;
     const friendName = req.body.username;
@@ -500,7 +500,7 @@ app.post("/decline-friend-request", async (req, res) => {
  * @param {Object} req - Express request object. The body of the request should contain a 'username' field with the name of the user to send a friend request to.
  * @param {Object} res - Express response object
  */
-app.post("/addFriend", async (req, res) => {
+app.post("/M00952409/addFriend", async (req, res) => {
   try {
     const userClicked = req.body.username;
 
@@ -534,7 +534,7 @@ app.post("/addFriend", async (req, res) => {
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object
  */
-app.post("/share-post", async (req, res) => {
+app.post("/M00952409/share-post", async (req, res) => {
   try {
     const reqData = req.body;
 
@@ -562,7 +562,7 @@ app.post("/share-post", async (req, res) => {
  * - If no users are found, it returns a 404 status code with a message "No users found."
  * - If there's an error while processing the request, it returns a 500 status code with a message "Failed to fetch users."
  */
-app.get("/search-users", async (req, res) => {
+app.get("/M00952409/search-users", async (req, res) => {
   try {
     const query = req.query.value;
 
@@ -594,7 +594,7 @@ app.get("/search-users", async (req, res) => {
  * - If no posts are found, it returns a 404 status code with a message "No posts found."
  * - If there's an error while processing the request, it returns a 500 status code with a message "Failed to fetch posts."
  */
-app.get("/search-posts", async (req, res) => {
+app.get("/M00952409/search-posts", async (req, res) => {
   try {
     const query = req.query.value;
 

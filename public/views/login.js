@@ -138,7 +138,7 @@ async function login() {
 
   if (username.length != 0 && password.length != 0) {
     try {
-      const res = await fetch("/login", {
+      const res = await fetch("M00952409/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -180,7 +180,7 @@ async function register() {
 
   if (validUsername.isValid && validPassword.isValid) {
     try {
-      const res = await fetch("/register", {
+      const res = await fetch("M00952409/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

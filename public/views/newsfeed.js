@@ -82,7 +82,7 @@ const loadNewsFeedPage = /* HTML */ `
   `;
 
 async function getNewsData() {
-  const res = await fetch("/newsfeed", {
+  const res = await fetch("M00952409/newsfeed", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
