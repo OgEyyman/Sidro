@@ -63,23 +63,6 @@ async function getProfileContent() {
         <p class="profile__description__text">
           ${userData.bio ? userData.bio : ""}
         </p>
-        <!-- Edit bio popup -->
-        <dialog class="edit-bio__popup">
-          <div class="edit-bio__container">
-            <div class="edit-bio__banner">
-              <h1 class="edit-bio__header">Change bio description</h1>
-              <button class="close__popup">
-                <img class="close__popup__image" src="../assets/common/cross.svg">
-              </button>
-            </div>
-            <textarea id="bio-description" cols="30" rows="8" placeholder="Change bio..."></textarea>
-            <button class="edit-bio__submit">Save</button>
-          </div>
-        </dialog>
-        <button class="profile__description__edit">
-          <img class="profile__description__edit-image" 
-          src="../assets/common/edit.svg" alt="edit button">
-        </button>
       </div>
       `;
 

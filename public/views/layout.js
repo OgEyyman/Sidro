@@ -30,8 +30,7 @@ const renderHeader = /*HTML*/ `
       </div>
       <!-- Post input container -->
       <div class="popup__post__container">
-        <input placeholder="Game title" class="popup__game__title" rows="1" 
-          maxlength="46">
+        <input placeholder="Game title" class="popup__game__title" maxlength="46">
         </input>
         <span id="error__message__title"></span>
         <textarea placeholder="Share something..." class="popup__post__description" rows="14" maxlength="644"></textarea>
