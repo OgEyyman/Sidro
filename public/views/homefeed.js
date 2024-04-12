@@ -22,25 +22,6 @@ const loadHomeFeedPage = /*HTML*/ `
         News feed
       </button>
     </div>
-    <!-- Filter and sort section -->
-    <div class="content-utilities__filter-sort">
-      <!-- Filter button -->
-      <button class="content-utilities__filter-sort-button">
-        <img
-          class="content-utilities__filter-sort-image"
-          src="../assets/home/filter.svg"
-          alt="filter icon"
-        />
-      </button>
-      <!-- Sort button -->
-      <button class="content-utilities__filter-sort-button">
-        <img
-          class="content-utilities__filter-sort-image"
-          src="../assets/home/sort.svg"
-          alt="sort icon"
-        />
-      </button>
-    </div>
   </div>
   <div class="content-container">
     <!-- Home feed container -->
